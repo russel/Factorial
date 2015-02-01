@@ -1,0 +1,11 @@
+import os
+
+environment = Environment(
+    ENV = os.environ
+)
+
+erlangExecutable = environment.Command('factorial.beam', 'factorial.erl', 'erlc -DTEST $SOURCE')
+
+environment.Command('testErlang', erlangExecutable, 'erl -noshell -s factorial test -s init stop')
+
+Clean('.', 'erl_crash.dump')

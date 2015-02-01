@@ -1,0 +1,9 @@
+import os
+
+environment = Environment(
+    tools=['g++', 'gnulink'],
+    CPPPATH=[os.path.join(os.environ['HOME'], 'include')],
+    CXXFLAGS=['-Wall', '-Wundef', '-Wcast-align', '-Wredundant-decls', '-std=c++14'],
+)
+
+environment.Program('factorial_gmp_test', ['factorial_gmp_test.cpp', 'factorial_gmp.cpp'], LIBS=['gmpxx', 'gmp'])

@@ -4,3 +4,5 @@
 *~
 project/
 target/
+.cache/
+__pycache__/

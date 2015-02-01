@@ -1,0 +1,16 @@
+apply plugin: 'groovy'
+
+sourceCompatibility = 8
+
+repositories {
+  mavenLocal()
+  jcenter()
+  mavenCentral()
+}
+
+dependencies {
+  compile 'org.codehaus.groovy:groovy:2.5.0-SNAPSHOT'
+  testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+}
+
+defaultTasks 'test'

@@ -1,0 +1,26 @@
+apply plugin: 'groovy'
+
+sourceCompatibility = 8
+
+repositories {
+  mavenLocal()
+  jcenter()
+  mavenCentral()
+}
+
+dependencies {
+  testCompile 'org.testng:testng:6.8.17'
+  testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+  // TestNG marks this as a provided dependency.
+  testCompile 'com.google.inject:guice:2.0'
+}
+
+test {
+  useTestNG()
+}
+
+clean.doLast {
+  delete 'test-output'
+}
+
+defaultTasks 'test'

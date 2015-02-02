@@ -17,8 +17,7 @@ fun iterative(x:Long):BigInteger = iterative(BigInteger.valueOf(x))
 fun iterative(x:BigInteger):BigInteger {
   validate(x)
   var total = one
-  //(two..x).forEach{i -> total *= i}
-  //for (i in two..x) { total *= i }
+  (two..x).forEach{i -> total *= i}
   return total
 }
 
@@ -43,8 +42,10 @@ fun tail_recursive(x:BigInteger):BigInteger {
 fun reductive(x:Long):BigInteger = reductive(BigInteger.valueOf(x))
 fun reductive(x:BigInteger):BigInteger {
   validate(x)
-  if (x < two) { return one }
-  //return (one..x).reduce({(t:BigInteger, i:BigInteger) -> t * i})
-  return one
+  if (x < two) {
+    return one
+  }
+  return (one..x).reduce({(t: BigInteger, i: BigInteger) -> t * i })
 }
+
 

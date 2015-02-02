@@ -6,6 +6,13 @@
 #include <vector>
 #include <utility>
 
+std::vector<mpz_class (*)(long const)> const algorithms {
+	Factorial::iterative,
+	 Factorial::reductive,
+	 Factorial::recursive,
+	 Factorial::tailRecursive
+	 };
+
 std::vector<std::pair<int, std::string>> const positiveData {
   {0, "1"},
   {1, "1"},
@@ -29,34 +36,38 @@ std::vector<std::pair<int, std::string>> const positiveData {
 
 std::vector<int> const negativeData {-1, -2, -5, -10, -20, -100};
 
-static void positiveTest(mpz_class f(mpz_class const)) {
-	for (auto const & p: positiveData) { REQUIRE(f(p.first) == mpz_class(p.second) ); }
+TEST_CASE("Positive arguments succeed.") {
+	for (auto && f: algorithms) {
+		for (auto  && p: positiveData) {
+			REQUIRE(f(p.first) == mpz_class(p.second) );
+		}
+	}
 }
 
-TEST_CASE("Factorial of positive integers should compute correctly using iterative implementation") {
-  positiveTest(Factorial::iterative);
+TEST_CASE("Negative arguments throw exceptions.") {
+	for (auto && f: algorithms) {
+		for (auto && i: negativeData) {
+			REQUIRE_THROWS_AS(f(i), std::invalid_argument);
+		}
+	}
 }
 
-TEST_CASE("Factorial of positive integers should compute correctly using recursive implementation") {
-  positiveTest(Factorial::recursive);
+TEST_CASE("Iterative knows no bounds.") {
+	Factorial::iterative(60000);
+	REQUIRE(true);
 }
 
-TEST_CASE("Factorial of positive integers should compute correctly using tail recursive implementation") {
-  positiveTest(Factorial::tailRecursive);
+TEST_CASE("Reductive knows no bounds.") {
+	Factorial::reductive(60000);
+	REQUIRE(true);
 }
 
-static void negativeTest(mpz_class f(mpz_class const)) {
-	for (auto const & i: negativeData) { REQUIRE_THROWS_AS(f(i), std::invalid_argument); }
+TEST_CASE("Recursive runs out of stack, eventually.") {
+	Factorial::recursive(50000); // 60000 causes bus error.
+	REQUIRE(true);
 }
 
-TEST_CASE("Factorial iterative should throw exception on negative argument") {
-  negativeTest(Factorial::iterative);
-}
-
-TEST_CASE("Factorial iterative should throw exception on recursive argument") {
-  negativeTest(Factorial::recursive);
-}
-
-TEST_CASE("Factorial iterative should throw exception on tailRecursive argument") {
-  negativeTest(Factorial::tailRecursive);
+TEST_CASE("Tail recursive runs out of stack, eventually.") {
+	Factorial::tailRecursive(50000); // 60000 causes bus error.
+	REQUIRE(true);
 }

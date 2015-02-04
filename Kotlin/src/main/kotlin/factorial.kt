@@ -45,7 +45,7 @@ fun reductive(x:BigInteger):BigInteger {
   if (x < two) {
     return one
   }
-  return (one..x).reduce({(t: BigInteger, i: BigInteger) -> t * i })
+  return (one .. x).reduce({t, i -> t * i})
 }
 
 

@@ -6,4 +6,6 @@ environment = Environment(
     CXXFLAGS=['-Wall', '-Wundef', '-Wcast-align', '-Wredundant-decls', '-std=c++14'],
 )
 
-environment.Program('factorial_gmp_test', ['factorial_gmp_test.cpp', 'factorial_gmp.cpp'], LIBS=['gmpxx', 'gmp'])
+test_program = environment.Program('factorial_gmp_test', ['factorial_gmp_test.cpp', 'factorial_gmp.cpp'], LIBS=['gmpxx', 'gmp'])
+
+Command('test', test_program, './$SOURCE')

@@ -25,7 +25,7 @@ mpz_class iterative(long const n) { return iterative(mpz_class(n)); }
 
 // --------------------------------------------------------------------------------
 
-class mpz_class_iterator : std::iterator<std::forward_iterator_tag, mpz_class> {
+class mpz_class_iterator : std::iterator<std::input_iterator_tag, mpz_class> {
  private:
 	mpz_class value;
  public:

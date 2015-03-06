@@ -93,7 +93,7 @@ class Factorial {
     // factorial.curry returns Closure<Serializable> which is not compatible with Closure<BigInteger> so we
     // cannot do compile time type checking with generics just raw types on this one.
     /*final*/ Closure factorial
-    factorial = {BigInteger i, BigInteger result = 1G -> i < 2G ? result : factorial.curry(i - 1, i * result)}
+    factorial = {BigInteger i, BigInteger result = 1G -> i < 2G ? result : factorial.curry(i - 1G, i * result)}
     (BigInteger)executeTillResultReturned(factorial.curry(n))
   }
   static BigInteger continuation(final Integer n) { continuation(n as BigInteger) }

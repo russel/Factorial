@@ -7,3 +7,4 @@ target/
 .cache/
 __pycache__/
 .sconsign.dblite
+build/

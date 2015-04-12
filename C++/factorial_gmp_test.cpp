@@ -8,10 +8,10 @@
 
 std::vector<mpz_class (*)(long const)> const algorithms {
 	Factorial::iterative,
-	 Factorial::reductive,
-	 Factorial::recursive,
-	 Factorial::tailRecursive
-	 };
+	Factorial::reductive,
+	Factorial::recursive,
+	Factorial::tailRecursive
+};
 
 std::vector<std::pair<int, std::string>> const positiveData {
   {0, "1"},

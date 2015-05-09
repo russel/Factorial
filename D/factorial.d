@@ -1,0 +1,91 @@
+import std.algorithm: reduce;
+import std.bigint: BigInt;
+import std.range: iota;
+import std.typecons: tuple;
+
+immutable BigInt zero = BigInt(0);
+immutable BigInt one = BigInt(1);
+immutable BigInt two = BigInt(2);
+
+BigInt iterative(immutable ulong n) { return iterative(BigInt(n)); }
+BigInt iterative(immutable BigInt n) {
+  if (n < two) { return one; }
+  BigInt total = one;
+  foreach (i; two .. n + one) { total *= i; }
+  return total;
+}
+
+BigInt recursive(immutable ulong n) { return recursive(BigInt(n)); }
+BigInt recursive(immutable BigInt n) {
+  return (n < two) ? one : n * recursive(n - one);
+}
+
+BigInt tailRecursive(immutable ulong n) { return tailRecursive(BigInt(n)); }
+BigInt tailRecursive(immutable BigInt n) {
+  BigInt iterate(immutable BigInt n, immutable BigInt result) {
+    //  Except of course that there is no tail recursion optimization in D so this takes serious stack space.
+    return (n < two) ? result : iterate(n - one, result * n);
+  }
+  return iterate(n, one);
+}
+
+// immutable(BigInts) are apparently not integral so iota fails :-(
+// At least BigInts are integral from 2.067 onwards though so we can "hack it".
+BigInt reductive(immutable ulong n) { return reductive(BigInt(n)); }
+BigInt reductive(immutable BigInt n) {
+  return reduce!"a * b"(one, iota(BigInt(one), n + one));
+}
+
+unittest {
+
+  import std.conv: to;
+
+  immutable data = [
+                    tuple(0, one),
+                    tuple(1, one),
+                    tuple(2, two),
+                    tuple(3, immutable BigInt(6)),
+                    tuple(4, immutable BigInt(24)),
+                    tuple(5, immutable BigInt(120)),
+                    tuple(6, immutable BigInt(720)),
+                    tuple(7, immutable BigInt(5040)),
+                    tuple(8, immutable BigInt(40320)),
+                    tuple(9, immutable BigInt(362880)),
+                    tuple(10, immutable BigInt(3628800)),
+                    tuple(11, immutable BigInt(39916800)),
+                    tuple(12, immutable BigInt(479001600)),
+                    tuple(13, immutable BigInt(6227020800)),
+                    tuple(14, immutable BigInt(87178291200)),
+                    tuple(20, immutable BigInt(2432902008176640000)),
+                    tuple(30, immutable BigInt("265252859812191058636308480000000")),
+                    tuple(40, immutable BigInt("815915283247897734345611269596115894272000000000")),
+                   ];
+
+  string message(immutable string functionName, immutable int value, immutable BigInt actual, immutable BigInt expected) {
+    return functionName ~ "(" ~ to!string(value) ~ ") = " ~ to!string(actual) ~ " should be " ~ to!string(expected);
+  }
+
+  foreach (immutable item; data) {
+    immutable iterative_result = iterative(item[0]);
+    assert(iterative_result == item[1], message("Iterative", item[0], iterative_result, item[1]));
+
+    immutable recursive_result = recursive(item[0]);
+    assert(recursive_result == item[1], message("recursive", item[0], iterative_result, item[1]));
+
+    immutable tailRecursive_result = tailRecursive(item[0]);
+    assert(tailRecursive_result == item[1], message("tailRecursive", item[0], iterative_result, item[1]));
+
+    immutable reductive_result = reductive(item[0]);
+    assert(reductive_result == item[1], message("reductive", item[0], iterative_result, item[1]));
+  }
+
+  /*
+   *  Need to test the stack limits, except that things get very big and take a while, and D doesn't appear
+   *  to have exception trapping features.
+   *
+  iterative(60000); // No limit really here :-)
+  //recursive(60000); // Causes a segmentation fault. 50000 doesn't.
+  //tailRecursive(50000); // Causes a segmentation fault. 40000 doesn't. No tail call optimization.
+  //reductive(60000);
+  */
+}

@@ -4,13 +4,11 @@ import org.scalatest.FunSuite
 import org.scalatest.Matchers
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-import java.math.BigInteger
-
-class Factorial_ScalaTest extends FunSuite with Matchers with TableDrivenPropertyChecks {
+class Factorial_ScalaTest_TableDriven extends FunSuite with Matchers with TableDrivenPropertyChecks {
   val algorithms = Table(
     ("algorithm", "name"),
     (Factorial.iterative _, "iterative"),
-    (Factorial.recursive _, "recursive"),
+    (Factorial.naïveRecursive _, "recursive"),
     (Factorial.tailRecursive _, "tailRecursive"),
     (Factorial.reductive _, "reductive")
   )
@@ -50,7 +48,7 @@ class Factorial_ScalaTest extends FunSuite with Matchers with TableDrivenPropert
 
   test("iterative 26000") { Factorial.iterative(26000) }
   test("reductive 26000") { Factorial.reductive(26000) }
-  test("recursive 13000") { an [StackOverflowError] should be thrownBy { Factorial.recursive(13000) } }
+  test("recursive 14000") { an [StackOverflowError] should be thrownBy { Factorial.naïveRecursive(14000) } }
   test("tailRecursive 26000") { Factorial.tailRecursive(26000) }
 
 }

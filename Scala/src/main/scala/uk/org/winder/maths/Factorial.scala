@@ -21,11 +21,11 @@ object Factorial {
     result
   }
 
-  def recursive(n:Int):BigInt = recursive(BigInt(n))
-  def recursive(n:BigInt):BigInt = {
+  def naïveRecursive(n:Int):BigInt = naïveRecursive(BigInt(n))
+  def naïveRecursive(n:BigInt):BigInt = {
     validate(n)
     if (n < 2) 1
-    else n * recursive(n - 1)
+    else n * naïveRecursive(n - 1)
   }
 
   def tailRecursive(n:Int):BigInt = tailRecursive(BigInt(n))

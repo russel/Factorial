@@ -1,8 +1,8 @@
-#! /usr/bin/env py.test-3
+#! /usr/bin/env python3
 # -*- coding:utf-8; -*-
 
 '''
-Tests, using pytest, for the various factorial implementations.
+Example-based tests, using pytest, for the various factorial implementations.
 '''
 
 __author__ = 'Russel Winder'
@@ -11,7 +11,7 @@ __version__ = '1.2'
 __copyright__ = 'Copyright © 2011–2014  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
-from pytest import raises, mark
+from pytest import mark, raises
 
 from factorial import iterative, recursive, tailRecursive, usingReduce
 
@@ -84,3 +84,8 @@ def test_iterative_big_succeeds(alg, x, r):
 def test_recursive_big_stack_fail(alg, x):
     with raises(RuntimeError):
         alg(x)
+
+
+if __name__ == '__main__':
+    from pytest import main
+    main()

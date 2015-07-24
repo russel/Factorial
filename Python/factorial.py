@@ -2,8 +2,8 @@
 
 '''
 A collection of implementations of factorial, which is defined by the recurrence relation:
-    f_0 = 1
-    f_n = n f_{n-1}, n > 0
+    f 0 = 1
+    f n = n . f (n - 1), n > 0
 
 The tail recursive implementation is only of limited usefulness since Python does not support tail recursion
 optimization – so each tail recursive call uses a new stack frame just as the recursive implementation does

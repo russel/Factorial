@@ -33,17 +33,17 @@ class Factorial {
 
   //------------------------------------------------------------------------------------------------------------------------
 
-  static BigInteger recursive(final BigInteger n) {
+  static BigInteger naïveRecursive(final BigInteger n) {
     validateParameter(n)
-    n < 2G ? 1G : n * recursive(n - 1G)
+    n < 2G ? 1G : n * naïveRecursive(n - 1G)
   }
-  static BigInteger recursive(Integer n) { recursive(n as BigInteger) }
-  static BigInteger recursive(Long n) { recursive(n as BigInteger) }
+  static BigInteger naïveRecursive(Integer n) { naïveRecursive(n as BigInteger) }
+  static BigInteger naïveRecursive(Long n) { naïveRecursive(n as BigInteger) }
 
   //------------------------------------------------------------------------------------------------------------------------
 
   @TailRecursive
-  static BigInteger iterate(final BigInteger i, final BigInteger result) {
+  static private BigInteger iterate(final BigInteger i, final BigInteger result) {
     i < 2G ? result : iterate(i - 1G, result * i)
   }
   static BigInteger tailRecursiveFunction(BigInteger n) {

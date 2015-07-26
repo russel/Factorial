@@ -8,7 +8,7 @@ class Factorial_Spock_ExampleBased extends Specification {
   static algorithms = [
       [Factorial.&iterative, 'iterative'],
       [Factorial.&reductive, 'reductive'],
-      [Factorial.&recursive, 'recursive'],
+      [Factorial.&naïveRecursive, 'naïveRecursive'],
       [Factorial.&tailRecursiveFunction, 'tailRecursiveFunction'],
       [Factorial.&tailRecursiveClosure, 'tailRecursiveClosure'],
       [Factorial.&tailRecursiveTrampoline, 'tailRecursiveTrampoline'],
@@ -65,7 +65,7 @@ class Factorial_Spock_ExampleBased extends Specification {
     where: [algorithm, name] << algorithms.findAll{algorithm -> (algorithm[1] as String) in [
         'iterative',
         'reductive',
-        'recursive',
+        'naïveRecursive',
         'tailRecursiveFunction',
         //'tailRecursiveClosure', // Throws a StackOverflowError: no tail call optimization.
         'tailRecursiveTrampoline',
@@ -79,7 +79,7 @@ class Factorial_Spock_ExampleBased extends Specification {
     where: [algorithm, name] << algorithms.findAll{algorithm -> (algorithm[1] as String) in [
         'iterative',
         //'reductive', // Takes a VERY long time.
-        //'recursive', // Throws a StackOverflowError: expected.
+        //'naïveRecursive', // Throws a StackOverflowError: expected.
         'tailRecursiveFunction',
         //'tailRecursiveClosure', // Throws a StackOverflowError: no tail call optimization.
         //'tailRecursiveTrampoline', // Takes a VERY long time.
@@ -94,7 +94,7 @@ class Factorial_Spock_ExampleBased extends Specification {
     where: [algorithm, name] << algorithms.findAll{algorithm -> (algorithm[1] as String) in [
         //'iterative', // Will never cause StackOverflowError.
         //'reductive', // Should never cause StackOverflowError. Takes a VERY long time.
-        'recursive',
+        'naïveRecursive',
         //'tailRecursiveFunction', // Should never cause StackOverflowError.
         'tailRecursiveClosure', // No tail call optimization.
         //'tailRecursiveTrampoline', // Should never cause StackOverflowError. Takes a VERY long time.

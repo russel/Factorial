@@ -10,7 +10,7 @@ class Factorial_Spock_PropertyBased extends Specification {
   static algorithms = [
       [Factorial.&iterative, 'iterative'],
       [Factorial.&reductive, 'reductive'],
-      [Factorial.&recursive, 'recursive'],
+      [Factorial.&naïveRecursive, 'naïveRecursive'],
       [Factorial.&tailRecursiveFunction, 'tailRecursiveFunction'],
       [Factorial.&tailRecursiveClosure, 'tailRecursiveClosure'],
       [Factorial.&tailRecursiveTrampoline, 'tailRecursiveTrampoline'],

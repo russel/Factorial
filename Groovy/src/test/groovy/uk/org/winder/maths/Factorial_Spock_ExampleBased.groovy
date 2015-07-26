@@ -41,28 +41,28 @@ class Factorial_Spock_ExampleBased extends Specification {
   static floatData = [100.5, 20.5, 10.5, 5.5, 2.5, 0.5, -0.5, -2.5, -5.5, -10.5, -20.5, -100.5]
 
 
-  @Unroll def "#name(#i) [positive argument] should result in #result"() {
-    expect: algorithm.call(i) == result
-    where: [algorithm, name, i, result] << algorithms.collectMany{algorithm -> positiveData.collect{datum -> [*algorithm, *datum]}}
+  @Unroll def '#name(#i) [positive argument] should result in #result'() {
+    expect: f.call(i) == result
+    where: [f, name, i, result] << algorithms.collectMany{a -> positiveData.collect{datum -> [*a, *datum]}}
   }
 
-  @Unroll def "#name(#i) [negative argument] should throw an exception"() {
-    when: algorithm.call(i)
+  @Unroll def '#name(#i) [negative argument] should throw an exception'() {
+    when: f.call(i)
     then: thrown IllegalArgumentException
-    where: [algorithm, name, i] << algorithms.collectMany{algorithm -> negativeData.collect{[*algorithm, it]}}
+    where: [f, name, i] << algorithms.collectMany{a -> negativeData.collect{[*a, it]}}
   }
 
-  @Unroll def "#name(#i) [non-integer argument] should throw an exception"() {
-    when: algorithm.call(i)
+  @Unroll def '#name(#i) [non-integer argument] should throw an exception'() {
+    when: f.call(i)
     then: thrown MissingMethodException
-    where: [algorithm, name, i] << algorithms.collectMany{algorithm -> floatData.collect{[*algorithm, it]}}
+    where: [f, name, i] << algorithms.collectMany{a -> floatData.collect{[*a, it]}}
   }
 
   @Unroll
-  def "#name succeeds for a big argument"() {
-    when: algorithm.call(1000)
+  def '#name succeeds for a big argument'() {
+    when: f.call(1000)
     then: notThrown StackOverflowError
-    where: [algorithm, name] << algorithms.findAll{algorithm -> (algorithm[1] as String) in [
+    where: [f, name] << algorithms.findAll{(it[1] as String) in [
         'iterative',
         'reductive',
         'naïveRecursive',
@@ -73,10 +73,10 @@ class Factorial_Spock_ExampleBased extends Specification {
     ]}
   }
 
-  @Unroll def "#name succeeds for an huge argument"() {
-    when: algorithm.call(26000)
+  @Unroll def '#name succeeds for an huge argument'() {
+    when: f.call(26000)
     then: notThrown StackOverflowError
-    where: [algorithm, name] << algorithms.findAll{algorithm -> (algorithm[1] as String) in [
+    where: [f, name] << algorithms.findAll{(it[1] as String) in [
         'iterative',
         //'reductive', // Takes a VERY long time.
         //'naïveRecursive', // Throws a StackOverflowError: expected.
@@ -88,10 +88,10 @@ class Factorial_Spock_ExampleBased extends Specification {
   }
 
   @Unroll
-  def "#name call for large parameter fails due to stack overflow"() {
-    when: algorithm.call(13000)
+  def '#name call for large parameter fails due to stack overflow'() {
+    when: f.call(13000)
     then: thrown StackOverflowError
-    where: [algorithm, name] << algorithms.findAll{algorithm -> (algorithm[1] as String) in [
+    where: [f, name] << algorithms.findAll{(it[1] as String) in [
         //'iterative', // Will never cause StackOverflowError.
         //'reductive', // Should never cause StackOverflowError. Takes a VERY long time.
         'naïveRecursive',

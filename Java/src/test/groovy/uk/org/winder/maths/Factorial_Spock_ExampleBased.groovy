@@ -3,11 +3,11 @@ package uk.org.winder.maths
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class Factorial_Spock extends Specification {
+class Factorial_Spock_ExampleBased extends Specification {
 
   private static final algorithms = [
       [Factorial.&iterative, 'iterative'],
-      [Factorial.&recursive, 'recursive'],
+      [Factorial.&naïveRecursive, 'naïveRecursive'],
       [Factorial.&tailRecursive, 'tailRecursive'],
       [Factorial.&reductive, 'reductive'],
   ]
@@ -41,21 +41,21 @@ class Factorial_Spock extends Specification {
   @Unroll
   def '#name(#n) [positive argument] should give result #expected'() {
     expect: expected == f.call(n)
-    where: [f, name, n, expected] << algorithms.collectMany{a -> positiveData.collect{pd -> [*a, *pd]}}
+    where: [f, name, n, expected] << algorithms.collectMany{a -> positiveData.collect{[*a, *it]}}
   }
 
   @Unroll
   def '#name(#n) [negative argument] should throw an IllegalArgumentException'() {
     when: f.call(n)
     then: thrown(IllegalArgumentException)
-    where: [f, name, n] << algorithms.collectMany{a -> negativeData.collect{nd -> [*a, nd]}}
+    where: [f, name, n] << algorithms.collectMany{a -> negativeData.collect{[*a, it]}}
   }
 
   @Unroll
-  def '#f(#n) [float argument] should throw a MissingMethodException'() {
+  def '#name(#n) [float argument] should throw a MissingMethodException'() {
     when: f.call(n)
     then: thrown(MissingMethodException)
-    where: [f, name, n] << algorithms.collectMany{a -> floatData.collect{nd -> [*a, nd]}}
+    where: [f, name, n] << algorithms.collectMany{a -> floatData.collect{[*a, it]}}
   }
 
   def 'iterative of a huge number succeeds'() {
@@ -69,7 +69,7 @@ class Factorial_Spock extends Specification {
   }
 
   def 'recursive of a huge number fails with a stack overflow'() {
-    when: Factorial.recursive(13000)
+    when: Factorial.naïveRecursive(13000)
     then: thrown(StackOverflowError)
   }
 

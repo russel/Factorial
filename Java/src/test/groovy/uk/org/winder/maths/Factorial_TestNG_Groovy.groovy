@@ -9,7 +9,7 @@ class Factorial_TestNG_Groovy {
 
   private final algorithms = [
       Factorial.&iterative,
-      Factorial.&recursive,
+      Factorial.&naïveRecursive,
       Factorial.&tailRecursive,
       Factorial.&reductive,
   ]
@@ -41,17 +41,17 @@ class Factorial_TestNG_Groovy {
 
   @DataProvider
   private Object[][] algorithmsAndPositiveData() {
-    algorithms.collectMany{a -> positiveData.collect{pd -> [a, *pd]}} as Object[][]
+    algorithms.collectMany{a -> positiveData.collect{[a, *it]}} as Object[][]
   }
 
   @DataProvider
   private Object[][] algorithmsAndNegativeData() {
-    algorithms.collectMany{a -> negativeData.collect{pd -> [a, pd]}} as Object[][]
+    algorithms.collectMany{a -> negativeData.collect{[a, it]}} as Object[][]
   }
 
   @DataProvider
   private Object[][] algorithmsAndFloatData() {
-    algorithms.collectMany{a -> floatData.collect{pd -> [a, pd]}} as Object[][]
+    algorithms.collectMany{a -> floatData.collect{[a, it]}} as Object[][]
   }
 
   @Test(dataProvider = "algorithmsAndPositiveData")
@@ -72,7 +72,7 @@ class Factorial_TestNG_Groovy {
   public void reductiveEnormousSucceeds() { Factorial.reductive(26000) }
 
   @Test(expectedExceptions = [StackOverflowError])
-  public void recursiveEnormousFails() { Factorial.recursive(13000) }
+  public void recursiveEnormousFails() { Factorial.naïveRecursive(13000) }
 
   @Test(expectedExceptions = [StackOverflowError])
   public void tailRecursiveEnormousFails() { Factorial.tailRecursive(26000) }

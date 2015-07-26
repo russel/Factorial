@@ -12,7 +12,7 @@ public class Factorial_TestNG_Java {
 
   private final Object[] algorithms = new Object[] {
       (LongFunction<BigInteger>)Factorial::iterative,
-      (LongFunction<BigInteger>)Factorial::recursive,
+      (LongFunction<BigInteger>)Factorial::naïveRecursive,
       (LongFunction<BigInteger>)Factorial::tailRecursive,
       (LongFunction<BigInteger>)Factorial::reductive
   };
@@ -78,7 +78,7 @@ public class Factorial_TestNG_Java {
   public void reductiveEnormousSucceeds() { Factorial.reductive(26000); }
 
   @Test(expectedExceptions = {StackOverflowError.class})
-  public void recursiveEnormousFails() { Factorial.recursive(13000); }
+  public void recursiveEnormousFails() { Factorial.naïveRecursive(13000); }
 
   @Test(expectedExceptions = {StackOverflowError.class})
   public void tailRecursiveEnormousFails() { Factorial.tailRecursive(26000); }

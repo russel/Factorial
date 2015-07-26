@@ -6,13 +6,12 @@ repositories {
   mavenLocal()
   jcenter()
   mavenCentral()
-  //maven { url 'https://oss.sonatype.org/content/repositories/snapshots' } // For Spock SNAPSHOTs
 }
 
 dependencies {
-  //compile 'org.codehaus.groovy:groovy:2.4.1'
   compile 'org.codehaus.groovy:groovy:2.5.0-SNAPSHOT'
   testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+  testCompile 'com.nagternal:spock-genesis:0.3.0'
 }
 
 defaultTasks 'test'

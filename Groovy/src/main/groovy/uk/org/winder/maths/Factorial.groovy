@@ -1,7 +1,6 @@
 package uk.org.winder.maths
 
 import groovy.transform.CompileStatic
-import groovy.transform.Memoized
 import groovy.transform.TailRecursive
 import groovy.transform.TypeCheckingMode
 

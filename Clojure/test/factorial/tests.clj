@@ -1,6 +1,7 @@
 (ns factorial.tests
-  (:require [clojure.test :refer :all]
-            [factorial.variants :refer :all]))
+  (:require
+    [clojure.test :refer :all]
+    [factorial.variants :refer :all]))
 
 (def positive_data [
                     [0 1]
@@ -39,7 +40,7 @@
 
 (defn- run-real-tests [f]
   (doseq [x real_data]
-   (is (thrown? IllegalArgumentException ( f 1.4)))))
+   (is (thrown? IllegalArgumentException (f 1.4)))))
 
 (defn- run-the-tests [f]
   (run-positive-tests f)

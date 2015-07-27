@@ -16,17 +16,14 @@ class Factorial_ScalaTest_PropertyChecks extends PropSpec with PropertyChecks wi
     (Factorial.reductive _, "reductive")
   )
 
-  forAll(algorithms) { (algorithm: Function1[Int, BigInt], name: String) =>
-
+  forAll(algorithms) { (f: Function1[Int, BigInt], name: String) =>
     property("ForAll: Factorial using " + name + " obeys the recurrence relation for non-negative integers") {
       val positiveIntSample = for (n <- Gen.choose(0, 1000)) yield n
-      forAll (positiveIntSample) { (n: Int) => algorithm(n + 1) should equal ( (n + 1) * algorithm(n) ) }
+      forAll (positiveIntSample) { (n: Int) => f(n + 1) should equal ( (n + 1) * f(n) ) }
     }
-
     property("Factorial using " + name + " throws an exception for negative integers") {
-      forAll { (n:Int) => whenever (n < 0) { an [IllegalArgumentException] should be thrownBy { algorithm(n) } } }
+      forAll { (n:Int) => whenever (n < 0) { an [IllegalArgumentException] should be thrownBy { f(n) } } }
     }
-
   }
 
 }

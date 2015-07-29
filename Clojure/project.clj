@@ -4,4 +4,6 @@
             :url "http://www.gnu.org/licenses/gpl.html"}
   :dependencies [
                  [org.clojure/clojure "1.7.0"]
-                 [org.clojure/test.check "0.8.0-alpha3"]])   ; 0.7.0, 0.8.0-alpha3
+                 [org.clojure/test.check "0.8.0-alpha3"]
+                 [com.gfredericks/test.chuck "0.1.19"]
+                 ])

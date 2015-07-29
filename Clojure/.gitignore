@@ -1,2 +1,4 @@
 /.lein-failures
 /.lein-repl-history
+/.classpath
+/.project

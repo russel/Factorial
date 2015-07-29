@@ -10,7 +10,9 @@ f n = n . f (n - 1), n > 0
 
 (defn- validate-argument [n]
   ; integer? delivers true for java.lang.Long and clojure.lang.BigInt, but not java.math.BigDecimal.
-  (if (or (not (integer? n)) (< n 0))
+  (if (not (integer? n))
+    (throw (IllegalArgumentException. (format "Argument must be integer, got: %s" (type n)))))
+  (if (< n 0)
     (throw (IllegalArgumentException. (format "Argument must be a non-negative integer, got: %d" n)))))
 
 (defn naïve [n]
@@ -28,13 +30,14 @@ f n = n . f (n - 1), n > 0
   (validate-argument n)
   (if (< n 2)
     1
-    (loop [n n
+    (loop [
+           i n
            result n]
-      (if (<= n 1)
+      (if (<= i 1)
         result
-        (recur (dec n) (*' result (dec n)))))))
+        (recur (dec i) (*' result (dec i)))))))
 
-(defn breakable
+(defn pattern-match
   "Factorial via a tail recursive algorithm but using pattern
    matching on the signature of the exposed function which
     can therefore lead to misuse."
@@ -45,7 +48,7 @@ f n = n . f (n - 1), n > 0
      (recur (dec n) (*' acc n))))
   ([n]
    (validate-argument n)
-   (breakable n 1N)))
+   (pattern-match n 1N)))
 
 (defn reducing [n]
   "Factorial via the built-in reduce function."
@@ -53,6 +56,11 @@ f n = n . f (n - 1), n > 0
   (reduce *' (range 1 (inc n))))
 
 (defn apply-range [n]
-  "Factorial via use of the built in range and apply functions."
+  "Factorial via use of the built-in range and apply functions."
   (validate-argument n)
   (apply *' (range 1 (inc  n))))
+
+(defn apply-iterate [n]
+  "Factorial via use of the built-in iterate and apply functions."
+  (validate-argument n)
+  (apply *' (take n (iterate inc 1))))

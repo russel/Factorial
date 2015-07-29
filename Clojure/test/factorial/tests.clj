@@ -51,8 +51,10 @@
 
 (deftest looping-test (run-the-tests looping))
 
-(deftest breakable-test (run-the-tests breakable))
+(deftest breakable-test (run-the-tests pattern-match))
 
 (deftest reducing-test (run-the-tests reducing))
 
 (deftest apply-range-test (run-the-tests apply-range))
+
+(deftest apply-iterate-test (run-the-tests apply-iterate))

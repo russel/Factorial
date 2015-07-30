@@ -52,10 +52,11 @@ object Factorial {
     validate(n)
     if (n < two) one
     else {
-      @tailrec def iterate(x:BigInt, result:BigInt):BigInt =
+      @tailrec
+      def iterate(x:BigInt = one, result:BigInt = one):BigInt =
         if (x > n) result
         else iterate(x + one, result * x)
-      iterate(one, one)
+      iterate()
     }
   }
 

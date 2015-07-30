@@ -6,14 +6,17 @@ import org.scalatest.Matchers
 
 import org.scalacheck.Gen
 
-class Factorial_ScalaTest_PropertyChecks extends PropSpec with PropertyChecks with Matchers {
+class Factorial_ScalaTest_PropertyBased extends PropSpec with PropertyChecks with Matchers {
 
   val algorithms = Table(
     ("algorithm", "name"),
-    (Factorial.iterative _, "iterative"),
+    (Factorial.iterativeWhile _, "iterative"),
+    (Factorial.iterativeFor _, "iterativeFor"),
+    (Factorial.iterativeForeach _, "iterativeForeach"),
     (Factorial.naïveRecursive _, "recursive"),
     (Factorial.tailRecursive _, "tailRecursive"),
-    (Factorial.reductive _, "reductive")
+    (Factorial.reductive _, "reductive"),
+    (Factorial.foldLeftive _, "foldOperatorive")
   )
 
   forAll(algorithms) { (f: Function1[Int, BigInt], name: String) =>

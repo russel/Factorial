@@ -3,8 +3,8 @@ package uk.org.winder.maths
 import scala.annotation.tailrec
 
 object Factorial {
-  val one = new BigInt(java.math.BigInteger.ONE)
-  val two = new BigInt(new java.math.BigInteger("2"))
+  val one = BigInt(1)
+  val two = BigInt(2)
 
   private def validate(n:BigInt):Unit = {
     if (n < 0) throw new IllegalArgumentException("Parameter must be a non-negative integer.")

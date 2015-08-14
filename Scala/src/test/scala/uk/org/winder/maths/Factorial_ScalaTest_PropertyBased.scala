@@ -13,6 +13,7 @@ class Factorial_ScalaTest_PropertyBased extends PropSpec with PropertyChecks wit
     (Factorial.iterativeWhile _, "iterative"),
     (Factorial.iterativeFor _, "iterativeFor"),
     (Factorial.iterativeForeach _, "iterativeForeach"),
+    (Factorial.productive _, "productive"),
     (Factorial.naïveRecursive _, "recursive"),
     (Factorial.tailRecursive _, "tailRecursive"),
     (Factorial.reductive _, "reductive"),
@@ -25,7 +26,7 @@ class Factorial_ScalaTest_PropertyBased extends PropSpec with PropertyChecks wit
       forAll (positiveIntSample) { (n: Int) => f(n + 1) should equal ( (n + 1) * f(n) ) }
     }
     property("Factorial using " + name + " throws an exception for negative integers") {
-      forAll { (n:Int) => whenever (n < 0) { an [IllegalArgumentException] should be thrownBy { f(n) } } }
+      forAll { (n:Int) => whenever (n < 0) { an [IllegalArgumentException] should be thrownBy (f(n)) } }
     }
   }
 

@@ -40,6 +40,12 @@ object Factorial {
     result
   }
 
+  def productive(n:Int):BigInt = productive(BigInt(n))
+  def productive(n:BigInt):BigInt = {
+    validate(n)
+    (one to n).product
+  }
+
   def naïveRecursive(n:Int):BigInt = naïveRecursive(BigInt(n))
   def naïveRecursive(n:BigInt):BigInt = {
     validate(n)

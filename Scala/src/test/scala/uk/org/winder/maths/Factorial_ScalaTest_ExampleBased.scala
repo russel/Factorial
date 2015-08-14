@@ -11,6 +11,7 @@ class Factorial_ScalaTest_ExampleBased extends FunSuite with Matchers with Table
     (Factorial.iterativeWhile _, "iterativeWhile"),
     (Factorial.iterativeFor _, "iterativeFor"),
     (Factorial.iterativeForeach _, "iterativeForeach"),
+    (Factorial.productive _, "productive"),
     (Factorial.naïveRecursive _, "recursive"),
     (Factorial.tailRecursive _, "tailRecursive"),
     (Factorial.reductive _, "reductive"),
@@ -44,17 +45,15 @@ class Factorial_ScalaTest_ExampleBased extends FunSuite with Matchers with Table
   val negativeData = Table("n", -1, -2, -5, -10, -20, -100)
 
   forAll (algorithms) {(f:Function[Int, BigInt], name:String) =>
-    forAll (positiveData) {(n:Int, r:BigInt) =>
-      test(name + " " + n) { f(n) should equal (r) }
-    }
-    forAll (negativeData) {(n:Int) =>
-      test(name + " " + n) { an [IllegalArgumentException] should be thrownBy { f(n) } }
-    }
+    forAll (positiveData) ((n:Int, r:BigInt) =>
+      test(name + " " + n) { f(n) should equal (r) })
+    forAll (negativeData) ((n:Int) =>
+      test(name + " " + n) { an [IllegalArgumentException] should be thrownBy (f(n)) })
   }
 
   test("iterative 26000") { Factorial.iterativeWhile(26000) }
   test("reductive 26000") { Factorial.reductive(26000) }
-  test("recursive 18000") { an [StackOverflowError] should be thrownBy { Factorial.naïveRecursive(18000) } }
+  test("recursive 18000") { an [StackOverflowError] should be thrownBy (Factorial.naïveRecursive(18000)) }
   test("tailRecursive 26000") { Factorial.tailRecursive(26000) }
 
 }

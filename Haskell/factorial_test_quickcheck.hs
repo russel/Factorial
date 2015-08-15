@@ -10,6 +10,7 @@ prop_relation f n
     | n == 0 = f n == 1
     | n > 0 = f n == n * f (n - 1)
 
+main :: IO()
 main = do
   quickCheck (prop_relation iterative)
   quickCheck (prop_relation naïveRecursive)

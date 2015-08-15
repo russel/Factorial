@@ -6,7 +6,7 @@ import spock.lang.Unroll
 class Factorial_Spock extends Specification{
   private static final algorithms = [
       [FactorialPackage.&iterative, 'iterative'],
-      [FactorialPackage.&recursive, 'recursive'],
+      [FactorialPackage.&naïve_recursive, 'recursive'],
       [FactorialPackage.&tail_recursive, 'tailRecursive'],
       [FactorialPackage.&reductive, 'reductive'],
   ]
@@ -67,12 +67,12 @@ class Factorial_Spock extends Specification{
   }
 
   def 'recursive of a huge number fails with a stack overflow'() {
-    when: FactorialPackage.&recursive(8000)
+    when: FactorialPackage.&naïve_recursive(10000)
     then: thrown(StackOverflowError)
   }
 
   def 'tailRecursive of a huge number fails with a stack overflow'() {
-    when: FactorialPackage.&tail_recursive(8000)
+    when: FactorialPackage.&tail_recursive(10000)
     then: thrown(StackOverflowError)
   }
 

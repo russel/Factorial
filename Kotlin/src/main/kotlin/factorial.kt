@@ -21,11 +21,11 @@ fun iterative(x:BigInteger):BigInteger {
   return total
 }
 
-fun recursive(x:Long):BigInteger = recursive(BigInteger.valueOf(x))
-fun recursive(x:BigInteger):BigInteger {
+fun naïve_recursive(x:Long):BigInteger = naïve_recursive(BigInteger.valueOf(x))
+fun naïve_recursive(x:BigInteger):BigInteger {
   validate(x)
   if (x < two) { return one }
-  return x * recursive(x - one)
+  return x * naïve_recursive(x - one)
 }
 
 // Use snake case to avoid conflict with Kotlin's tailRecursive function.
@@ -42,9 +42,7 @@ fun tail_recursive(x:BigInteger):BigInteger {
 fun reductive(x:Long):BigInteger = reductive(BigInteger.valueOf(x))
 fun reductive(x:BigInteger):BigInteger {
   validate(x)
-  if (x < two) {
-    return one
-  }
+  if (x < two) { return one }
   return (one .. x).reduce{t, i -> t * i}
 }
 

@@ -1,5 +1,8 @@
 package uk.org.winder.maths.factorial
 
+/*
+
+
 import java.math.BigInteger
 
 import org.jetbrains.spek.api.Spek
@@ -14,14 +17,14 @@ class Factorial_Spek : Spek() {{
   // function and there is (as at 2015-01-31 Kotlin 0.10.694) no way of disambiguating.
   // So create lambdas, to force correct types and hence function selection
 
-  val algorithms = array(
-      "iterative" to {(x: Long) -> iterative(x) },
-      "recursive" to {(x: Long) -> recursive(x) },
-      "tail_recursive"to {(x: Long) -> tail_recursive(x) },
-      "reductive" to {(x: Long) -> reductive(x) }
+  val algorithms = arrayOf(
+      "iterative" to {x: Long -> iterative(x) },
+      "recursive" to {x: Long -> recursive(x) },
+      "tail_recursive"to {x: Long -> tail_recursive(x) },
+      "reductive" to {x: Long -> reductive(x) }
   )
 
-  val positiveData = array(
+  val positiveData = arrayOf(
       0 to BigInteger.ONE,
       1 to BigInteger.ONE,
       2 to BigInteger.valueOf(2),
@@ -42,7 +45,7 @@ class Factorial_Spek : Spek() {{
       40 to BigInteger("815915283247897734345611269596115894272000000000")
   )
 
-  val negativeData = array(-1, -2, -5, -10, -20, -100)
+  val negativeData = arrayOf(-1, -2, -5, -10, -20, -100)
 
   givenData(algorithms.flatMap({ a -> positiveData.map({ d -> array(a.first, a.second, d.first, d.second) }) })) {
     val name = it[0] as String
@@ -100,3 +103,6 @@ class Factorial_Spek : Spek() {{
   }
 
 }}
+
+
+*/

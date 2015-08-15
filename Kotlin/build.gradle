@@ -18,11 +18,11 @@ repositories {
 
 dependencies {
   compile 'org.jetbrains.kotlin:kotlin-stdlib:0.1-SNAPSHOT'
-  testCompile 'org.testng:testng:6.8.17'
+  testCompile 'org.testng:testng:6.9.4'
   // TestNG marks these as provided dependencies.
   testCompile 'junit:junit:4.12'
   testCompile 'com.google.inject:guice:2.0'
-  testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+  testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
   testCompile 'org.jetbrains.spek:spek:0.1-SNAPSHOT'
 }
 

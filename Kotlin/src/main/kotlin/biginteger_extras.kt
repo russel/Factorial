@@ -19,9 +19,11 @@ public open class BigIntegerProgression(
 ) : Progression<BigInteger> {
 
     // Class pre-conditions
+    /*
     {
         if (increment == 0.bigint) throw IllegalArgumentException("Increment must not be zero")
     }
+    */
 
     override fun iterator(): Iterator<BigInteger> = object : Iterator<BigInteger> {
         private var next: BigInteger = start

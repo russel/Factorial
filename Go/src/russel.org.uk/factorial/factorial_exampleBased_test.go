@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-var factorial_test_data = map[uint]string{
+var test_data = map[uint]string{
 	0:  "1",
 	1:  "1",
 	2:  "2",
@@ -27,8 +27,8 @@ var factorial_test_data = map[uint]string{
 	40: "815915283247897734345611269596115894272000000000",
 }
 
-func testCorrectFactorialUintValues(t *testing.T, function func(uint) *big.Int) {
-	for parameter, expectedString := range factorial_test_data {
+func testCorrectUintValues(t *testing.T, function func(uint) *big.Int) {
+	for parameter, expectedString := range test_data {
 		expected, success := new(big.Int).SetString(expectedString, 0)
 		if !success {
 			t.Errorf("Failed to create the expected %s value.\n", expectedString)
@@ -37,20 +37,20 @@ func testCorrectFactorialUintValues(t *testing.T, function func(uint) *big.Int) 
 	}
 }
 
-func Test_factorial_iterative_uint(t *testing.T) {
-	testCorrectFactorialUintValues(t, Factorial_iterative_uint)
+func Test_iterative_uint(t *testing.T) {
+	testCorrectUintValues(t, Iterative_uint)
 }
 
-func Test_factorial_recursive_uint(t *testing.T) {
-	testCorrectFactorialUintValues(t, Factorial_recursive_uint)
+func Test_recursive_uint(t *testing.T) {
+	testCorrectUintValues(t, Recursive_uint)
 }
 
-func Test_factorial_tailRecursive_uint(t *testing.T) {
-	testCorrectFactorialUintValues(t, Factorial_tailRecursive_uint)
+func Test_tailRecursive_uint(t *testing.T) {
+	testCorrectUintValues(t, TailRecursive_uint)
 }
 
-func testCorrectFactorialBigIntValues(t *testing.T, function func(*big.Int) *big.Int) {
-	for parameter, expectedString := range factorial_test_data {
+func testCorrectBigIntValues(t *testing.T, function func(*big.Int) *big.Int) {
+	for parameter, expectedString := range test_data {
 		expected, success := new(big.Int).SetString(expectedString, 0)
 		if !success {
 			t.Errorf("Failed to create the expected %s value.\n", expectedString)
@@ -59,14 +59,14 @@ func testCorrectFactorialBigIntValues(t *testing.T, function func(*big.Int) *big
 	}
 }
 
-func Test_factorial_iterative_bigInt(t *testing.T) {
-	testCorrectFactorialBigIntValues(t, Factorial_iterative_bigInt)
+func Test_iterative_bigInt(t *testing.T) {
+	testCorrectBigIntValues(t, Iterative_bigInt)
 }
 
-func Test_factorial_recursive_bigInt(t *testing.T) {
-	testCorrectFactorialBigIntValues(t, Factorial_recursive_bigInt)
+func Test_recursive_bigInt(t *testing.T) {
+	testCorrectBigIntValues(t, Recursive_bigInt)
 }
 
-func Test_factorial_tailRecursive_bigInt(t *testing.T) {
-	testCorrectFactorialBigIntValues(t, Factorial_tailRecursive_bigInt)
+func Test_tailRecursive_bigInt(t *testing.T) {
+	testCorrectBigIntValues(t, TailRecursive_bigInt)
 }

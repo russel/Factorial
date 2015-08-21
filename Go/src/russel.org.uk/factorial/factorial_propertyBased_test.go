@@ -8,7 +8,7 @@ import (
 	"testing/quick"
 )
 
-func checkCorrectFactorialUintValues(t *testing.T, function func(uint) *big.Int) {
+func checkCorrectUintValues(t *testing.T, function func(uint) *big.Int) {
 	property := func(i uint) bool {
 		v := big.NewInt(int64(i + 1))
 		return function(i+1).Cmp(v.Mul(v, function(i))) == 0
@@ -23,19 +23,19 @@ func checkCorrectFactorialUintValues(t *testing.T, function func(uint) *big.Int)
 	}
 }
 
-func Test_check_factorial_iterative_uint(t *testing.T) {
-	checkCorrectFactorialUintValues(t, Factorial_iterative_uint)
+func Test_check_iterative_uint(t *testing.T) {
+	checkCorrectUintValues(t, Iterative_uint)
 }
 
-func Test_check_factorial_recursive_uint(t *testing.T) {
-	checkCorrectFactorialUintValues(t, Factorial_recursive_uint)
+func Test_check_recursive_uint(t *testing.T) {
+	checkCorrectUintValues(t, Recursive_uint)
 }
 
-func Test_check_factorial_tailRecursive_uint(t *testing.T) {
-	checkCorrectFactorialUintValues(t, Factorial_tailRecursive_uint)
+func Test_check_tailRecursive_uint(t *testing.T) {
+	checkCorrectUintValues(t, TailRecursive_uint)
 }
 
-func checkCorrectFactorialBigIntValues(t *testing.T, function func(*big.Int) *big.Int) {
+func checkCorrectBigIntValues(t *testing.T, function func(*big.Int) *big.Int) {
 	property := func(i *big.Int) bool {
 		ip1 := big.NewInt(1)
 		ip1.Add(i, ip1)
@@ -53,14 +53,14 @@ func checkCorrectFactorialBigIntValues(t *testing.T, function func(*big.Int) *bi
 	}
 }
 
-func Test_check_factorial_iterative_BigInt(t *testing.T) {
-	checkCorrectFactorialBigIntValues(t, Factorial_iterative_bigInt)
+func Test_check_iterative_BigInt(t *testing.T) {
+	checkCorrectBigIntValues(t, Iterative_bigInt)
 }
 
-func Test_check_factorial_recursive_BigInt(t *testing.T) {
-	checkCorrectFactorialBigIntValues(t, Factorial_recursive_bigInt)
+func Test_check_recursive_BigInt(t *testing.T) {
+	checkCorrectBigIntValues(t, Recursive_bigInt)
 }
 
-func Test_check_factorial_tailRecursive_BigInt(t *testing.T) {
-	checkCorrectFactorialBigIntValues(t, Factorial_tailRecursive_bigInt)
+func Test_check_tailRecursive_BigInt(t *testing.T) {
+	checkCorrectBigIntValues(t, TailRecursive_bigInt)
 }

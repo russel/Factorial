@@ -1,5 +1,8 @@
 # -*- coding:utf-8; -*-
 
+from functools import reduce
+from operator import mul
+
 '''
 A collection of implementations of factorial, which is defined by the recurrence relation:
     f 0 = 1
@@ -15,9 +18,6 @@ __date__ = '2013-10-15'
 __version__ = '1.4'
 __copyright__ = 'Copyright © 2007, 2011–2013  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
-
-from functools import reduce
-from operator import mul
 
 
 def _validate(x):

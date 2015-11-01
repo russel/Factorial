@@ -1,6 +1,10 @@
 #! /usr/bin/env python3
 # -*- coding:utf-8; -*-
 
+from pytest import mark, raises
+
+from factorial import iterative, recursive, tailRecursive, usingReduce
+
 '''
 Example-based tests, using pytest, for the various factorial implementations.
 '''
@@ -10,10 +14,6 @@ __date__ = '2014-09-02'
 __version__ = '1.2'
 __copyright__ = 'Copyright © 2011–2014  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
-
-from pytest import mark, raises
-
-from factorial import iterative, recursive, tailRecursive, usingReduce
 
 algorithms = (iterative, usingReduce, recursive, tailRecursive)
 positiveData = (

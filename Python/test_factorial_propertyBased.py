@@ -1,6 +1,13 @@
 #! /usr/bin/env python3
 # -*- coding:utf-8; -*-
 
+from pytest import mark, raises
+
+from hypothesis import assume, given
+from hypothesis.strategies import integers, floats
+
+from factorial import iterative, recursive, tailRecursive, usingReduce
+
 '''
 Example-based tests, using pytest, for the various factorial implementations.
 '''
@@ -10,13 +17,6 @@ __date__ = '2015-07-24'
 __version__ = '1.0'
 __copyright__ = 'Copyright © 2015  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
-
-from pytest import mark, raises
-
-from hypothesis import assume, given
-from hypothesis.strategies import integers, floats
-
-from factorial import iterative, recursive, tailRecursive, usingReduce
 
 algorithms = (iterative, usingReduce, recursive, tailRecursive)
 

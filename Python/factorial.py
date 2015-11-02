@@ -14,9 +14,9 @@ and the stack size is strictly limited.
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2013-10-15'
-__version__ = '1.4'
-__copyright__ = 'Copyright © 2007, 2011–2013  Russel Winder'
+__date__ = '2015-11-01'
+__version__ = '1.5'
+__copyright__ = 'Copyright © 2007, 2011–2013, 2015  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
 

@@ -10,9 +10,9 @@ Example-based tests, using pytest, for the various factorial implementations.
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2014-09-02'
-__version__ = '1.2'
-__copyright__ = 'Copyright © 2011–2014  Russel Winder'
+__date__ = '2015-11-01'
+__version__ = '1.3'
+__copyright__ = 'Copyright © 2011–2015  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
 algorithms = (iterative, usingReduce, recursive, tailRecursive)

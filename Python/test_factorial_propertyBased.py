@@ -13,8 +13,8 @@ Example-based tests, using pytest, for the various factorial implementations.
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2015-07-24'
-__version__ = '1.0'
+__date__ = '2015-11-01'
+__version__ = '1.1'
 __copyright__ = 'Copyright © 2015  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 

@@ -57,10 +57,10 @@ func tailRecursive_bigInt_iterate(n, result *big.Int) *big.Int {
 
 // TailRecursive_bigInt is the tail recursive implementation with a big.Int as parameter. There is though no
 // tail call optimization in Go so this is not equivalent to the imperative version.
-func TailRecursive_bigInt(n *big.Int) *big.Int {
-	value := big.NewInt(1)
+func TailRecursive_bigInt(n *big.Int) (value *big.Int) {
+	value = big.NewInt(1)
 	if n.Cmp(bigOne) > 0 {
 		return tailRecursive_bigInt_iterate(new(big.Int).Set(n), value)
 	}
-	return value
+	return
 }

@@ -1,10 +1,5 @@
-.gradle/
-.idea/
-*.iml
 *~
-project/
-target/
-.cache/
-__pycache__/
+.gradle/
+*.iml
+.idea/
 .sconsign.dblite
-build/

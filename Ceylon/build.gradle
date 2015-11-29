@@ -1,0 +1,16 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.athaydes.gradle.ceylon:ceylon-gradle-plugin:1.0'
+    }
+}
+
+apply plugin: 'com.athaydes.ceylon'
+
+ceylon {
+    module = 'uk.org.winder.maths'
+    testModule = 'uk.org.winder.maths_test'
+    sourceRoots = ['source', 'test-source']
+ }

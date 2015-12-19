@@ -77,7 +77,7 @@ test shared Specification factorial_specks() {
 	
 	value upperBound = 200;
 	
-	class IntegerInRange(shared Integer arg){}
+	class IntegerInRange(shared Integer val){}
 	value random = LCGRandom();
 	function generateIntegerInRange() => IntegerInRange(random.nextElement(1..upperBound));
 	
@@ -98,7 +98,7 @@ test shared Specification factorial_specks() {
     	description = "Implementations obey the recurrence relation for input in the range [1, ``upperBound``].";
     	sampleCount = 20;
     	generators = [generateIntegerInRange];
-    	when(IntegerInRange n) => [n.arg];
+    	when(IntegerInRange n) => [n.val];
     	(Integer n) => expect(factorial_iterative(n), equalTo(factorial_iterative(n - 1) * wholeNumber(n))),
     	(Integer n) => expect(factorial_recursive(n), equalTo(factorial_recursive(n - 1) * wholeNumber(n))),
     	(Integer n) => expect(factorial_tailRecursive(n), equalTo(factorial_tailRecursive(n - 1) * wholeNumber(n))),

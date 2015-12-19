@@ -9,6 +9,5 @@
                  "clojars" "https://clojars.org/org.frege-lang/frege"
                  "sonatype" "https://oss.sonatype.org/content/repositories/snapshots/"}
   :plugins [[lein-fregec "3.23.450"]]
-  :frege-source-paths ["src" "test"]
   :profiles {:uberjar {:aot :all
                        :prep-tasks ["fregec" "compile"]}})

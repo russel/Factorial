@@ -52,6 +52,7 @@ Integer[] negativeValues = [-1, -2, -5, -10, -20, -100];
 
 test
 void factorial_positiveValues() {
+	// This way of testing exits on the first error, later tests are not run.
   for (algorithm in algorithms) {
     for (item in positiveValues) {
       assertEquals(algorithm(item[0]), item[1], "executing ``algorithm``(``item[0]``)");
@@ -61,6 +62,7 @@ void factorial_positiveValues() {
 
 test
 void factorial_negativeValues() {
+ 	// This way of testing exits on the first error, later tests are not run.
   for (algorithm in algorithms) {
     for (val in negativeValues) {
       assertThatException(() => algorithm(val)).hasType(`ValueException`);

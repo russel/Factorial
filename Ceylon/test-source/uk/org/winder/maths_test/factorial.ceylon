@@ -1,12 +1,14 @@
-import ceylon.test { test, testExecutor, assertEquals, assertThatException }
-import ceylon.math.whole { Whole, parseWhole, wholeNumber }
-import ceylon.language.meta.model { IncompatibleTypeException }
+import ceylon.test{test, testExecutor, assertEquals, assertThatException}
+import ceylon.math.whole{Whole, parseWhole, wholeNumber}
+import ceylon.language.meta.model{IncompatibleTypeException}
 
-import com.athaydes.specks { errorCheck, feature,  Specification, SpecksTestExecutor }
-import com.athaydes.specks.assertion { expect, expectToThrow }
-import com.athaydes.specks.matcher { equalTo }
+import com.vasileff.ceylon.random.api{LCGRandom}
 
-import uk.org.winder.maths {
+import com.athaydes.specks{errorCheck, feature,  propertyCheck, Specification, SpecksTestExecutor }
+import com.athaydes.specks.assertion{expect, expectToThrow}
+import com.athaydes.specks.matcher{equalTo}
+
+import uk.org.winder.maths{
   factorial_iterative,
   factorial_recursive,
   factorial_tailRecursive,
@@ -71,18 +73,36 @@ void factorial_negativeValues() {
 }
 
 testExecutor(`class SpecksTestExecutor`)
-test shared Specification factorial_specks() =>
-	Specification {
-  	feature {
-      description = "Positive arguments give correct result";
-      function when(Whole(Integer|Whole) a, Integer|Whole i, Whole r) => [a(i), r];
-      examples = [for (a in algorithms) for (x in positiveValues) [a, *x]];
-      (Whole v, Whole r) => expect(v, equalTo(r))
+test shared Specification factorial_specks() {
+	
+	value upperBound = 200;
+	
+	class IntegerInRange(shared Integer arg){}
+	value random = LCGRandom();
+	function generateIntegerInRange() => IntegerInRange(random.nextElement(1..upperBound));
+	
+	return Specification{
+  	feature{
+    	description = "Positive arguments give correct result";
+    	when(Whole(Integer|Whole) a, Integer|Whole i, Whole r) => [a(i), r];
+    	examples = [for (a in algorithms) for (x in positiveValues) [a, *x]];
+    	(Whole v, Whole r) => expect(v, equalTo(r))
     },
-    errorCheck {
-      description = "Negative arguments throw exception";
-      function when(Whole(Integer|Whole) a, Integer|Whole i) => a(i); 
-      examples = [for (a in algorithms) for (x in negativeValues) [a, x]];
-      expectToThrow(`ValueException`)
+ 		errorCheck{
+    	description = "Negative arguments throw exception";
+ 			when(Whole(Integer|Whole) a, Integer|Whole i) => a(i); 
+			examples = [for (a in algorithms) for (x in negativeValues) [a, x]];
+			expectToThrow(`ValueException`)
+    },
+    propertyCheck{
+    	description = "Implementations obey the recurrence relation for input in the range [1, ``upperBound``].";
+    	sampleCount = 20;
+    	generators = [generateIntegerInRange];
+    	when(IntegerInRange n) => [n.arg];
+    	(Integer n) => expect(factorial_iterative(n), equalTo(factorial_iterative(n - 1) * wholeNumber(n))),
+    	(Integer n) => expect(factorial_recursive(n), equalTo(factorial_recursive(n - 1) * wholeNumber(n))),
+    	(Integer n) => expect(factorial_tailRecursive(n), equalTo(factorial_tailRecursive(n - 1) * wholeNumber(n))),
+    	(Integer n) => expect(factorial_reductive(n), equalTo(factorial_reductive(n - 1) * wholeNumber(n)))
     }
-  };
+ 	};
+}

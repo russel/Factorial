@@ -14,4 +14,8 @@ dependencies {
   testCompile 'com.nagternal:spock-genesis:0.3.0'
 }
 
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.9'
+}
+
 defaultTasks 'test'

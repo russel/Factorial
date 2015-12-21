@@ -5,8 +5,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 
-import java.util.function.LongFunction
-
 import static org.junit.Assert.assertEquals
 
 final class Factorial_JUnit4_Groovy {

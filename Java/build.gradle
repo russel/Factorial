@@ -9,13 +9,12 @@ repositories {
 }
 
 dependencies {
-  testCompile 'org.testng:testng:6.+'
   testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
   testCompile 'com.nagternal:spock-genesis:0.+'
-  testCompile 'org.functionaljava:functionaljava-java8:4.+'
-  testCompile 'org.functionaljava:functionaljava-quickcheck:4.+'
+  testCompile 'org.junit:junit:4.+'
   testCompile 'com.pholser:junit-quickcheck-core:0.+'
   testCompile 'com.pholser:junit-quickcheck-generators:0.+'
+  testCompile 'org.testng:testng:6.+'
   // TestNG marks this as a provided dependency.
   testCompile 'com.google.inject:guice:2.+'
 }

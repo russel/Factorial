@@ -60,7 +60,7 @@ public class Factorial_TestNG_Java {
         values.add(new Object[] {a, item});
       }
     }
-    return values.toArray(new Object[3][0]);
+    return values.toArray(new Object[2][0]);
   }
 
   @Test(dataProvider = "algorithmsAndPositiveData")

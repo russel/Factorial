@@ -11,7 +11,7 @@ repositories {
 dependencies {
   testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
   testCompile 'com.nagternal:spock-genesis:0.+'
-  testCompile 'org.junit:junit:4.+'
+  testCompile 'junit:junit:4.+'
   testCompile 'com.pholser:junit-quickcheck-core:0.+'
   testCompile 'com.pholser:junit-quickcheck-generators:0.+'
   testCompile 'org.testng:testng:6.+'

@@ -59,22 +59,22 @@ class Factorial_Spock_ExampleBased extends Specification {
   }
 
   def 'iterative of a huge number succeeds'() {
-    when: Factorial.iterative(26000)
+    when: Factorial.iterative(30000)
     then: notThrown(StackOverflowError)
   }
 
   def 'reductive of a huge number succeeds'() {
-    when: Factorial.reductive(26000)
+    when: Factorial.reductive(30000)
     then: notThrown(StackOverflowError)
   }
 
   def 'recursive of a huge number fails with a stack overflow'() {
-    when: Factorial.naïveRecursive(13000)
+    when: Factorial.naïveRecursive(20000)
     then: thrown(StackOverflowError)
   }
 
   def 'tailRecursive of a huge number fails with a stack overflow'() {
-    when: Factorial.tailRecursive(26000)
+    when: Factorial.tailRecursive(30000)
     then: thrown(StackOverflowError)
   }
 }

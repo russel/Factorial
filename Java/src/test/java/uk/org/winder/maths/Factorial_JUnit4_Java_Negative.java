@@ -13,14 +13,14 @@ import java.math.BigInteger;
 import static uk.org.winder.maths.Factorial_JUnit4_Java_Positive.algorithms;
 
 @RunWith(Parameterized.class)
-public class Factorial_JUnit4_Java_Negative {
+public final class Factorial_JUnit4_Java_Negative {
 
   private static final Object[] values = {-1, -2, -5, -10, -20, -100};
 
   @Parameters(name = "{1}({2})")
-  public static Collection<Object[]> data() {
+  public static final Collection<Object[]> data() {
     final ArrayList<Object[]> data = new ArrayList<>();
-       for (Object a[]: algorithms) {
+       for (Object[] a: algorithms) {
          if (a.length != 2) { throw new RuntimeException("algorithms array borked."); }
          for (Object v: values) {
            data.add(new Object[] {a[0], a[1], v});

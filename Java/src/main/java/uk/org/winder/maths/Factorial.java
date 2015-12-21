@@ -3,7 +3,7 @@ package uk.org.winder.maths;
 import java.math.BigInteger;
 import java.util.stream.Stream;
 
-public class Factorial {
+public final class Factorial {
 
   private static void validate(final BigInteger n) {
     if (n.compareTo(BigInteger.ZERO) < 0) { throw new IllegalArgumentException("Parameter must be a non-negative integer."); }

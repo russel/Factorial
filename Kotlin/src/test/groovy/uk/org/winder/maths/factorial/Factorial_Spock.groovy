@@ -5,10 +5,10 @@ import spock.lang.Unroll
 
 class Factorial_Spock extends Specification{
   private static final algorithms = [
-      [FactorialPackage.&iterative, 'iterative'],
-      [FactorialPackage.&naïve_recursive, 'recursive'],
-      [FactorialPackage.&tail_recursive, 'tailRecursive'],
-      [FactorialPackage.&reductive, 'reductive'],
+      [FactorialKt.&iterative, 'iterative'],
+      [FactorialKt.&naïve_recursive, 'recursive'],
+      [FactorialKt.&tail_recursive, 'tailRecursive'],
+      [FactorialKt.&reductive, 'reductive'],
   ]
 
   private static final positiveData = [
@@ -57,22 +57,22 @@ class Factorial_Spock extends Specification{
   }
 
   def 'iterative of a huge number succeeds'() {
-    when: FactorialPackage.&iterative(26000)
+    when: FactorialKt.&iterative(26000)
     then: notThrown(StackOverflowError)
   }
 
   def 'reductive of a huge number succeeds'() {
-    when: FactorialPackage.&reductive(26000)
+    when: FactorialKt.&reductive(26000)
     then: notThrown(StackOverflowError)
   }
 
   def 'recursive of a huge number fails with a stack overflow'() {
-    when: FactorialPackage.&naïve_recursive(10000)
+    when: FactorialKt.&naïve_recursive(10000)
     then: thrown(StackOverflowError)
   }
 
   def 'tailRecursive of a huge number fails with a stack overflow'() {
-    when: FactorialPackage.&tail_recursive(10000)
+    when: FactorialKt.&tail_recursive(10000)
     then: thrown(StackOverflowError)
   }
 

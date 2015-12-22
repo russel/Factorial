@@ -1,27 +1,30 @@
 package uk.org.winder.maths.factorial
 
 import java.math.BigInteger
-import kotlin.math.times
+
+import kotlin.math.div
 import kotlin.math.minus
 import kotlin.math.plus
+import kotlin.math.times
+import kotlin.math.unaryMinus
 
 val zero = BigInteger.ZERO
 val one = BigInteger.ONE
-val two = BigInteger.valueOf(2)
+val two = 2.bigint
 
 fun validate(x:BigInteger):Unit {
   if (x < zero) { throw IllegalArgumentException() }
 }
 
-fun iterative(x:Long):BigInteger = iterative(BigInteger.valueOf(x))
+fun iterative(x:Long):BigInteger = iterative(x.bigint)
 fun iterative(x:BigInteger):BigInteger {
   validate(x)
   var total = one
-  (two..x).forEach{i -> total *= i}
+  (two rangeTo x).forEach{i -> total *= i}
   return total
 }
 
-fun naïve_recursive(x:Long):BigInteger = naïve_recursive(BigInteger.valueOf(x))
+fun naïve_recursive(x:Long):BigInteger = naïve_recursive(x.bigint)
 fun naïve_recursive(x:BigInteger):BigInteger {
   validate(x)
   if (x < two) { return one }
@@ -29,7 +32,7 @@ fun naïve_recursive(x:BigInteger):BigInteger {
 }
 
 // Use snake case to avoid conflict with Kotlin's tailRecursive function.
-fun tail_recursive(x:Long):BigInteger = tail_recursive(BigInteger.valueOf(x))
+fun tail_recursive(x:Long):BigInteger = tail_recursive(x.bigint)
 fun tail_recursive(x:BigInteger):BigInteger {
   validate(x)
   fun iterate(n:BigInteger, t:BigInteger=one):BigInteger {
@@ -39,11 +42,11 @@ fun tail_recursive(x:BigInteger):BigInteger {
   return iterate(x)
 }
 
-fun reductive(x:Long):BigInteger = reductive(BigInteger.valueOf(x))
+fun reductive(x:Long):BigInteger = reductive(x.bigint)
 fun reductive(x:BigInteger):BigInteger {
   validate(x)
   if (x < two) { return one }
-  return (one .. x).reduce{t, i -> t * i}
+  return (one rangeTo x).reduce{t, i -> t * i}
 }
 
 

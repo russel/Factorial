@@ -6,7 +6,6 @@ import org.testng.annotations.Test
 import org.testng.annotations.DataProvider
 
 import org.testng.Assert.assertEquals
-import org.testng.Assert.assertTrue
 
 class Factorial_TestNG {
 
@@ -44,34 +43,33 @@ class Factorial_TestNG {
 
   val negativeData = arrayOf(-1, -2, -5, -10, -20, -100)
 
-  DataProvider
+  @DataProvider
   fun algorithmsAndPositiveData() = algorithms.flatMap({a -> positiveData.map({d -> arrayOf(a.first, a.second, d.first, d.second)})}).toTypedArray()
 
 
-  Test(dataProvider="algorithmsAndPositiveData")
-  fun nonNegativeArgument(name:String, algorithm: (Long)->BigInteger, value:Long, expected:BigInteger) {
-      assertEquals(algorithm(value), expected)
+  @Test(dataProvider="algorithmsAndPositiveData")
+  fun nonNegativeArgument(name:String, algorithm:(Long)->BigInteger, value:Long, expected:BigInteger) {
+      assertEquals(algorithm(value), expected, "$name($value)")
   }
 
-  DataProvider
+  @DataProvider
   fun algorithmsAndNegativeData() = algorithms.flatMap({a -> negativeData.map({d -> arrayOf(a.first, a.second, d)})}).toTypedArray()
 
-    /*
-  Test(dataProvider="algorithmsAndNegativeData", expectedExceptions=arrayOf(javaClass<IllegalArgumentException>()))
-  fun negativeArgument(name:String, algorithm: (Long)->BigInteger, value:Long) {
+  @Test(dataProvider="algorithmsAndNegativeData", expectedExceptions=arrayOf(IllegalArgumentException::class))
+  fun negativeArgument(name:String, algorithm:(Long)->BigInteger, value:Long) {
       algorithm(value)
   }
-*/
-  Test
+
+  @Test
   fun iterativeOfAHugeNumberSucceeds() { iterative(26000) }
 
-  Test
+  @Test
   fun reductiveOfAHugeNumberSucceeds() { reductive(26000) }
-/*
-  Test(expectedExceptions=arrayOf(javaClass<StackOverflowError>()))
+
+  @Test(expectedExceptions=arrayOf(StackOverflowError::class))
   fun recursiveOfAHugeNumberFailsWithAStackOverflow() { naïve_recursive(13000) }
 
-  Test(expectedExceptions=arrayOf(javaClass<StackOverflowError>()))
+  @Test(expectedExceptions=arrayOf(StackOverflowError::class))
   fun tailRecursiveOfAHugeNumberFailsWithAStackOverflow() { tail_recursive(13000) }
-*/
+
 }

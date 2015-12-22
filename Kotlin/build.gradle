@@ -1,10 +1,10 @@
 buildscript {
+  ext.kotlin_version = '0.1-SNAPSHOT'
   repositories {
-    jcenter()
     mavenCentral()
     maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
   }
-  dependencies { classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.1-SNAPSHOT' }
+  dependencies { classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
 }
 
 apply plugin: 'kotlin'
@@ -13,19 +13,32 @@ apply plugin: 'groovy'
 repositories {
   jcenter()
   mavenCentral()
-  maven { url "http://repository.jetbrains.com/all" }
+  maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
-  compile 'org.jetbrains.kotlin:kotlin-stdlib:0.1-SNAPSHOT'
-  testCompile 'org.testng:testng:6.9.4'
-  // TestNG marks these as provided dependencies.
-  testCompile 'junit:junit:4.12'
-  testCompile 'com.google.inject:guice:2.0'
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
-  testCompile 'org.jetbrains.spek:spek:0.1-SNAPSHOT'
+  testCompile 'org.testng:testng:6.+'
+  // TestNG marks these as provided dependencies.
+  testCompile 'junit:junit:4.+'
+  testCompile 'com.google.inject:guice:2.+'
 }
+
+// Kotlin compiler integrates with the Java compiler infrastructure so
+// we have to tell the system that it has to look in the Kotlin source place.
+sourceSets {
+  main.java.srcDirs += 'src/main/kotlin'
+}
+
+// TestNG tests use the TestNG runner, Spock tests use the JUnit runner.
+// Comment or uncomment the following as needed.
 
 test.useTestNG()
 
 defaultTasks 'test'
+
+task wrapper(type:Wrapper) {
+  gradleVersion = '2.10'
+}
+

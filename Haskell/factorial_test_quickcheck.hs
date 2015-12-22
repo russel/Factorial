@@ -8,7 +8,7 @@ prop_relation :: (Integer -> Integer) -> Integer -> Bool
 prop_relation f n
     | n < 0 = f n == 0
     | n == 0 = f n == 1
-    | n > 0 = f n == n * f (n - 1)
+    | otherwise = f n == n * f (n - 1)
 
 main :: IO()
 main = do

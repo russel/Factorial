@@ -18,20 +18,20 @@ module Factorial(iterative, naïveRecursive, tailRecursive) where
 iterative :: Integer -> Integer
 iterative n
     | n < 0 = 0
-    | n >= 0 = product [1..n]
+    | otherwise = product [1..n]
 
 -- | Factorial implemented using a naïve recursive approach.
 naïveRecursive :: Integer -> Integer
 naïveRecursive n
     | n < 0 = 0
     | n == 0 = 1
-    | n > 0 = n * naïveRecursive (n - 1)
+    | otherwise = n * naïveRecursive (n - 1)
 
 -- | Factorial implemented using a classic tail recursive function approach.
 tailRecursive :: Integer -> Integer
 -- NB iterate is a function in the standard prelude, so we cannot use that name.
 tailRecursive n
     | n < 0 = 0
-    | n >= 0 = iteration 1  n  1
+    | otherwise = iteration 1  n  1
     where
       iteration n max result = if n > max then result else iteration (n + 1)  max (result * n)

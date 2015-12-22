@@ -2,10 +2,15 @@ import os.path
 
 generatedExtensions = ('.hi', '.o', '.hp', '.ps', '.aux')
 
+tests = []
+
 for testSource in Glob('*_test_*.hs'):
     testRoot = os.path.splitext(testSource.name)[0]
+    tests.append(testRoot)
     sources = (testSource.name, 'Factorial.hs')
     compilationProducts = tuple(os.path.splitext(item)[0] + extension for item in sources for extension in generatedExtensions)
     Command(testRoot, sources, 'ghc --make -O -o $TARGET $SOURCES')
     SideEffect(compilationProducts,  testRoot)
     Clean(testRoot, compilationProducts)
+
+Command('test', tests, 'for t in $SOURCES; do echo "================ $$t"; ./$$t; done')

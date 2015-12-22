@@ -10,7 +10,7 @@ import org.testng.Assert.assertEquals
 class Factorial_TestNG {
 
   // Cannot use ::iterative, ::recursive, ::tail_recursive, ::reductive here as each is an overloaded
-  // function and there is (as at 2015-01-31 Kotlin 0.10.694) no way of disambiguating.
+  // function and there is (as at 2015-12-22) no way of disambiguating.
   // So create lambdas, to force correct types and hence function selection
 
   val algorithms = arrayOf(
@@ -23,20 +23,20 @@ class Factorial_TestNG {
   val positiveData = arrayOf(
           0 to BigInteger.ONE,
           1 to BigInteger.ONE,
-          2 to  BigInteger.valueOf(2),
-          3 to BigInteger.valueOf(6),
-          4 to BigInteger.valueOf(24),
-          5 to BigInteger.valueOf(120),
-          6 to BigInteger.valueOf(720),
-          7 to BigInteger.valueOf(5040),
-          8 to BigInteger.valueOf(40320),
-          9 to BigInteger.valueOf(362880),
-          10 to BigInteger.valueOf(3628800),
-          11 to BigInteger.valueOf(39916800),
-          12 to BigInteger.valueOf(479001600),
-          13 to BigInteger.valueOf(6227020800),
-          14 to BigInteger.valueOf(87178291200),
-          20 to BigInteger.valueOf(2432902008176640000),
+          2 to  2.bigint,
+          3 to 6.bigint,
+          4 to 24.bigint,
+          5 to 120.bigint,
+          6 to 720.bigint,
+          7 to 5040.bigint,
+          8 to 40320.bigint,
+          9 to 362880.bigint,
+          10 to 3628800.bigint,
+          11 to 39916800.bigint,
+          12 to 479001600.bigint,
+          13 to 6227020800.bigint,
+          14 to 87178291200.bigint,
+          20 to 2432902008176640000.bigint,
           30 to BigInteger("265252859812191058636308480000000"),
           40 to BigInteger("815915283247897734345611269596115894272000000000")
   )

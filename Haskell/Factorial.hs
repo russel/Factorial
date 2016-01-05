@@ -34,6 +34,7 @@ tailRecursive :: Integer -> Integer
 -- NB iterate is a function in the standard prelude, so we cannot use that name.
 tailRecursive n
     | n < 0 = error exceptionErrorMessage
-    | otherwise = iteration 1 1
+    | otherwise = iteration n 1
     where
-      iteration i result = if i > n then result else iteration (i + 1) (result * i)
+      iteration 0 result = result
+      iteration i result = iteration (i - 1) (result * i)

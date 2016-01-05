@@ -8,7 +8,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.function.LongFunction;
 
 @RunWith(Parameterized.class)
@@ -44,7 +43,7 @@ public final class Factorial_JUnit4_Java_Positive {
   };
 
   @Parameters(name = "{1}({2})")
-  public static final Collection<Object[]> data() {
+  public static final Iterable<Object[]> data() {
     final ArrayList<Object[]> data = new ArrayList<>();
     for (Object[] a: algorithms) {
       if (a.length != 2) { throw new RuntimeException("algorithms array borked."); }

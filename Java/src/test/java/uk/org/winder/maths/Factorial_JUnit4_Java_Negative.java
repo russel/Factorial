@@ -6,7 +6,6 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.function.LongFunction;
 import java.math.BigInteger;
 
@@ -18,7 +17,7 @@ public final class Factorial_JUnit4_Java_Negative {
   private static final Object[] values = {-1, -2, -5, -10, -20, -100};
 
   @Parameters(name = "{1}({2})")
-  public static final Collection<Object[]> data() {
+  public static final Iterable<Object[]> data() {
     final ArrayList<Object[]> data = new ArrayList<>();
        for (Object[] a: algorithms) {
          if (a.length != 2) { throw new RuntimeException("algorithms array borked."); }

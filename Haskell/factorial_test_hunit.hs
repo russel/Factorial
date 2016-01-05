@@ -26,10 +26,8 @@ testData = [
        ]
 
 testCorrect function comment = test [comment ++ " " ++ show i ~: "" ~: expected ~=? function i | (i, expected) <- testData]
---testCorrect function comment = TestList [TestLabel (comment ++ " " ++ show i)  (TestCase (assertEqual "" expected (function i))) | (i, expected) <- testData]
 
 testNegative function comment = test [comment ++ " " ++ show i ~: "" ~: 0 ~=? function i  | i <- [-20..(-1)]]
---testNegative function comment = TestList [TestLabel (comment ++ " " ++ show i) (TestCase (assertEqual "" 0 (function i))) | i <- [-20..(-1)]]
 
 main = do
  runTestTT (testCorrect Factorial.iterative "Iterative")

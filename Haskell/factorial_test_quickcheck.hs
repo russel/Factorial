@@ -4,14 +4,14 @@ import Test.QuickCheck
 
 import Factorial
 
-prop_relation :: (Integer -> Integer) -> Integer -> Bool
-prop_relation f n
+factorial_property :: (Integer -> Integer) -> Integer -> Bool
+factorial_property f n
     | n < 0 = f n == 0
     | n == 0 = f n == 1
     | otherwise = f n == n * f (n - 1)
 
 main :: IO()
 main = do
-  quickCheck (prop_relation iterative)
-  quickCheck (prop_relation naïveRecursive)
-  quickCheck (prop_relation tailRecursive)
+  quickCheck (factorial_property iterative)
+  quickCheck (factorial_property naïveRecursive)
+  quickCheck (factorial_property tailRecursive)

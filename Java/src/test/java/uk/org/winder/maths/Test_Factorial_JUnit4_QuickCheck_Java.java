@@ -18,7 +18,7 @@ import static uk.org.winder.maths.Factorial.reductive;
 
 
 @RunWith(JUnitQuickcheck.class)
-public final class Factorial_JUnit4_QuickCheck_Java {
+public final class Test_Factorial_JUnit4_QuickCheck_Java {
 
   // Keep the Integer argument range relatively small so that the tests run in reasonable time.
   // [1, 500] is seen as reasonable.

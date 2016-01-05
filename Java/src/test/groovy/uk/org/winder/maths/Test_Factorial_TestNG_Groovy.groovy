@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider
 
 import static org.testng.Assert.assertEquals
 
-class Factorial_TestNG_Groovy {
+class Test_Factorial_TestNG_Groovy {
 
   private final algorithms = [
       Factorial.&iterative,

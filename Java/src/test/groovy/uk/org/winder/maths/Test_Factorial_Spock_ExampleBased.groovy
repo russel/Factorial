@@ -3,7 +3,7 @@ package uk.org.winder.maths
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class Factorial_Spock_ExampleBased extends Specification {
+class Test_Factorial_Spock_ExampleBased extends Specification {
 
   private static final algorithms = [
       [Factorial.&iterative, 'iterative'],

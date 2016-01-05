@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.function.LongFunction;
 import java.math.BigInteger;
 
-import static uk.org.winder.maths.Factorial_JUnit4_Java_Positive.algorithms;
+import static uk.org.winder.maths.Test_Factorial_JUnit4_Java_Positive.algorithms;
 
 @RunWith(Parameterized.class)
-public final class Factorial_JUnit4_Java_Negative {
+public final class Test_Factorial_JUnit4_Java_Negative {
 
   private static final Object[] values = {-1, -2, -5, -10, -20, -100};
 
@@ -32,7 +32,7 @@ public final class Factorial_JUnit4_Java_Negative {
   private final String name;
   private final Integer n;
 
-  public Factorial_JUnit4_Java_Negative(final LongFunction<BigInteger> a, final String name, final Integer n) {
+  public Test_Factorial_JUnit4_Java_Negative(final LongFunction<BigInteger> a, final String name, final Integer n) {
     this.a = a;
     this.name = name;
     this.n = n;

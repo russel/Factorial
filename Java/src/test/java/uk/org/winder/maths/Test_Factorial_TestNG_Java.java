@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.function.LongFunction;
 
-public final class Factorial_TestNG_Java {
+public final class Test_Factorial_TestNG_Java {
 
   private final Object[] algorithms = new Object[] {
       (LongFunction<BigInteger>)Factorial::iterative,

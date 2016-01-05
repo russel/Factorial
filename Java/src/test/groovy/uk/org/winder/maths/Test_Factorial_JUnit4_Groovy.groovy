@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized.Parameters
 
 import static org.junit.Assert.assertEquals
 
-final class Factorial_JUnit4_Groovy {
+final class Test_Factorial_JUnit4_Groovy {
   static final algorithms = [
       [Factorial.&iterative, 'iterative'],
       [Factorial.&naïveRecursive, 'naïveRecursive'],
@@ -17,7 +17,7 @@ final class Factorial_JUnit4_Groovy {
 }
 
 @RunWith(Parameterized.class)
-final class Factorial_JUnit4_Groovy_Positive {
+final class Test_Factorial_JUnit4_Groovy_Positive {
 
    private static values = [
       [0, 1G],
@@ -42,7 +42,7 @@ final class Factorial_JUnit4_Groovy_Positive {
 
   @Parameters(name = "{1}({2})")
   static Collection<Object[]> data() {
-     return Factorial_JUnit4_Groovy.algorithms.collectMany{a -> values.collect{[*a, *it] as Object[]}}
+     return Test_Factorial_JUnit4_Groovy.algorithms.collectMany{ a -> values.collect{[*a, *it] as Object[]}}
   }
 
   private final Closure a
@@ -50,7 +50,7 @@ final class Factorial_JUnit4_Groovy_Positive {
   private final Integer n
   private final BigInteger r
 
-  Factorial_JUnit4_Groovy_Positive(final Closure a, final String name, final Integer n, final BigInteger r) {
+  Test_Factorial_JUnit4_Groovy_Positive(final Closure a, final String name, final Integer n, final BigInteger r) {
     this.a = a
     this.name = name
     this.n = n
@@ -63,20 +63,20 @@ final class Factorial_JUnit4_Groovy_Positive {
 }
 
 @RunWith(Parameterized.class)
-final class Factorial_JUnit4_Groovy_Negative {
+final class Test_Factorial_JUnit4_Groovy_Negative {
 
   private static final values = [-1, -2, -5, -10, -20, -100]
 
   @Parameters(name = "{1}({2})")
   static Collection<Object[]> data() {
-    return Factorial_JUnit4_Groovy.algorithms.collectMany{ a -> values.collect{[*a, it] as Object[]}}
+    return Test_Factorial_JUnit4_Groovy.algorithms.collectMany{ a -> values.collect{[*a, it] as Object[]}}
   }
 
   private final Closure a
   private final String name
   private final Integer n
 
-  Factorial_JUnit4_Groovy_Negative(final Closure a, final String name, final Integer n) {
+  Test_Factorial_JUnit4_Groovy_Negative(final Closure a, final String name, final Integer n) {
     this.a = a
     this.name = name
     this.n = n

@@ -2,12 +2,12 @@ module Factorial where
 
 iterative :: Integer -> Integer
 iterative n
-    | n < 0 = error "Factorial not defined for negative integers."
+    | n < 0 = 0 -- error "Factorial not defined for negative integers."
     | otherwise = product [1..n]
 
 naïveRecursive :: Integer -> Integer
 naïveRecursive n
-    | n < 0 = error "Factorial not defined for negative integers."
+    | n < 0 = 0 -- error "Factorial not defined for negative integers."
     | n == 0 = 1
     | otherwise = n * naïveRecursive (n - 1)
 
@@ -15,7 +15,7 @@ naïveRecursive n
 
 tailRecursive :: Integer -> Integer
 tailRecursive n
-    | n < 0 = error "Factorial not defined for negative integers."
+    | n < 0 = 0 -- error "Factorial not defined for negative integers."
     | otherwise = iteration n  1
     where
       iteration 0 result = result

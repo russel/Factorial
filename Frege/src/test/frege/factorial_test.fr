@@ -1,34 +1,15 @@
 module Factorial_Test where
 
+import Test.QuickCheck(quickCheck, property)
+
 import Factorial(iterative, naïveRecursive, tailRecursive)
-import Test.QuickCheck(quickCheck, forAll, choose)
 
--- smallNonNegativeIntegers = choose (0, 500)
-
--- property_factorial_positive :: (Integer -> Integer) -> Boolean
--- property_factorial_positive f = forAll smallNonNegativeIntegers $ \n -> f (n + 1) == n * f n
-
--- smallNegativeIntegers = choose (100, -1)
-
--- property_factorial_negative :: (Integer -> Integer) -> Boolean
--- property_factorial_negative f = forAll smallNegativeIntegers $ \n -> f n == 0
-
-property :: (Integer -> Integer) -> Integer -> Bool
-property f n
+factorial_property :: (Integer -> Integer) -> Integer -> Bool
+factorial_property f n
     | n < 0 = f n == 0
     | n == 0 = f n == 1
     | otherwise = f n == n * f (n - 1)
 
-main :: IO()
-main = do
-  -- quickCheck (property_factorial_positive iterative)
-  -- quickCheck (property_factorial_positive naïveRecursive)
-  -- quickCheck (property_factorial_positive tailRecursive)
-
-  -- quickCheck (property_factorial_negative iterative)
-  -- quickCheck (property_factorial_negative naïveRecursive)
-  -- quickCheck (property_factorial_negative tailRecursive)
-
-  quickCheck (property iterative)
-  quickCheck (property naïveRecursive)
-  quickCheck (property tailRecursive)
+factorial_iterative_property = property (factorial_property iterative)
+factorial_naïveRecursive_property = property (factorial_property naïveRecursive)
+factorial_tailRecursive_property = property (factorial_property tailRecursive)

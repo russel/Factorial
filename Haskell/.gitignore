@@ -1,2 +1,4 @@
 *.o
 *.hi
+factorial_test_hunit
+factorial_test_quickcheck

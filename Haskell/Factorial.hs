@@ -14,16 +14,18 @@ Factorial is undefined for negative integers, but rather than use error or Maybe
 -}
 module Factorial(iterative, naïveRecursive, tailRecursive) where
 
+exceptionErrorMessage = "Factorial not defined for negative integers."
+
 -- | Factorial implemented using the product built-in function.
 iterative :: Integer -> Integer
 iterative n
-    | n < 0 = 0
+    | n < 0 = error exceptionErrorMessage
     | otherwise = product [1..n]
 
 -- | Factorial implemented using a naïve recursive approach.
 naïveRecursive :: Integer -> Integer
 naïveRecursive n
-    | n < 0 = 0
+    | n < 0 = error exceptionErrorMessage
     | n == 0 = 1
     | otherwise = n * naïveRecursive (n - 1)
 
@@ -31,7 +33,7 @@ naïveRecursive n
 tailRecursive :: Integer -> Integer
 -- NB iterate is a function in the standard prelude, so we cannot use that name.
 tailRecursive n
-    | n < 0 = 0
-    | otherwise = iteration 1  n  1
+    | n < 0 = error exceptionErrorMessage
+    | otherwise = iteration 1 1
     where
-      iteration n max result = if n > max then result else iteration (n + 1)  max (result * n)
+      iteration i result = if i > n then result else iteration (i + 1) (result * i)

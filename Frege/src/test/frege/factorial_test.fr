@@ -1,12 +1,22 @@
 module Factorial_Test where
 
+-- import Numeric.Natural
+
 import Test.QuickCheck(quickCheck, property)
 
 import Factorial(iterative, naïveRecursive, tailRecursive)
 
+-- f_p :: (Integer -> Integer) -> Integer -> Bool
+-- f_p f n
+--     | n == 0 = f n == 1
+--     | otherwise = f n == n * f (n - 1)
+
+-- factorial_property :: (Integer -> Integer) -> Natural -> Bool
+-- factorial_property f n = f_p f (fromIntegral n)
+
 factorial_property :: (Integer -> Integer) -> Integer -> Bool
 factorial_property f n
-    | n < 0 = f n == 0
+    | n < 0 = True
     | n == 0 = f n == 1
     | otherwise = f n == n * f (n - 1)
 

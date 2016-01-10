@@ -8,7 +8,8 @@ repositories {
 }
 
 dependencies {
-  compile 'org.frege-lang:frege:3.23.+'
+  //compile 'org.frege-lang:frege:3.23.+'
+  compile files('/home/Checkouts/Git/Git/Frege/fregec.jar')
 }
 
 defaultTasks 'test'

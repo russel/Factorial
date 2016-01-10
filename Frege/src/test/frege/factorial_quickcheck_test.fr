@@ -1,4 +1,4 @@
-module Factorial_Test where
+module Factorial_QuickCheck_Test where
 
 -- import Numeric.Natural
 

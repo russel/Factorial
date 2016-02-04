@@ -1,8 +1,8 @@
 buildscript {
-  ext.kotlin_version = '0.1-SNAPSHOT'
+  ext.kotlin_version = '1.0.0-rc-1036' //'0.1-SNAPSHOT'
   repositories {
     mavenCentral()
-    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
+    //maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
   }
   dependencies { classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
 }
@@ -13,7 +13,7 @@ apply plugin: 'groovy'
 repositories {
   jcenter()
   mavenCentral()
-  maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
+  //maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {

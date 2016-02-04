@@ -6,20 +6,14 @@ package uk.org.winder.maths.factorial
 
 import java.math.BigInteger
 
-import kotlin.math.div
-import kotlin.math.minus
-import kotlin.math.plus
-import kotlin.math.times
-import kotlin.math.unaryMinus
-
 val Int.bigint: BigInteger get() = BigInteger.valueOf(this.toLong())
 val Long.bigint: BigInteger get() = BigInteger.valueOf(this)
 
-public open class BigIntegerProgression(
-    override val start: BigInteger,
-    override val end: BigInteger,
-    override val increment: BigInteger
-): Progression<BigInteger>, Iterable<BigInteger> {
+open class BigIntegerProgression(
+    val start: BigInteger,
+    val end: BigInteger,
+    val increment: BigInteger
+): Iterable<BigInteger> {
 
   init {
     if (increment == BigInteger.ZERO) throw IllegalArgumentException("Increment must not be zero")
@@ -44,7 +38,7 @@ public open class BigIntegerProgression(
   infix fun step(step: Number) = step(step.toLong().bigint)
 }
 
-public class BigIntegerRange(override val start: BigInteger, override val end: BigInteger):
+class BigIntegerRange(override val start: BigInteger, override val end: BigInteger):
     BigIntegerProgression(start, end, 1.bigint), ClosedRange<BigInteger> {
   override fun contains(value: BigInteger): Boolean = start <= value && value <= end
   override val endInclusive: BigInteger = BigInteger.ZERO

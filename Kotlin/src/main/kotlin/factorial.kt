@@ -2,12 +2,6 @@ package uk.org.winder.maths.factorial
 
 import java.math.BigInteger
 
-import kotlin.math.div
-import kotlin.math.minus
-import kotlin.math.plus
-import kotlin.math.times
-import kotlin.math.unaryMinus
-
 val zero = BigInteger.ZERO
 val one = BigInteger.ONE
 val two = 2.bigint

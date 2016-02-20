@@ -1,6 +1,6 @@
 apply plugin: 'groovy'
 
-sourceCompatibility = 8
+sourceCompatibility = 9
 
 repositories {
   mavenLocal()
@@ -32,7 +32,7 @@ clean.doLast {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.10'
+  gradleVersion = '2.11'
 }
 
 defaultTasks 'test'

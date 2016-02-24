@@ -9,11 +9,8 @@ import java.math.BigInteger
 val Int.bigint: BigInteger get() = BigInteger.valueOf(this.toLong())
 val Long.bigint: BigInteger get() = BigInteger.valueOf(this)
 
-open class BigIntegerProgression(
-    val start: BigInteger,
-    val end: BigInteger,
-    val increment: BigInteger
-): Iterable<BigInteger> {
+class BigIntegerRange(override val start: BigInteger, val end: BigInteger, val increment: BigInteger):
+    ClosedRange<BigInteger>, Iterable<BigInteger> {
 
   init {
     if (increment == BigInteger.ZERO) throw IllegalArgumentException("Increment must not be zero")
@@ -34,15 +31,12 @@ open class BigIntegerProgression(
     private fun calculateFinalElement(): BigInteger =
         if (increment > BigInteger.ZERO) end - diffMod(end, start, increment) else end + diffMod(start, end, -increment)
   }
-  infix fun step(step: BigInteger) = BigIntegerProgression(start, end, if (increment > 0.bigint) step else -step)
+  infix fun step(step: BigInteger) = BigIntegerRange(start, end, if (increment > BigInteger.ZERO) step else -step)
   infix fun step(step: Number) = step(step.toLong().bigint)
-}
 
-class BigIntegerRange(override val start: BigInteger, override val end: BigInteger):
-    BigIntegerProgression(start, end, 1.bigint), ClosedRange<BigInteger> {
   override fun contains(value: BigInteger): Boolean = start <= value && value <= end
   override val endInclusive: BigInteger = BigInteger.ZERO
 }
 
-infix fun BigInteger.rangeTo(that: BigInteger) = BigIntegerRange(this, that)
-infix fun BigInteger.downTo(that: BigInteger) = BigIntegerProgression(this, that, -1.bigint)
+infix fun BigInteger.rangeTo(that: BigInteger) = BigIntegerRange(this, that, BigInteger.ONE)
+infix fun BigInteger.downTo(that: BigInteger) = BigIntegerRange(this, that, -1.bigint)

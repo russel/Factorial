@@ -5,5 +5,9 @@ plugins {
 ceylon {
     module = 'uk.org.winder.maths'
     testModule = 'uk.org.winder.maths_test'
+    // source is default source directory, but the tests are in test-source which is not standard for the
+    // Gradle plugin.
     sourceRoots = ['source', 'test-source']
  }
+
+defaultTasks 'test'

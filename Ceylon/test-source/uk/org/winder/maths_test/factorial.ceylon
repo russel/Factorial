@@ -2,7 +2,7 @@ import ceylon.test{test, testExecutor, assertEquals, assertThatException}
 import ceylon.math.whole{Whole, parseWhole, wholeNumber}
 import ceylon.language.meta.model{IncompatibleTypeException}
 
-import com.vasileff.ceylon.random.api{LCGRandom}
+import ceylon.random{DefaultRandom}
 
 import com.athaydes.specks{errorCheck, feature,  propertyCheck, Specification, SpecksTestExecutor }
 import com.athaydes.specks.assertion{expect, expectToThrow}
@@ -78,7 +78,7 @@ test shared Specification factorial_specks() {
 	value upperBound = 200;
 	
 	class IntegerInRange(shared Integer val){}
-	value random = LCGRandom();
+	value random = DefaultRandom();
 	function generateIntegerInRange() => IntegerInRange(random.nextElement(1..upperBound));
 	
 	return Specification{

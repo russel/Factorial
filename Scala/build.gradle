@@ -1,15 +1,14 @@
 apply plugin: 'scala'
 
 repositories {
-  mavenLocal()
   jcenter()
   mavenCentral()
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.11.7'
-    testCompile 'org.scalatest:scalatest_2.11:2.2.5'
-    testCompile 'org.scalacheck:scalacheck_2.11:1.12.4'
+    compile 'org.scala-lang:scala-library:2.11.+'
+    testCompile 'org.scalatest:scalatest_2.11:+'
+    testCompile 'org.scalacheck:scalacheck_2.11:+'
 }
 
 task scalaTest(dependsOn: ['testClasses'], type: JavaExec) {

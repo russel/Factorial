@@ -1,10 +1,9 @@
 package uk.org.winder.maths
 
 import org.scalatest.FunSuite
-import org.scalatest.Matchers
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Factorial_ScalaTest_ExampleBased extends FunSuite with Matchers with TableDrivenPropertyChecks {
+class Factorial_ScalaTest_ExampleBased extends FunSuite with TableDrivenPropertyChecks {
 
   val algorithms = Table(
     ("algorithm", "name"),
@@ -46,14 +45,14 @@ class Factorial_ScalaTest_ExampleBased extends FunSuite with Matchers with Table
 
   forAll (algorithms) {(f:Function[Int, BigInt], name:String) =>
     forAll (positiveData) ((n:Int, r:BigInt) =>
-      test(name + " " + n) { f(n) should equal (r) })
+      test(name + " " + n) { assert(f(n) == r) })
     forAll (negativeData) ((n:Int) =>
-      test(name + " " + n) { an [IllegalArgumentException] should be thrownBy (f(n)) })
+      test(name + " " + n) { intercept [IllegalArgumentException] { f(n) } })
   }
 
   test("iterative 26000") { Factorial.iterativeWhile(26000) }
   test("reductive 26000") { Factorial.reductive(26000) }
-  test("recursive 18000") { an [StackOverflowError] should be thrownBy (Factorial.naïveRecursive(18000)) }
+  test("recursive 18000") { intercept [StackOverflowError] { Factorial.naïveRecursive(18000) } }
   test("tailRecursive 26000") { Factorial.tailRecursive(26000) }
 
 }

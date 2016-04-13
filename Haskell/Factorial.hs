@@ -10,7 +10,8 @@ Portability :  portable
 This module contains various implementations of the factorial function to show various different Haskell
 techniques and approaches.
 
-Factorial is undefined for negative integers, but rather than use error or Maybe, use the return value 0.
+Factorial is undefined for negative integers, raise an error for such uses. Whilst this seems a little
+extreme, any program asking to evaluate factorial for a negative value is broken.
 -}
 module Factorial(iterative, naïveRecursive, tailRecursive) where
 

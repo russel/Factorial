@@ -32,10 +32,10 @@ naïveRecursive n
 
 -- | Factorial implemented using a classic tail recursive function approach.
 tailRecursive :: Integer -> Integer
--- NB iterate is a function in the standard prelude, so we cannot use that name.
 tailRecursive n
     | n < 0 = error exceptionErrorMessage
     | otherwise = iteration n 1
     where
+      -- NB iterate is a function in the standard prelude, so we cannot use that name.
       iteration 0 result = result
       iteration i result = iteration (i - 1) (result * i)

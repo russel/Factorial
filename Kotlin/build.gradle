@@ -1,10 +1,9 @@
 buildscript {
-  ext.kotlin_version = '1.0.0-rc-1036' //'0.1-SNAPSHOT'
   repositories {
+    jcenter()
     mavenCentral()
-    //maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
   }
-  dependencies { classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
+  dependencies { classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.+" }
 }
 
 apply plugin: 'kotlin'
@@ -13,11 +12,10 @@ apply plugin: 'groovy'
 repositories {
   jcenter()
   mavenCentral()
-  //maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  compile "org.jetbrains.kotlin:kotlin-stdlib:1.+"
   testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
   testCompile 'org.testng:testng:6.+'
   // TestNG marks these as provided dependencies.
@@ -33,11 +31,10 @@ sourceSets {
 
 // TestNG tests use the TestNG runner, Spock tests use the JUnit runner.
 // Comment or uncomment the following as needed.
-
 test.useTestNG()
 
 task wrapper(type:Wrapper) {
-  gradleVersion = '2.11'
+  gradleVersion = '2.13'
 }
 
 defaultTasks 'test'

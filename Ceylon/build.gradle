@@ -8,6 +8,16 @@ ceylon {
     // source is the default source and test source directory, but I have tests in test-source which is not
     // standard for the Gradle plugin.
     testRoots = ['test-source']
+
+    // This hack is needed because of a bug in ceylon.test.
+    // cf. https://github.com/ceylon/ceylon/issues/6214
+    flatClasspath = false
+    importJars = true
+    // end hack
  }
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.13'
+}
 
 defaultTasks 'test'

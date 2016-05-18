@@ -3,3 +3,7 @@
 *.iml
 .idea/
 .sconsign.dblite
+.classpath
+.project
+.settings/
+build/

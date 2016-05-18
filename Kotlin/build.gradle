@@ -31,9 +31,18 @@ sourceSets {
   main.java.srcDirs += 'src/main/kotlin'
 }
 
-// TestNG tests use the TestNG runner, Spock tests use the JUnit runner.
-// Comment or uncomment the following as needed.
+// This would run the TestNG tests then the Spock one, however…
+
+//task testNG(type: Test) { useTestNG() }
+//test.dependsOn testNG
+
+// … there are problems with the TestNG tests as at 2016-05-18 which terminates execution and so we miss the
+// Spock tests, which all work. So run the Spock tests first then the TestNG ones.
+
+task testSpock(type: Test) { useJUnit() }
+test.dependsOn testSpock
 test.useTestNG()
+
 
 task wrapper(type:Wrapper) {
   gradleVersion = '2.13'

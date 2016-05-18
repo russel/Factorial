@@ -69,7 +69,7 @@ class Factorial_TestNG {
   @Test(expectedExceptions=arrayOf(StackOverflowError::class))
   fun recursiveOfAHugeNumberFailsWithAStackOverflow() { naïve_recursive(13000) }
 
-  @Test(expectedExceptions=arrayOf(StackOverflowError::class))
-  fun tailRecursiveOfAHugeNumberFailsWithAStackOverflow() { tail_recursive(13000) }
+  @Test
+  fun tailRecursiveOfAHugeNumberFailsWithAStackOverflow() { tail_recursive(26000) }
 
 }

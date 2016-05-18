@@ -73,7 +73,7 @@ class Factorial_Spock extends Specification{
 
   def 'tailRecursive of a huge number fails with a stack overflow'() {
     when: FactorialKt.&tail_recursive(10000)
-    then: thrown(StackOverflowError)
+    then: notThrown(StackOverflowError)
   }
 
 }

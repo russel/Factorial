@@ -21,27 +21,27 @@ class Factorial_TestNG {
   )
 
   val positiveData = arrayOf(
-          0 to BigInteger.ONE,
-          1 to BigInteger.ONE,
-          2 to  2.bigint,
-          3 to 6.bigint,
-          4 to 24.bigint,
-          5 to 120.bigint,
-          6 to 720.bigint,
-          7 to 5040.bigint,
-          8 to 40320.bigint,
-          9 to 362880.bigint,
-          10 to 3628800.bigint,
-          11 to 39916800.bigint,
-          12 to 479001600.bigint,
-          13 to 6227020800.bigint,
-          14 to 87178291200.bigint,
-          20 to 2432902008176640000.bigint,
-          30 to BigInteger("265252859812191058636308480000000"),
-          40 to BigInteger("815915283247897734345611269596115894272000000000")
+          0L to BigInteger.ONE,
+          1L to BigInteger.ONE,
+          2L to  2.bigint,
+          3L to 6.bigint,
+          4L to 24.bigint,
+          5L to 120.bigint,
+          6L to 720.bigint,
+          7L to 5040.bigint,
+          8L to 40320.bigint,
+          9L to 362880.bigint,
+          10L to 3628800.bigint,
+          11L to 39916800.bigint,
+          12L to 479001600.bigint,
+          13L to 6227020800.bigint,
+          14L to 87178291200.bigint,
+          20L to 2432902008176640000.bigint,
+          30L to BigInteger("265252859812191058636308480000000"),
+          40L to BigInteger("815915283247897734345611269596115894272000000000")
   )
 
-  val negativeData = arrayOf(-1, -2, -5, -10, -20, -100)
+  val negativeData = arrayOf(-1L, -2L, -5L, -10L, -20L, -100L)
 
   @DataProvider
   fun algorithmsAndPositiveData() = algorithms.flatMap({a -> positiveData.map({d -> arrayOf(a.first, a.second, d.first, d.second)})}).toTypedArray()

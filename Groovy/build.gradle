@@ -3,19 +3,22 @@ apply plugin: 'groovy'
 sourceCompatibility = 8
 
 repositories {
-  mavenLocal()
   jcenter()
   mavenCentral()
 }
 
 dependencies {
-  compile 'org.codehaus.groovy:groovy:2.+'
-  testCompile 'org.spockframework:spock-core:1.+-groovy-2.4'
-  testCompile 'com.nagternal:spock-genesis:+'
+  compile 'org.codehaus.groovy:groovy-all:2.+'
+  testCompile ('org.spockframework:spock-core:1.+-groovy-2.4') {
+    exclude module : 'groovy-all'
+  }
+  testCompile ('com.nagternal:spock-genesis:+') {
+    exclude module : 'groovy'
+  }
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.10'
+  gradleVersion = '2.13'
 }
 
 defaultTasks 'test'

@@ -21,13 +21,13 @@ public final class Factorial {
     }
     return total;
   }
-  public static BigInteger iterative(final long n) { return iterative(new BigInteger(Long.toString(n))); }
+  public static BigInteger iterative(final long n) { return iterative(BigInteger.valueOf(n)); }
 
   public static BigInteger naïveRecursive(final BigInteger n) {
     validate(n);
     return n.compareTo(BigInteger.ONE) <= 0 ? BigInteger.ONE : n.multiply(naïveRecursive(n.subtract(BigInteger.ONE)));
   }
-  public static BigInteger naïveRecursive(final long n) { return naïveRecursive(new BigInteger(Long.toString(n))); }
+  public static BigInteger naïveRecursive(final long n) { return naïveRecursive(BigInteger.valueOf(n)); }
 
   private static BigInteger iterate(final BigInteger n , final BigInteger result) {
     return n.compareTo(BigInteger.ONE) <= 0 ? result : iterate(n.subtract(BigInteger.ONE) , result.multiply(n));

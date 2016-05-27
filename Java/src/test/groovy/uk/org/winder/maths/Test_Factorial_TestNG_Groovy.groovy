@@ -15,29 +15,29 @@ class Test_Factorial_TestNG_Groovy {
   ]
 
   private final positiveData = [
-      [0, 1G],
-      [1, 1G],
-      [2, 2G],
-      [3, 6G],
-      [4, 24G],
-      [5, 120G],
-      [6, 720G],
-      [7, 5040G],
-      [8, 40320G],
-      [9, 362880G],
-      [10, 3628800G],
-      [11, 39916800G],
-      [12, 479001600G],
-      [13, 6227020800G],
-      [14, 87178291200G],
-      [20, 2432902008176640000G],
-      [30, 265252859812191058636308480000000G],
-      [40, 815915283247897734345611269596115894272000000000G]
+      [0L, 1G],
+      [1L, 1G],
+      [2L, 2G],
+      [3L, 6G],
+      [4L, 24G],
+      [5L, 120G],
+      [6L, 720G],
+      [7L, 5040G],
+      [8L, 40320G],
+      [9L, 362880G],
+      [10L, 3628800G],
+      [11L, 39916800G],
+      [12L, 479001600G],
+      [13L, 6227020800G],
+      [14L, 87178291200G],
+      [20L, 2432902008176640000G],
+      [30L, 265252859812191058636308480000000G],
+      [40L, 815915283247897734345611269596115894272000000000G]
   ]
 
-  private final negativeData = [-1, -2, -5, -10, -20, -100]
+  private final negativeData = [-1L, -2L, -5L, -10L, -20L, -100L]
 
-  private final floatData = [100.5, 20.5, 10.5, 5.5, 2.5, 0.5, -0.5, -2.5, -5.5, -10.5, -20.5, -100.5]
+  private final floatData = [100.5D, 20.5D, 10.5D, 5.5D, 2.5D, 0.5D, -0.5D, -2.5D, -5.5D, -10.5D, -20.5D, -100.5D]
 
   @DataProvider
   private Object[][] algorithmsAndPositiveData() {
@@ -62,7 +62,7 @@ class Test_Factorial_TestNG_Groovy {
   @Test(dataProvider = "algorithmsAndNegativeData", expectedExceptions = [IllegalArgumentException])
   public void negativeArgumentShouldThrowException(Closure f, long n) { f(n) }
 
-  @Test(dataProvider = "algorithmsAndFloatData", expectedExceptions = [IllegalArgumentException])
+  @Test(dataProvider = "algorithmsAndFloatData", expectedExceptions = [MissingMethodException])
   public void floatArgumentShouldThrowException(Closure f, double n) { f(n) }
 
   @Test

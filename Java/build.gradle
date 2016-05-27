@@ -1,16 +1,20 @@
 apply plugin: 'groovy'
 
-sourceCompatibility = 9
+sourceCompatibility = 8
 
 repositories {
-  mavenLocal()
   jcenter()
   mavenCentral()
 }
 
 dependencies {
-  testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
-  testCompile 'com.nagternal:spock-genesis:0.+'
+  testCompile 'org.codehaus.groovy:groovy-all:2.4.+'
+  testCompile ('org.spockframework:spock-core:1.0-groovy-2.4') {
+    exclude module : 'groovy-all'
+  }
+  testCompile ('com.nagternal:spock-genesis:0.+') {
+    exclude module: 'groovy'
+  }
   testCompile 'junit:junit:4.+'
   testCompile 'com.pholser:junit-quickcheck-core:0.+'
   testCompile 'com.pholser:junit-quickcheck-generators:0.+'
@@ -19,20 +23,18 @@ dependencies {
   testCompile 'com.google.inject:guice:2.+'
 }
 
-test {
-  // There are JUnit4 and Spock tests that require the JUnit4 test runner,
-  // and there are TestNG test that require the TestNG runner. So comment
-  // the following out for JUnit4 and Spock, uncomment for TestNG.
-
-  //useTestNG()
+task test_TestNG(type: Test) {
+  useTestNG()
 }
+
+test.dependsOn test_TestNG
 
 clean.doLast {
   delete 'test-output'
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.11'
+  gradleVersion = '2.13'
 }
 
 defaultTasks 'test'

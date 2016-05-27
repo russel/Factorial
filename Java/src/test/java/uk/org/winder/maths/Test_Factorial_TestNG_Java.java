@@ -18,27 +18,27 @@ public final class Test_Factorial_TestNG_Java {
   };
 
   private final Object[][] positiveData = new Object[][] {
-      {0, BigInteger.valueOf(1)},
-      {1, BigInteger.valueOf(1)},
-      {2, BigInteger.valueOf(2)},
-      {3, BigInteger.valueOf(6)},
-      {4, BigInteger.valueOf(24)},
-      {5, BigInteger.valueOf(120)},
-      {6, BigInteger.valueOf(720)},
-      {7, BigInteger.valueOf(5040)},
-      {8, BigInteger.valueOf(40320)},
-      {9, BigInteger.valueOf(362880)},
-      {10, BigInteger.valueOf(3628800)},
-      {11, BigInteger.valueOf(39916800)},
-      {12, BigInteger.valueOf(479001600)},
-      {13, new BigInteger("6227020800")},
-      {14, new BigInteger("87178291200")},
-      {20, new BigInteger("2432902008176640000")},
-      {30, new BigInteger("265252859812191058636308480000000")},
-      {40, new BigInteger("815915283247897734345611269596115894272000000000")}
+      {0L, BigInteger.valueOf(1)},
+      {1L, BigInteger.valueOf(1)},
+      {2L, BigInteger.valueOf(2)},
+      {3L, BigInteger.valueOf(6)},
+      {4L, BigInteger.valueOf(24)},
+      {5L, BigInteger.valueOf(120)},
+      {6L, BigInteger.valueOf(720)},
+      {7L, BigInteger.valueOf(5040)},
+      {8L, BigInteger.valueOf(40320)},
+      {9L, BigInteger.valueOf(362880)},
+      {10L, BigInteger.valueOf(3628800)},
+      {11L, BigInteger.valueOf(39916800)},
+      {12L, BigInteger.valueOf(479001600)},
+      {13L, new BigInteger("6227020800")},
+      {14L, new BigInteger("87178291200")},
+      {20L, new BigInteger("2432902008176640000")},
+      {30L, new BigInteger("265252859812191058636308480000000")},
+      {40L, new BigInteger("815915283247897734345611269596115894272000000000")}
   };
 
-  private final Object[] negativeData = new Object[] { -1, -2, -5, -10, -20, -100};
+  private final Object[] negativeData = new Object[] { -1L, -2L, -5L, -10L, -20L, -100L};
 
   @DataProvider
   private Object[][] algorithmsAndPositiveData() {

@@ -18,7 +18,10 @@ repositories {
 
 dependencies {
   compile 'org.jetbrains.kotlin:kotlin-stdlib:1.+'
-  testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+  testCompile 'org.codehaus.groovy:groovy-all:2.4.+'
+  testCompile ('org.spockframework:spock-core:1.0-groovy-2.4') {
+    exclude module : 'groovy-all'
+  }
   testCompile 'org.testng:testng:6.+'
   // TestNG marks these as provided dependencies.
   testCompile 'junit:junit:4.+'
@@ -31,18 +34,8 @@ sourceSets {
   main.java.srcDirs += 'src/main/kotlin'
 }
 
-// This would run the TestNG tests then the Spock one, however…
-
-//task testNG(type: Test) { useTestNG() }
-//test.dependsOn testNG
-
-// … there are problems with the TestNG tests as at 2016-05-18 which terminates execution and so we miss the
-// Spock tests, which all work. So run the Spock tests first then the TestNG ones.
-
-task testSpock(type: Test) { useJUnit() }
-test.dependsOn testSpock
-test.useTestNG()
-
+task testNG(type: Test) { useTestNG() }
+test.dependsOn testNG
 
 task wrapper(type:Wrapper) {
   gradleVersion = '2.13'

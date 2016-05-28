@@ -18,6 +18,13 @@ fun iterative(x:BigInteger):BigInteger {
   return total
 }
 
+fun reductive(x:Long):BigInteger = reductive(x.bigint)
+fun reductive(x:BigInteger):BigInteger {
+  validate(x)
+  if (x < two) { return one }
+  return (one rangeTo x).reduce{t, i -> t * i}
+}
+
 fun naïve_recursive(x:Long):BigInteger = naïve_recursive(x.bigint)
 fun naïve_recursive(x:BigInteger):BigInteger {
   validate(x)
@@ -36,9 +43,3 @@ fun tail_recursive(x:BigInteger):BigInteger {
   return iterate(x)
 }
 
-fun reductive(x:Long):BigInteger = reductive(x.bigint)
-fun reductive(x:BigInteger):BigInteger {
-  validate(x)
-  if (x < two) { return one }
-  return (one rangeTo x).reduce{t, i -> t * i}
-}

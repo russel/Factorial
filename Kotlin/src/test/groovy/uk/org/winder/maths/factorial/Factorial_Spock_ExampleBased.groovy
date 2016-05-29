@@ -3,7 +3,7 @@ package uk.org.winder.maths.factorial
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class Factorial_Spock extends Specification{
+class Factorial_Spock_ExampleBased extends Specification{
   private static final algorithms = [
       [FactorialKt.&iterative, 'iterative'],
       [FactorialKt.&reductive, 'reductive'],
@@ -69,7 +69,7 @@ class Factorial_Spock extends Specification{
   }
 
   def 'recursive of a huge number fails with a stack overflow'() {
-    when: FactorialKt.&naïve_recursive(10000)
+    when: FactorialKt.&naïve_recursive(13000)
     then: thrown(StackOverflowError)
   }
 

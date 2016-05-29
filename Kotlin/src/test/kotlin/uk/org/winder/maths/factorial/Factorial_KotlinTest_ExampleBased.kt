@@ -4,7 +4,7 @@ import java.math.BigInteger
 
 import io.kotlintest.specs.FunSpec
 
-class Factorial_KotlinTest : FunSpec() {
+class Factorial_KotlinTest_ExampleBased : FunSpec() {
   init {
 
     // Cannot use ::iterative, ::recursive, ::tail_recursive, ::reductive here as each is an overloaded

@@ -11,10 +11,10 @@ class Factorial_ScalaTest_ExampleBased extends FunSuite with TableDrivenProperty
     (Factorial.iterativeFor _, "iterativeFor"),
     (Factorial.iterativeForeach _, "iterativeForeach"),
     (Factorial.productive _, "productive"),
-    (Factorial.naïveRecursive _, "recursive"),
-    (Factorial.tailRecursive _, "tailRecursive"),
     (Factorial.reductive _, "reductive"),
-    (Factorial.foldLeftive _, "foldOperatorive")
+    (Factorial.foldLeftive _, "foldLeftive"),
+    (Factorial.naïveRecursive _, "naïveRecursive"),
+    (Factorial.tailRecursive _, "tailRecursive")
   )
 
   val positiveData = Table(
@@ -45,14 +45,18 @@ class Factorial_ScalaTest_ExampleBased extends FunSuite with TableDrivenProperty
 
   forAll (algorithms) {(f:Function[Int, BigInt], name:String) =>
     forAll (positiveData) ((n:Int, r:BigInt) =>
-      test(name + " " + n) { assert(f(n) == r) })
+      test(name + "(" + n + ") == " + r) { assert(f(n) == r) })
     forAll (negativeData) ((n:Int) =>
-      test(name + " " + n) { intercept [IllegalArgumentException] { f(n) } })
+      test(name + "(" + n + ") throws IllegalArgumentException") { intercept [IllegalArgumentException] { f(n) } })
   }
 
-  test("iterative 26000") { Factorial.iterativeWhile(26000) }
-  test("reductive 26000") { Factorial.reductive(26000) }
-  test("recursive 18000") { intercept [StackOverflowError] { Factorial.naïveRecursive(18000) } }
-  test("tailRecursive 26000") { Factorial.tailRecursive(26000) }
+  test("iterativeWhile(26000) does not fail") { Factorial.iterativeWhile(26000) }
+  test("iterativeFor(26000) does not fail") { Factorial.iterativeFor(26000) }
+  test("iterativeForeach(26000) does not fail") { Factorial.iterativeForeach(26000) }
+  test("productive(26000) does not fail") { Factorial.productive(26000) }
+  test("reductive(26000) does not fail") { Factorial.reductive(26000) }
+  test("foldLeftive(26000) does not fail") { Factorial.foldLeftive(26000) }
+  test("naïveRecursive(18000) throws StackOverflowError") { intercept [StackOverflowError] { Factorial.naïveRecursive(18000) } }
+  test("tailRecursive(26000) does not fail") { Factorial.tailRecursive(26000) }
 
 }

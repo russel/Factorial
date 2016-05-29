@@ -16,3 +16,5 @@ task scalaTest(dependsOn: ['testClasses'], type: JavaExec) {
   args = ['-R', 'build/classes/test', '-o']
   classpath = sourceSets.test.runtimeClasspath
 }
+
+defaultTasks 'test'

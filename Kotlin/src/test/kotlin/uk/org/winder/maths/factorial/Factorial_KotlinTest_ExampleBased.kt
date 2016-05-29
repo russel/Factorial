@@ -46,7 +46,7 @@ class Factorial_KotlinTest_ExampleBased : FunSpec() {
     forAll(algorithms) {a ->
 
       forAll(positiveData) {p ->
-        test(a.first + "(" + p.first + ") == " + p.second) { a.second(p.first) shouldBe p.second }
+        test(a.first + "(" + p.first + ") == " + p.second) { a.second(p.first) shouldEqual p.second }
       }
 
       forAll(negativeData) {n ->

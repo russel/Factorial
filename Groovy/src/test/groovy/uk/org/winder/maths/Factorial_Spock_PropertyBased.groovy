@@ -11,10 +11,7 @@ class Factorial_Spock_PropertyBased extends Specification {
       [Factorial.&iterative, 'iterative'],
       [Factorial.&reductive, 'reductive'],
       [Factorial.&naïveRecursive, 'naïveRecursive'],
-      [Factorial.&tailRecursiveFunction, 'tailRecursiveFunction'],
-      [Factorial.&tailRecursiveClosure, 'tailRecursiveClosure'],
-      [Factorial.&tailRecursiveTrampoline, 'tailRecursiveTrampoline'],
-      [Factorial.&continuation, 'continuation'],
+      [Factorial.&tailRecursive, 'tailRecursiveFunction'],
   ]
 
   @Unroll def '#name(#i) obeys the factorial relation for positive integer arguments'() {

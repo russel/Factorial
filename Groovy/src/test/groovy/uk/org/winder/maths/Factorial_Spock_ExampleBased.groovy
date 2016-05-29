@@ -9,10 +9,7 @@ class Factorial_Spock_ExampleBased extends Specification {
       [Factorial.&iterative, 'iterative'],
       [Factorial.&reductive, 'reductive'],
       [Factorial.&naïveRecursive, 'naïveRecursive'],
-      [Factorial.&tailRecursiveFunction, 'tailRecursiveFunction'],
-      [Factorial.&tailRecursiveClosure, 'tailRecursiveClosure'],
-      [Factorial.&tailRecursiveTrampoline, 'tailRecursiveTrampoline'],
-      [Factorial.&continuation, 'continuation'],
+      [Factorial.&tailRecursive, 'tailRecursive'],
   ]
 
   static positiveData = [
@@ -42,36 +39,21 @@ class Factorial_Spock_ExampleBased extends Specification {
 
   static floatData = [100.5, 20.5, 10.5, 5.5, 2.5, 0.5, -0.5, -2.5, -5.5, -10.5, -20.5, -100.5]
 
-  @Unroll def '#name(#i) [positive argument] should result in #result'() {
+  @Unroll def '#name(#i) == #result'() {
     expect: f.call(i) == result
     where: [f, name, i, result] << algorithms.collectMany{a -> positiveData.collect{datum -> [*a, *datum]}}
   }
 
-  @Unroll def '#name(#i) [negative argument] should throw an exception'() {
+  @Unroll def '#name(#i) throws IllegalArgumentException'() {
     when: f.call(i)
     then: thrown IllegalArgumentException
     where: [f, name, i] << algorithms.collectMany{a -> negativeData.collect{[*a, it]}}
   }
 
-  @Unroll def '#name(#i) [non-integer argument] should throw an exception'() {
+  @Unroll def '#name(#i) throws MissingMethodException'() {
     when: f.call(i)
     then: thrown MissingMethodException
     where: [f, name, i] << algorithms.collectMany{a -> floatData.collect{[*a, it]}}
-  }
-
-  @Unroll
-  def '#name succeeds for a big argument'() {
-    when: f.call(1000)
-    then: notThrown StackOverflowError
-    where: [f, name] << algorithms.findAll{(it[1] as String) in [
-        'iterative',
-        'reductive',
-        'naïveRecursive',
-        'tailRecursiveFunction',
-        //'tailRecursiveClosure', // Throws a StackOverflowError: no tail call optimization.
-        'tailRecursiveTrampoline',
-        'continuation',
-    ]}
   }
 
   @Unroll def '#name succeeds for an huge argument'() {
@@ -80,11 +62,7 @@ class Factorial_Spock_ExampleBased extends Specification {
     where: [f, name] << algorithms.findAll{(it[1] as String) in [
         'iterative',
         //'reductive', // Takes a VERY long time.
-        //'naïveRecursive', // Throws a StackOverflowError: expected.
-        'tailRecursiveFunction',
-        //'tailRecursiveClosure', // Throws a StackOverflowError: no tail call optimization.
-        //'tailRecursiveTrampoline', // Takes a VERY long time.
-        //'continuation', // Takes a VERY long time.
+        'tailRecursive',
     ]}
   }
 
@@ -93,13 +71,7 @@ class Factorial_Spock_ExampleBased extends Specification {
     when: f.call(13000)
     then: thrown StackOverflowError
     where: [f, name] << algorithms.findAll{(it[1] as String) in [
-        //'iterative', // Will never cause StackOverflowError.
-        //'reductive', // Should never cause StackOverflowError. Takes a VERY long time.
         'naïveRecursive',
-        //'tailRecursiveFunction', // Should never cause StackOverflowError.
-        'tailRecursiveClosure', // No tail call optimization.
-        //'tailRecursiveTrampoline', // Should never cause StackOverflowError. Takes a VERY long time.
-        //'continuation', // Should never cause StackOverflowError. Takes a VERY long time.
     ]}
   }
 }

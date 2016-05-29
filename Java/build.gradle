@@ -23,10 +23,7 @@ dependencies {
   testCompile 'com.google.inject:guice:2.+'
 }
 
-task test_TestNG(type: Test) {
-  useTestNG()
-}
-
+task test_TestNG(type: Test) { useTestNG() }
 test.dependsOn test_TestNG
 
 clean.doLast {

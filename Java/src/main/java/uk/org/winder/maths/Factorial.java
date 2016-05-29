@@ -21,13 +21,24 @@ public final class Factorial {
     }
     return total;
   }
-  public static BigInteger iterative(final long n) { return iterative(BigInteger.valueOf(n)); }
+  public static BigInteger iterative(final Integer n) { return iterative(BigInteger.valueOf(n)); }
+  public static BigInteger iterative(final Long n) { return iterative(BigInteger.valueOf(n)); }
+
+  public static BigInteger reductive(final BigInteger n) {
+    validate(n);
+    return n.compareTo(BigInteger.ONE) <= 0 ?
+        BigInteger.ONE :
+        Stream.iterate(BigInteger.ONE, i -> i.add(BigInteger.ONE)).limit(n.longValue()).reduce(BigInteger::multiply).get();
+  }
+  public static BigInteger reductive(final Integer n) { return reductive(BigInteger.valueOf(n)); }
+  public static BigInteger reductive(final Long n) { return reductive(BigInteger.valueOf(n)); }
 
   public static BigInteger naïveRecursive(final BigInteger n) {
     validate(n);
     return n.compareTo(BigInteger.ONE) <= 0 ? BigInteger.ONE : n.multiply(naïveRecursive(n.subtract(BigInteger.ONE)));
   }
-  public static BigInteger naïveRecursive(final long n) { return naïveRecursive(BigInteger.valueOf(n)); }
+  public static BigInteger naïveRecursive(final Integer n) { return naïveRecursive(BigInteger.valueOf(n)); }
+  public static BigInteger naïveRecursive(final Long n) { return naïveRecursive(BigInteger.valueOf(n)); }
 
   private static BigInteger iterate(final BigInteger n , final BigInteger result) {
     return n.compareTo(BigInteger.ONE) <= 0 ? result : iterate(n.subtract(BigInteger.ONE) , result.multiply(n));
@@ -37,13 +48,7 @@ public final class Factorial {
     validate(n);
     return n.compareTo(BigInteger.ONE) <= 0 ? BigInteger.ONE : iterate(n , BigInteger.ONE);
   }
-  public static BigInteger tailRecursive(final long n) { return tailRecursive(BigInteger.valueOf(n)); }
+  public static BigInteger tailRecursive(final Integer n) { return tailRecursive(BigInteger.valueOf(n)); }
+  public static BigInteger tailRecursive(final Long n) { return tailRecursive(BigInteger.valueOf(n)); }
 
-  public static BigInteger reductive(final BigInteger n) {
-    validate(n);
-    return n.compareTo(BigInteger.ONE) <= 0 ?
-        BigInteger.ONE :
-        Stream.iterate(BigInteger.ONE, i -> i.add(BigInteger.ONE)).limit(n.longValue()).reduce(BigInteger::multiply).get();
-  }
-  public static BigInteger reductive(final long n) { return reductive(BigInteger.valueOf(n)); }
 }

@@ -9,9 +9,9 @@ class Test_Factorial_Spock_PropertyBased extends Specification {
 
   private static final algorithms = [
       [Factorial.&iterative, 'iterative'],
+      [Factorial.&reductive, 'reductive'],
       [Factorial.&naïveRecursive, 'naïveRecursive'],
       [Factorial.&tailRecursive, 'tailRecursive'],
-      [Factorial.&reductive, 'reductive'],
   ]
 
   @Unroll

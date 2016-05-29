@@ -12,10 +12,9 @@ import org.junit.Rule;
 import java.math.BigInteger;
 
 import static uk.org.winder.maths.Factorial.iterative;
+import static uk.org.winder.maths.Factorial.reductive;
 import static uk.org.winder.maths.Factorial.naïveRecursive;
 import static uk.org.winder.maths.Factorial.tailRecursive;
-import static uk.org.winder.maths.Factorial.reductive;
-
 
 @RunWith(JUnitQuickcheck.class)
 public final class Test_Factorial_JUnit4_QuickCheck_Java {

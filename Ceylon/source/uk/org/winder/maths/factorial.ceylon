@@ -28,6 +28,13 @@ shared Whole factorial_iterative(Integer|Whole x) {
   return total;
 }
 
+"Implementation using higher-order function for implicit iteration."
+by("Russel Winder")
+shared Whole factorial_reductive(Integer|Whole x) {
+  value n = validate(x);
+  return if (n < two) then one else (two..n).reduce(times<Whole>);
+}
+
 "Naïve recursive implementation."
 by("Russel Winder")
 shared Whole factorial_recursive(Integer|Whole x) {
@@ -44,9 +51,3 @@ shared Whole factorial_tailRecursive(Integer|Whole x) {
   return iterate(validate(x));
 }
 
-"Implementation using higher-order function for implicit iteration."
-by("Russel Winder")
-shared Whole factorial_reductive(Integer|Whole x) {
-  value n = validate(x);
-  return if (n < two) then one else (two..n).reduce(times<Whole>);
-}

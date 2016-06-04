@@ -10,17 +10,17 @@ import com.athaydes.specks.matcher{equalTo}
 
 import uk.org.winder.maths{
   factorial_iterative,
+  factorial_reductive,
   factorial_recursive,
   factorial_tailRecursive,
-  factorial_reductive,
   ValueException
 }
 
 Whole(Integer|Whole)[] algorithms = [
   factorial_iterative,
+  factorial_reductive,
   factorial_recursive,
-  factorial_tailRecursive,
-  factorial_reductive
+  factorial_tailRecursive
 ];
 
 Whole parseStringToWhole(String s) {
@@ -102,9 +102,9 @@ shared Specification factorial_specks() {
 			generators = [generateIntegerInRange];
 			when(IntegerInRange n) => [n.val];
 			(Integer n) => expect(factorial_iterative(n), equalTo(factorial_iterative(n - 1) * wholeNumber(n))),
+			(Integer n) => expect(factorial_reductive(n), equalTo(factorial_reductive(n - 1) * wholeNumber(n))),
 			(Integer n) => expect(factorial_recursive(n), equalTo(factorial_recursive(n - 1) * wholeNumber(n))),
-			(Integer n) => expect(factorial_tailRecursive(n), equalTo(factorial_tailRecursive(n - 1) * wholeNumber(n))),
-			(Integer n) => expect(factorial_reductive(n), equalTo(factorial_reductive(n - 1) * wholeNumber(n)))
+			(Integer n) => expect(factorial_tailRecursive(n), equalTo(factorial_tailRecursive(n - 1) * wholeNumber(n)))
 		}
 	};
 }

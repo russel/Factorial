@@ -69,7 +69,7 @@ class Factorial_Spock_ExampleBased extends Specification{
   }
 
   def 'recursive of a huge number fails with a stack overflow'() {
-    when: FactorialKt.&naïve_recursive(13000)
+    when: FactorialKt.&naïve_recursive(26000)
     then: thrown(StackOverflowError)
   }
 

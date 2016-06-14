@@ -2,6 +2,9 @@ plugins {
   id "org.frege-lang" version "0.5"
 }
 
+//targetCompatibility = 8
+targetCompatibility = 9
+
 repositories {
   jcenter()
   mavenCentral()
@@ -10,6 +13,10 @@ repositories {
 dependencies {
   //compile 'org.frege-lang:frege:3.24.+'
   compile files('/home/users/russel/lib/Java/frege.jar')
+}
+
+task wrapper(type:Wrapper) {
+  gradleVersion = '2.14'
 }
 
 defaultTasks 'test'

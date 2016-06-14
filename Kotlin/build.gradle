@@ -39,7 +39,7 @@ task testNG(type: Test) { useTestNG() }
 test.dependsOn testNG
 
 task wrapper(type:Wrapper) {
-  gradleVersion = '2.13'
+  gradleVersion = '2.14'
 }
 
 defaultTasks 'test'

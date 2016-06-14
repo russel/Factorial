@@ -4,7 +4,7 @@ import ceylon.language.meta.model{IncompatibleTypeException}
 
 import ceylon.random{DefaultRandom}
 
-import com.athaydes.specks{errorCheck, feature, propertyCheck, Specification, SpecksTestExecutor }
+import com.athaydes.specks{errorCheck, feature, propertyCheck, Specification, SpecksTestExecutor}
 import com.athaydes.specks.assertion{expect, expectToThrow}
 import com.athaydes.specks.matcher{equalTo}
 

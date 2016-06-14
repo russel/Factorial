@@ -62,7 +62,7 @@ class Factorial_KotlinTest_ExampleBased : FunSpec() {
     test("reductive of a huge number succeeds") { reductive(26000) }
 
     test ("naïve_recursive of a huge number fails with a stack overflow") {
-      shouldThrow<StackOverflowError> { naïve_recursive(13000) }
+      shouldThrow<StackOverflowError> { naïve_recursive(26000) }
     }
 
     test("tail recursive of a huge number succeeds") { tail_recursive(26000) }

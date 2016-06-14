@@ -1,25 +1,15 @@
 module Factorial_QuickCheck_Test where
 
--- import Numeric.Natural
-
 import Test.QuickCheck(quickCheck, property)
+import Test.QuickCheckModifiers(NonNegative)
 
 import Factorial(iterative, naïveRecursive, tailRecursive)
 
--- f_p :: (Integer -> Integer) -> Integer -> Bool
--- f_p f n
---     | n == 0 = f n == 1
---     | otherwise = f n == n * f (n - 1)
-
--- factorial_property :: (Integer -> Integer) -> Natural -> Bool
--- factorial_property f n = f_p f (fromIntegral n)
-
 factorial_property :: (Integer -> Integer) -> Integer -> Bool
 factorial_property f n
-    | n < 0 = True
     | n == 0 = f n == 1
     | otherwise = f n == n * f (n - 1)
 
-factorial_iterative_property = property (factorial_property iterative)
-factorial_naïveRecursive_property = property (factorial_property naïveRecursive)
-factorial_tailRecursive_property = property (factorial_property tailRecursive)
+factorial_iterative_property = property ((factorial_property iterative) . NonNegative.getNonNegative)
+factorial_naïveRecursive_property = property ((factorial_property naïveRecursive) . NonNegative.getNonNegative)
+factorial_tailRecursive_property = property ((factorial_property tailRecursive) . NonNegative.getNonNegative)

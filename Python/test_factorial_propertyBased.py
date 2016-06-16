@@ -9,19 +9,19 @@ from hypothesis.strategies import integers, floats
 from factorial import iterative, recursive, tailRecursive, usingReduce
 
 '''
-Example-based tests, using pytest, for the various factorial implementations.
+Property-based tests, using Hypethesis and PyTest, for the various factorial implementations.
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2015-11-01'
-__version__ = '1.1'
-__copyright__ = 'Copyright © 2015  Russel Winder'
+__date__ = '2016-06-16'
+__version__ = '1.2'
+__copyright__ = 'Copyright © 2015, 2016  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
 algorithms = (iterative, usingReduce, recursive, tailRecursive)
 
 
-# Restrict the range of inputs to avoid excessive time in test. To avoid problems with the recursive
+# Restrict the range of inputs to avoid excessive time in test: to avoid problems with the recursive
 # implementations, ensure i is definitely less that about 950.
 @mark.parametrize('a', algorithms)
 @given(integers(min_value=0, max_value=900))

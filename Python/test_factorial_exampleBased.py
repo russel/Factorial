@@ -3,20 +3,20 @@
 
 from pytest import mark, raises
 
-from factorial import iterative, recursive, tailRecursive, usingReduce
+from factorial import iterative, recursive, tail_recursive, using_reduce
 
 '''
 Example-based tests, using pytest, for the various factorial implementations.
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2015-11-01'
-__version__ = '1.3'
-__copyright__ = 'Copyright © 2011–2015  Russel Winder'
+__date__ = '2016-06-16'
+__version__ = '1.4.0'
+__copyright__ = 'Copyright © 2011–2016  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
-algorithms = (iterative, usingReduce, recursive, tailRecursive)
-positiveData = (
+algorithms = (iterative, using_reduce, recursive, tail_recursive)
+positive_data = (
     (0, 1),
     (1, 1),
     (2, 2),
@@ -36,37 +36,37 @@ positiveData = (
     (30, 265252859812191058636308480000000),
     (40, 815915283247897734345611269596115894272000000000),
 )
-negativeData = (-1, -2, -5, -10, -20, -100)
-floatData = (-200.5, -20.5, -2.5, 2.5, 20.5, 200.5)
+negative_data = (-1, -2, -5, -10, -20, -100)
+float_data = (-200.5, -20.5, -2.5, 2.5, 20.5, 200.5)
 
 
-@mark.parametrize(('alg', 'x', 'r'), tuple((a, x, r) for a in algorithms for x, r in positiveData))
-def test_succeeds(alg, x, r):
-    assert r == alg(x)
+@mark.parametrize(('a', 'x', 'r'), tuple((a, x, r) for a in algorithms for x, r in positive_data))
+def test_non_negative_integer(a, x, r):
+    assert a(x) == r
 
 
-@mark.parametrize(('alg', 'x'), tuple((a, x) for a in algorithms for x in negativeData))
-def test_negative_number_causes_ValueError(alg, x):
+@mark.parametrize(('a', 'x'), tuple((a, x) for a in algorithms for x in negative_data))
+def test_negative_integer_causes_ValueError(a, x):
     with raises(ValueError):
-        alg(x)
+        a(x)
 
 
-@mark.parametrize(('alg', 'x'), tuple((a, x) for a in algorithms for x in floatData))
-def test_float_number_causes_TypeError(alg, x):
+@mark.parametrize(('a', 'x'), tuple((a, x) for a in algorithms for x in float_data))
+def test_float_causes_TypeError(a, x):
     with raises(TypeError):
-        alg(x)
+        a(x)
 
 
-@mark.parametrize('alg', algorithms)
-def test_none_causes_TypeError(alg):
+@mark.parametrize('a', algorithms)
+def test_none_causes_TypeError(a):
     with raises(TypeError):
-        alg(None)
+        a(None)
 
 
-@mark.parametrize('alg', algorithms)
-def test_string_causes_TypeError(alg):
+@mark.parametrize('a', algorithms)
+def test_string_causes_TypeError(a):
     with raises(TypeError):
-        alg('some string or other')
+        a('some string or other')
 
 
 big_data = (
@@ -75,15 +75,15 @@ big_data = (
 )
 
 
-@mark.parametrize(('alg', 'x', 'r'), tuple((a, x, r) for a in (iterative, usingReduce) for x, r in big_data))
-def test_iterative_big_succeeds(alg, x, r):
-    assert r == alg(x)
+@mark.parametrize(('a', 'x', 'r'), tuple((a, x, r) for a in (iterative, using_reduce) for x, r in big_data))
+def test_iterative_big_succeeds(a, x, r):
+    assert a(x) == r
 
 
-@mark.parametrize(('alg', 'x'), tuple((a, x) for a in (recursive, tailRecursive) for x, r in big_data))
-def test_recursive_big_stack_fail(alg, x):
+@mark.parametrize(('a', 'x'), tuple((a, x) for a in (recursive, tail_recursive) for x, r in big_data))
+def test_recursive_big_stack_fail(a, x):
     with raises(RuntimeError):
-        alg(x)
+        a(x)
 
 
 if __name__ == '__main__':

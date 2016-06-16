@@ -14,9 +14,9 @@ and the stack size is strictly limited.
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2015-11-01'
-__version__ = '1.5'
-__copyright__ = 'Copyright © 2007, 2011–2013, 2015  Russel Winder'
+__date__ = '2016-06-16'
+__version__ = '1.6.0'
+__copyright__ = 'Copyright © 2007, 2011–2013, 2015, 2016  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
 
@@ -44,7 +44,7 @@ def recursive(x):
     return 1 if x < 2 else x * recursive(x - 1)
 
 
-def tailRecursive(x):
+def tail_recursive(x):
     '''
     A tail recursive implementation.  Python doesn't do tail call optimization
     so this suffers the same recursion depth problem as any recursive function.
@@ -58,7 +58,7 @@ def tailRecursive(x):
         return iterate(x)
 
 
-def usingReduce(x):
+def using_reduce(x):
     '''Implementation using the reduce function.'''
     _validate(x)
     if x < 2:

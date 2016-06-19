@@ -2,9 +2,8 @@ import ceylon.test{test, testExecutor, assertEquals, assertThatException}
 import ceylon.math.whole{Whole, parseWhole, wholeNumber}
 import ceylon.language.meta.model{IncompatibleTypeException}
 
-import ceylon.random{DefaultRandom}
-
-import com.athaydes.specks{errorCheck, feature, propertyCheck, Specification, SpecksTestExecutor}
+import com.athaydes.specks{Specification, SpecksTestExecutor,
+	errorCheck, feature, propertyCheck, randomIntegers}
 import com.athaydes.specks.assertion{expect, expectToThrow}
 import com.athaydes.specks.matcher{equalTo}
 
@@ -78,10 +77,9 @@ test
 testExecutor(`class SpecksTestExecutor`)
 shared Specification factorial_specks() {
 
+	value lowerBound = 1;
 	value upperBound = 200;
-	class IntegerInRange(shared Integer val){}
-	value random = DefaultRandom();
-	function generateIntegerInRange() => IntegerInRange(random.nextElement(1..upperBound));
+	function generateIntegerInRange() => randomIntegers(100, lowerBound, upperBound);
 
 	return Specification{
 		feature{
@@ -97,10 +95,10 @@ shared Specification factorial_specks() {
 			expectToThrow(`ValueException`)
 		},
 		propertyCheck{
-			description = "Implementations obey the recurrence relation for input in the range [1, ``upperBound``].";
+			description = "Implementations obey the recurrence relation for input in the range [``lowerBound``, ``upperBound``].";
 			sampleCount = 20;
 			generators = [generateIntegerInRange];
-			when(IntegerInRange n) => [n.val];
+			when(Integer n) => [n];
 			(Integer n) => expect(factorial_iterative(n), equalTo(factorial_iterative(n - 1) * wholeNumber(n))),
 			(Integer n) => expect(factorial_reductive(n), equalTo(factorial_reductive(n - 1) * wholeNumber(n))),
 			(Integer n) => expect(factorial_recursive(n), equalTo(factorial_recursive(n - 1) * wholeNumber(n))),

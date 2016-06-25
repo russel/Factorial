@@ -23,6 +23,8 @@ dependencies {
     exclude module : 'groovy-all'
   }
   testCompile 'io.kotlintest:kotlintest:1.+'
+  testCompile 'io.polymorphicpanda.kspec:kspec-core:0.+'
+  testCompile 'io.polymorphicpanda.kspec:kspec-junit-runner:0.+'
   testCompile 'org.testng:testng:6.+'
   // TestNG marks these as provided dependencies.
   testCompile 'junit:junit:4.+'

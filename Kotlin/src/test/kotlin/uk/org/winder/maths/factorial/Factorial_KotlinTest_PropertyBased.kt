@@ -14,13 +14,11 @@ class Factorial_KotlinTest_PropertyBased : PropertyTesting() {
 
     forAll(algorithms) { a ->
       val f = a.second
-      /*
       property(a.first + ":recurrence relation is true for all non-negative integer values").
           forAll{i: Int ->
-            if (i > 0) { f(i) == (i.bigint * f(i - 1)) }
+            if (0< i && i < 500) { f(i) == (i.bigint * f(i - 1)) }
             else { true }
           }
-    */
     }
 
   }

@@ -14,8 +14,8 @@ and the stack size is strictly limited.
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2016-06-16'
-__version__ = '1.6.0'
+__date__ = '2016-06-26'
+__version__ = '1.6.1'
 __copyright__ = 'Copyright © 2007, 2011–2013, 2015, 2016  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
@@ -61,6 +61,4 @@ def tail_recursive(x):
 def using_reduce(x):
     '''Implementation using the reduce function.'''
     _validate(x)
-    if x < 2:
-        return 1
-    return reduce(mul, range(2, x + 1))
+    return 1 if x < 2 else reduce(mul, range(2, x + 1))

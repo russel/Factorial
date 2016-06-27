@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-# -*- coding:utf-8; -*-
 
 from pytest import mark, raises
 
@@ -21,8 +20,8 @@ __licence__ = 'GNU Public Licence (GPL) v3'
 algorithms = (iterative, using_reduce, recursive, tail_recursive)
 
 
-# Restrict the range of inputs to avoid excessive time in test: to avoid problems with the recursive
-# implementations, ensure i is definitely less that about 950.
+# To avoid problems (infinite recursion check) with the recursive implementations, ensure i is definitely
+# less that about 950.
 @mark.parametrize('a', algorithms)
 @given(integers(min_value=0, max_value=900))
 def test_correct_behaviour_with_non_negative_integer(a, x):

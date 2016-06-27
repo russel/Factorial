@@ -3,6 +3,7 @@ from operator import mul
 
 '''
 A collection of implementations of factorial, which is defined by the recurrence relation:
+
     f 0 = 1
     f n = n . f (n - 1), n > 0
 
@@ -18,7 +19,7 @@ __copyright__ = 'Copyright © 2007, 2011–2013, 2015, 2016  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
 
-def _validate(x:int) -> int:
+def _validate(x:int):
     if not isinstance(x, int):
         raise TypeError('Argument must be an integer.')
     if x < 0:

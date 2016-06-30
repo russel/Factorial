@@ -4,8 +4,12 @@ environment = Environment(
     tools=['g++', 'gnulink'],
     CPPPATH=[os.path.join(os.environ['HOME'], 'include')],
     CXXFLAGS=['-Wall', '-Wundef', '-Wcast-align', '-Wredundant-decls', '-std=c++14'],
+    LINKFLAGS=['-L{}'.format(p) for p in (os.path.join(os.environ['HOME'], 'Built', 'lib'), os.path.join(os.environ['HOME'], 'Built', 'lib64'))],
 )
 
-test_program = environment.Program('factorial_gmp_test', ['factorial_gmp_test.cpp', 'factorial_gmp.cpp'], LIBS=['gmpxx', 'gmp'])
+code_under_test = environment.Object( 'factorial_gmp.cpp')
+check_program = environment.Program('factorial_gmp_test_check', ['factorial_gmp_test_check.cpp', code_under_test], LIBS=['gmpxx', 'gmp'])
+rapidcheck_program = environment.Program('factorial_gmp_test_rapidcheck', ['factorial_gmp_test_rapidcheck.cpp', code_under_test], LIBS=['rapidcheck', 'gmpxx', 'gmp'])
 
-Command('test', test_program, './$SOURCE')
+Command('check', check_program, './$SOURCE')
+Command('rapidcheck', rapidcheck_program, './$SOURCE')

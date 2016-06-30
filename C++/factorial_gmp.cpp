@@ -45,23 +45,23 @@ mpz_class reductive(long const n) { return reductive(mpz_class(n)); }
 
 // --------------------------------------------------------------------------------
 
-mpz_class recursive(mpz_class const n) {
+mpz_class naive_recursive(mpz_class const n) {
   validate(n);
-  return (n < 2) ? one : n * recursive(n - 1);
+  return (n < 2) ? one : n * naive_recursive(n - 1);
 }
-mpz_class recursive(long const n) { return recursive(mpz_class(n)); }
+mpz_class naive_recursive(long const n) { return naive_recursive(mpz_class(n)); }
 
 // --------------------------------------------------------------------------------
 
-static mpz_class tailRecursive_iterate(mpz_class const n, mpz_class const result) {
-  return (n < 2) ? result : tailRecursive_iterate(n - 1, result * n);
+static mpz_class tail_recursive_iterate(mpz_class const n, mpz_class const result) {
+  return (n < 2) ? result : tail_recursive_iterate(n - 1, result * n);
 }
 
-mpz_class tailRecursive(mpz_class const n) {
+mpz_class tail_recursive(mpz_class const n) {
 	validate(n);
-  return (n < 2) ? one : tailRecursive_iterate(n, one);
+  return (n < 2) ? one : tail_recursive_iterate(n, one);
 }
-mpz_class tailRecursive(long const n) { return tailRecursive(mpz_class(n)); }
+mpz_class tail_recursive(long const n) { return tail_recursive(mpz_class(n)); }
 
 
 } // namespace Factorial

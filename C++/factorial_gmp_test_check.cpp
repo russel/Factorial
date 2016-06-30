@@ -9,8 +9,8 @@
 std::vector<mpz_class (*)(long const)> const algorithms {
 	Factorial::iterative,
 	Factorial::reductive,
-	Factorial::recursive,
-	Factorial::tailRecursive
+	Factorial::naive_recursive,
+	Factorial::tail_recursive
 };
 
 std::vector<std::pair<int, std::string>> const positiveData {
@@ -63,11 +63,11 @@ TEST_CASE("Reductive knows no bounds.") {
 }
 
 TEST_CASE("Recursive runs out of stack, eventually.") {
-	Factorial::recursive(50000); // 60000 causes bus error.
+	Factorial::naive_recursive(50000); // 60000 causes bus error.
 	REQUIRE(true);
 }
 
 TEST_CASE("Tail recursive runs out of stack, eventually.") {
-	Factorial::tailRecursive(50000); // 60000 causes bus error.
+	Factorial::tail_recursive(50000); // 60000 causes bus error.
 	REQUIRE(true);
 }

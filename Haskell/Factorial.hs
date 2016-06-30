@@ -1,7 +1,7 @@
 {-|
 Module      : Factorial
 Description : Various implementation of the factorial function.
-Copyright   : © Russel Winder  2015
+Copyright   : © 2015  Russel Winder
 License     : GPLv3
 Maintainer  : russel@winder.org.uk
 Stability   :  stable

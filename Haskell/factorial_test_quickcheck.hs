@@ -1,5 +1,8 @@
 module Main where
 
+-- It is assumed that GHC 7.10 or later, or equivalent, is being used.
+-- Numeric.Natuiral is not in earlier versions of GHC.
+
 import Numeric.Natural
 import Test.QuickCheck
 

@@ -13,20 +13,20 @@ and the stack size is strictly limited.
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2016-06-27'
-__version__ = '1.7.0'
+__date__ = '2016-06-28'
+__version__ = '1.7.1'
 __copyright__ = 'Copyright © 2007, 2011–2013, 2015, 2016  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
 
-def _validate(x:int):
+def _validate(x: int) -> None:
     if not isinstance(x, int):
         raise TypeError('Argument must be an integer.')
     if x < 0:
         raise ValueError('Argument must be a non-negative integer.')
 
 
-def iterative(x:int) -> int:
+def iterative(x: int) -> int:
     '''Iterative implementation using a simple loop.'''
     _validate(x)
     if x < 2:
@@ -37,13 +37,13 @@ def iterative(x:int) -> int:
     return total
 
 
-def recursive(x:int) -> int:
+def recursive(x: int) -> int:
     '''Naïve recursive implementation.  Cannot calculate beyond the recursion depth.'''
     _validate(x)
     return 1 if x < 2 else x * recursive(x - 1)
 
 
-def tail_recursive(x:int) -> int:
+def tail_recursive(x: int) -> int:
     '''
     A tail recursive implementation.  Python doesn't do tail call optimization
     so this suffers the same recursion depth problem as any recursive function.
@@ -52,12 +52,12 @@ def tail_recursive(x:int) -> int:
     if x < 2:
         return 1
     else:
-        def iterate(i:int, result:int=1) -> int:
+        def iterate(i: int, result: int=1) -> int:
             return result if i < 2 else iterate(i - 1, result * i)
         return iterate(x)
 
 
-def using_reduce(x:int) -> int:
+def using_reduce(x: int) -> int:
     '''Implementation using the reduce function.'''
     _validate(x)
     return 1 if x < 2 else reduce(mul, range(2, x + 1))

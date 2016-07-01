@@ -1,6 +1,6 @@
 #include "rapidcheck.h"
 
-#include "factorial_gmp.cpp"
+#include "factorial.cpp"
 
 int main() {
 	using namespace Factorial;

@@ -10,11 +10,11 @@ base_environment = Environment(
 rapidcheck_environment = base_environment.Clone()
 rapidcheck_environment.Append(LIBS=['rapidcheck'])
 
-code_under_test = base_environment.Object( 'factorial_gmp.cpp')
-check_program = base_environment.Program('factorial_gmp_test_check', ['factorial_gmp_test_check.cpp', code_under_test])
-rapidcheck_program = rapidcheck_environment.Program('factorial_gmp_test_rapidcheck', ['factorial_gmp_test_rapidcheck.cpp', code_under_test])
+code_under_test = base_environment.Object( 'factorial.cpp')
+catch_program = base_environment.Program('factorial_test_catch', ['factorial_test_catch.cpp', code_under_test])
+rapidcheck_program = rapidcheck_environment.Program('factorial_test_rapidcheck', ['factorial_test_rapidcheck.cpp', code_under_test])
 iterator_rapidcheck_program = rapidcheck_environment.Program('mpz_class_iterator_test_rapidcheck', 'mpz_class_iterator_test_rapidcheck.cpp')
 
-Command('check', check_program, './$SOURCE')
+Command('catch', catch_program, './$SOURCE')
 Command('rapidcheck', rapidcheck_program, './$SOURCE')
 Command('iterator_rapidcheck', iterator_rapidcheck_program, './$SOURCE')

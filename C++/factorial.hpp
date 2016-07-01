@@ -1,3 +1,13 @@
+/**
+ * @file
+ *
+ * This file contains signatures of various factorial functions using
+ * various algorithms.
+ *
+ * @copyright © 2016 Russel Winder
+ * @author Russel Winder (<russel@winder.org.uk>)
+ */
+
 #include <gmpxx.h>
 
 namespace Factorial {

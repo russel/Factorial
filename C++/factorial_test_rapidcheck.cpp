@@ -3,7 +3,7 @@
 #include <string>
 #include <utility>
 
-#include "factorial_gmp.hpp"
+#include "factorial.hpp"
 
 std::vector<std::pair<mpz_class (*)(long const), std::string>> const algorithms {
 	{Factorial::iterative, "iterative"},

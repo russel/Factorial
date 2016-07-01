@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
-#include "factorial_gmp.hpp"
+#include "factorial.hpp"
 
 #include <vector>
 #include <utility>

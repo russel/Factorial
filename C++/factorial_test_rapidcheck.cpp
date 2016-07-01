@@ -1,3 +1,13 @@
+/**
+ * @file
+ *
+ * This file contains [RapidCheck](https://github.com/emil-e/rapidcheck) tests for
+ * the various factorial functions. These are property-based tests.
+ *
+ * @copyright © 2016 Russel Winder
+ * @author Russel Winder (<russel@winder.org.uk>)
+ */
+
 #include "rapidcheck.h"
 
 #include <string>

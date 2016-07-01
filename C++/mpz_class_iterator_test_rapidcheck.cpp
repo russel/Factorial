@@ -1,3 +1,14 @@
+/**
+ * @file
+ *
+ * This file contains [RapidCheck](https://github.com/emil-e/rapidcheck) tests for
+ * the [mpz_class_iterator](@ref mpz_class_iterator) class defined in the
+ * `factorial.cpp` file.
+ *
+ * @copyright © 2016 Russel Winder
+ * @author Russel Winder (<russel@winder.org.uk>)
+ */
+
 #include "rapidcheck.h"
 
 #include "factorial.cpp"

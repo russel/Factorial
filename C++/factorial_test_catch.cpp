@@ -1,3 +1,13 @@
+/**
+ * @file
+ *
+ * This file contains [Catch]( https://github.com/philsquared/Catch) tests for
+ * the various factorial functions. These are example-based tests.
+ *
+ * @copyright © 2016 Russel Winder
+ * @author Russel Winder (<russel@winder.org.uk>)
+ */
+
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 

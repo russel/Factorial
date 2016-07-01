@@ -20,6 +20,10 @@ int main() {
 			RC_ASSERT(*mpz_class_iterator{i} == i);
 		});
 
+	rc::check("pointer operator delivers the right value", [](int i) {
+			RC_ASSERT(mpz_class_iterator{i}->get_si() == i);
+		});
+
 	rc::check("equality is value not identity.", [](int i) {
 			RC_ASSERT(mpz_class_iterator{i} == mpz_class_iterator{i});
 		});

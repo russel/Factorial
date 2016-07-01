@@ -83,6 +83,7 @@ class mpz_class_iterator: std::iterator<std::input_iterator_tag, mpz_class> {
 	bool operator==(mpz_class_iterator const & other) const { return value == other.value; }
 	bool operator!=(mpz_class_iterator const & other) const { return value != other.value; }
 	mpz_class operator*() const { return  value; }
+	mpz_class const * operator->() const { return &value; }
 };
 
 /**

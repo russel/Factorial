@@ -1,8 +1,8 @@
 package uk.org.winder.maths.factorial
 
-import io.kotlintest.properties.PropertyTesting
+import io.kotlintest.specs.StringSpec
 
-class Factorial_KotlinTest_PropertyBased : PropertyTesting() {
+class Factorial_KotlinTest_PropertyBased : StringSpec() {
   init {
 
     val algorithms = listOf(
@@ -12,13 +12,14 @@ class Factorial_KotlinTest_PropertyBased : PropertyTesting() {
         "tail_recursive" to {x:Int -> tail_recursive(x)}
     )
 
-    forAll(algorithms) { a ->
+    algorithms.forEach{a ->
       val f = a.second
-      property(a.first + ":recurrence relation is true for all non-negative integer values").
-          forAll{i: Int ->
-            if (0< i && i < 500) { f(i) == (i.bigint * f(i - 1)) }
-            else { true }
-          }
+      (a.first + ":recurrence relation is true for all non-negative integer values") {
+        forAll{i: Int ->
+          if (0 < i && i < 500) { f(i) == (i.bigint * f(i - 1)) }
+          else { true }
+        }
+      }
     }
 
   }

@@ -2,9 +2,9 @@ package uk.org.winder.maths.factorial
 
 import java.math.BigInteger
 
-import io.kotlintest.specs.FunSpec
+import io.kotlintest.specs.StringSpec
 
-class Factorial_KotlinTest_ExampleBased : FunSpec() {
+class Factorial_KotlinTest_ExampleBased : StringSpec() {
   init {
 
     // Cannot use ::iterative, ::recursive, ::tail_recursive, ::reductive here as each is an overloaded
@@ -46,26 +46,26 @@ class Factorial_KotlinTest_ExampleBased : FunSpec() {
     forAll(algorithms) {a ->
 
       forAll(positiveData) {p ->
-        test(a.first + "(" + p.first + ") == " + p.second) { a.second(p.first) shouldEqual p.second }
+        (a.first + "(" + p.first + ") == " + p.second) { a.second(p.first) shouldEqual p.second }
       }
 
       forAll(negativeData) {n ->
-        test(a.first + "(" + n + ") throws IllegalArgumentException") {
+        (a.first + "(" + n + ") throws IllegalArgumentException") {
           shouldThrow<IllegalArgumentException> { a.second(n) }
         }
       }
 
     }
 
-    test("iterative of a huge number succeeds") { iterative(26000) }
+    "iterative of a huge number succeeds" { iterative(26000) }
 
-    test("reductive of a huge number succeeds") { reductive(26000) }
+    "reductive of a huge number succeeds" { reductive(26000) }
 
-    test ("naïve_recursive of a huge number fails with a stack overflow") {
+    "naïve_recursive of a huge number fails with a stack overflow" {
       shouldThrow<StackOverflowError> { naïve_recursive(26000) }
     }
 
-    test("tail recursive of a huge number succeeds") { tail_recursive(26000) }
+    "tail recursive of a huge number succeeds" { tail_recursive(26000) }
 
   }
 }

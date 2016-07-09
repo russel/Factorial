@@ -24,16 +24,10 @@ class Factorial_KotlinTest_PropertyBased : StringSpec() {
       }
 
       (name + ": negative argument cause an exception") {
-        // See https://github.com/kotlintest/kotlintest/issues/70
-        listOf(-100, -20, -2, -1).forEach {
-          shouldThrow<IllegalArgumentException> { f(it) }
-        }
-/*
         forAll{i:Int ->
           if (i < 0) { shouldThrow<IllegalArgumentException> { f(i) } }
-          else { true }
+          true
         }
-*/
       }
 
     }

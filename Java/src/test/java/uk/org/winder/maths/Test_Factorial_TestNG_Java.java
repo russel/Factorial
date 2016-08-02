@@ -80,7 +80,7 @@ public final class Test_Factorial_TestNG_Java {
   public void reductiveEnormousSucceeds() { Factorial.reductive(26000); }
 
   @Test(expectedExceptions = {StackOverflowError.class})
-  public void recursiveEnormousFails() { Factorial.naïveRecursive(13000); }
+  public void recursiveEnormousFails() { Factorial.naïveRecursive(26000); }
 
   @Test(expectedExceptions = {StackOverflowError.class})
   public void tailRecursiveEnormousFails() { Factorial.tailRecursive(26000); }

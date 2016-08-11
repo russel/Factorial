@@ -83,8 +83,3 @@ def test_iterative_big_succeeds(a, x, r):
 def test_recursive_big_stack_fail(a, x):
     with raises(RuntimeError):
         a(x)
-
-
-if __name__ == '__main__':
-    from pytest import main
-    main()

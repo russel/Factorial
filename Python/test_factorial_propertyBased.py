@@ -53,8 +53,3 @@ def test_none_argument_causes_TypeError(a):
 def test_string_argument_causes_TypeError(a, x):
     with raises(TypeError):
         a(x)
-
-
-if __name__ == '__main__':
-    from pytest import main
-    main()

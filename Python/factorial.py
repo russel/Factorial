@@ -20,6 +20,10 @@ __licence__ = 'GNU Public Licence (GPL) v3'
 
 
 def _validate(x: int) -> None:
+    '''
+    Check that the value x really is an integer, raising TypeError if it is not.
+    Check that the integer is non-negative, raising ValueError if it is not.
+    '''
     if not isinstance(x, int):
         raise TypeError('Argument must be an integer.')
     if x < 0:
@@ -29,8 +33,6 @@ def _validate(x: int) -> None:
 def iterative(x: int) -> int:
     '''Iterative implementation using a simple loop.'''
     _validate(x)
-    if x < 2:
-        return 1
     total = 1
     for i in range(2, x + 1):
         total *= i
@@ -49,15 +51,14 @@ def tail_recursive(x: int) -> int:
     so this suffers the same recursion depth problem as any recursive function.
     '''
     _validate(x)
-    if x < 2:
-        return 1
-    else:
-        def iterate(i: int, result: int=1) -> int:
-            return result if i < 2 else iterate(i - 1, result * i)
-        return iterate(x)
+
+    def iterate(i: int, result: int=1) -> int:
+        return result if i < 2 else iterate(i - 1, result * i)
+
+    return iterate(x)
 
 
 def using_reduce(x: int) -> int:
     '''Implementation using the reduce function.'''
     _validate(x)
-    return 1 if x < 2 else reduce(mul, range(2, x + 1))
+    return reduce(mul, range(2, x + 1), 1)

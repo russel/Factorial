@@ -1,0 +1,10 @@
+import os
+
+root = 'factorial'
+test_root = root + '_test'
+
+program = Command(test_root, [s + '.chpl' for s in (root, test_root)], 'chpl -o $TARGET $SOURCES', ENV=os.environ)
+
+Command('test', program, './' + test_root)
+
+Clean('.', Glob('*~'))

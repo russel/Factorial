@@ -36,9 +36,13 @@ proc assertEqual(s: string, x:BigInt, y:BigInt) {
 
 proc main() {
 
-  for i in 1..positiveData.size {
-    const (v, r) = positiveData[i];
+  for (v, r) in positiveData {
     assertEqual("iterative_int", factorial.iterative(v), r);
+    assertEqual("iterative_BigInt", factorial.iterative(new BigInt(v)), r);
+    assertEqual("reductive_sequential_int", factorial.reductive_sequential(v), r);
+    //assertEqual("reductive_sequential_BigInt", factorial.reductive_sequential(new BigInt(v)), r);
+    assertEqual("reductive_parallel_int", factorial.reductive_parallel(v), r);
+    //assertEqual("reductive_parallel_BigInt", factorial.reductive_parallel(new BigInt(v)), r);
   }
 
   /*
@@ -50,35 +54,6 @@ proc main() {
     }
     catch (assert_error ae) {}
     catch (error e) { assertFail = 1;}
-  }
-  */
-
-  for i in 1..positiveData.size {
-    const (v, r) = positiveData[i];
-    assertEqual("iterative_BigInt", factorial.iterative(new BigInt(v)), r);
-  }
-
-  for i in 1..positiveData.size {
-    const (v, r) = positiveData[i];
-    assertEqual("reductive_sequential_int", factorial.reductive_sequential(v), r);
-  }
-
-  /*
-  for i in 1..positiveData.size {
-    const (v, r) = positiveData[i];
-    assertEqual("reductive_sequential_BigInt", factorial.reductive_sequential(new BigInt(v)), r);
-  }
-  */
-
-  for i in 1..positiveData.size {
-    const (v, r) = positiveData[i];
-    assertEqual("reductive_parallel_int", factorial.reductive_parallel(v), r);
-  }
-
-  /*
-  for i in 1..positiveData.size {
-    const (v, r) = positiveData[i];
-    assertEqual("reductive_parallel_BigInt", factorial.reductive_parallel(new BigInt(v)), r);
   }
   */
 

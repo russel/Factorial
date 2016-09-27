@@ -11,8 +11,9 @@ repositories {
 }
 
 dependencies {
+  //compile 'org.frege-lang:frege:3.23.+'
   //compile 'org.frege-lang:frege:3.24.+'
-  compile files(System.properties['user/home'] + '/lib/JDK/frege.jar')
+  compile files(System.properties['user.home'] + '/lib/JDK/frege.jar')
 }
 
 task wrapper(type:Wrapper) {

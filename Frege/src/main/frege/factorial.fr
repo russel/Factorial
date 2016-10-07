@@ -1,6 +1,6 @@
 {-|
 Module: Factorial
-Description: Various implementation of the factorial function.
+Description: Various implementations of the factorial function.
 Copyright: © 2015, 2016  Russel Winder
 License: GPLv3
 Maintainer: russel@winder.org.uk

@@ -23,10 +23,6 @@ dependencies {
     exclude module : 'groovy-all'
   }
   testCompile 'io.kotlintest:kotlintest:1.+'
-  testCompile 'org.testng:testng:6.+'
-  // TestNG marks these as provided dependencies.
-  testCompile 'junit:junit:4.+'
-  testCompile 'com.google.inject:guice:2.+'
 }
 
 // Kotlin compiler integrates with the Java compiler infrastructure so
@@ -35,11 +31,8 @@ sourceSets {
   main.java.srcDirs += 'src/main/kotlin'
 }
 
-task testNG(type: Test) { useTestNG() }
-test.dependsOn testNG
-
 task wrapper(type:Wrapper) {
-  gradleVersion = '2.14'
+  gradleVersion = '3.1'
 }
 
 defaultTasks 'test'

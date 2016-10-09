@@ -3,7 +3,11 @@ package uk.org.winder.maths.factorial
 import java.math.BigInteger
 
 import io.kotlintest.specs.StringSpec
+import io.kotlintest.KTestJUnitRunner
 
+import org.junit.runner.RunWith
+
+@RunWith(KTestJUnitRunner::class)
 class Factorial_KotlinTest_ExampleBased : StringSpec() {
   init {
 

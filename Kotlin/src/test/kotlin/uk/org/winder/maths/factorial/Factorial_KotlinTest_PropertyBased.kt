@@ -1,7 +1,11 @@
 package uk.org.winder.maths.factorial
 
 import io.kotlintest.specs.StringSpec
+import io.kotlintest.KTestJUnitRunner
 
+import org.junit.runner.RunWith
+
+@RunWith(KTestJUnitRunner::class)
 class Factorial_KotlinTest_PropertyBased : StringSpec() {
   init {
 

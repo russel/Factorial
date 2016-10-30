@@ -87,7 +87,7 @@ class mpz_class_iterator: std::iterator<std::input_iterator_tag, mpz_class> {
 };
 
 /**
- *  Loop-realized iterative implementation of factorial function.
+ *  Accumulate-realized iterative, but declarative, implementation of factorial function.
  *
  * @param n  value to calculate factorial of.
  * @return  factorial of argument.

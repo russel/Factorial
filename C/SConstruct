@@ -1,0 +1,5 @@
+libs = ['check', 'subunit', 'pthread', 'm', 'rt']
+
+test_program = Program('factorial_gmp_test', ['factorial_gmp_test.c', 'factorial_gmp.c'], LIBS=['gmp'] + libs)
+
+Command('test', test_program, './$SOURCE')

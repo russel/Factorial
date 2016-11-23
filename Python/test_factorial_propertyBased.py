@@ -12,8 +12,8 @@ Property-based tests, using Hypothesis and pytest, for the various factorial imp
 '''
 
 __author__ = 'Russel Winder'
-__date__ = '2016-06-30'
-__version__ = '1.2.1'
+__date__ = '2016-11-23'
+__version__ = '1.2.2'
 __copyright__ = 'Copyright © 2015, 2016  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
@@ -21,9 +21,9 @@ algorithms = (iterative, using_reduce, recursive, tail_recursive)
 
 
 # To avoid problems (infinite recursion check) with the recursive implementations, ensure i is definitely
-# less that about 950.
+# less that about 850.
 @mark.parametrize('a', algorithms)
-@given(integers(min_value=0, max_value=900))
+@given(integers(min_value=0, max_value=850))
 def test_recurrence_relation_holds_for_non_negative_integer_argument(a, x):
     assert a(x) == (1 if x == 0 else x * a(x - 1))
 

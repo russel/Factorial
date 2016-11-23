@@ -20,7 +20,12 @@ __licence__ = 'GNU Public Licence (GPL) v3'
 algorithms = (iterative, using_reduce, recursive, tail_recursive)
 
 
-# To avoid problems (infinite recursion check) with the recursive implementations, ensure i is definitely
+@mark.parametrize('a', algorithms)
+def test_base_case(a):
+    assert a(0) == 1
+
+
+# To avoid problems (infinite recursion check) with the recursive implementations, ensure x is definitely
 # less that about 850.
 @mark.parametrize('a', algorithms)
 @given(integers(min_value=0, max_value=850))

@@ -1,5 +1,6 @@
 package uk.org.winder.maths.factorial
 
+import java.lang.IllegalArgumentException
 import java.math.BigInteger
 
 val zero = BigInteger.ZERO

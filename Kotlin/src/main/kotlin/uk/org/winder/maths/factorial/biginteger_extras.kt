@@ -4,6 +4,7 @@ package uk.org.winder.maths.factorial
 // cf. https://devnet.jetbrains.com/thread/460227?tstart=0.
 // See http://kotlin-demo.jetbrains.com/?publicLink=61203304-132683114
 
+import java.lang.IllegalArgumentException
 import java.math.BigInteger
 
 val Int.bigint: BigInteger get() = BigInteger.valueOf(this.toLong())
@@ -15,6 +16,8 @@ class BigIntegerRange(override val start: BigInteger, val end: BigInteger, val i
   init {
     if (increment == BigInteger.ZERO) throw IllegalArgumentException("Increment must not be zero")
   }
+
+  override fun isEmpty():Boolean = start >= end
 
   override fun iterator(): Iterator<BigInteger> = object: Iterator<BigInteger> {
     private var next: BigInteger = start

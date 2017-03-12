@@ -1,0 +1,8 @@
+name "factoriald"
+description  "Various implementations of the factorial function written in D."
+authors  "Russel Winder <russel@winder.org.uk>"
+copyright  "Copyright © 2015, 2017  Russel Winder"
+licence  "GPL-3.0"
+targetType "library"
+importPaths "."
+sourceFiles "factorial.d"

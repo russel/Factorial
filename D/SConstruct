@@ -1,1 +1,6 @@
-Command('test', 'factorial.d', 'rdmd -unittest --main $SOURCE')
+#Command('test', 'factorial.d', 'rdmd -unittest --main $SOURCE')
+
+factorial_test = Command('factorial_test', 'factorial.d', 'ldc2 -unittest --main -of=$TARGET $SOURCE')
+SideEffect('factorial_test.o', factorial_test)
+
+Default(Command('test', factorial_test, './$SOURCE'))

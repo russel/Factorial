@@ -22,10 +22,4 @@ dependencies {
   testCompile("io.kotlintest:kotlintest:1.+")
 }
 
-//targetCompatibility(8)
-
-//task wrapper(type:Wrapper) {
-//  gradleVersion = '3.3'
-//}
-
 defaultTasks("test")

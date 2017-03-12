@@ -16,5 +16,5 @@ primitive Factorial
 
         fun tail_recursive(n: I128): I128 =>
                 if n < 0 then return 0 end
-                let iterate = lambda(i: I128, t: I128 = 1): I128 => if i < 2 then t else this(i - 1, i * t) end end
+                let iterate = {(i: I128, t: I128 = 1): I128 => if i < 2 then t else this(i - 1, i * t) end}
                 iterate(n)

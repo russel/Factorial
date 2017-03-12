@@ -7,9 +7,9 @@ primitive GlobalData
                 // cf. https://github.com/ponylang/ponyc/issues/808
                 as ({(I128): I128} val, String):
                 // end of hack.
-                (lambda(n: I128): I128 => Factorial.iterative(n) end, "iterative"),
-                (lambda(n: I128): I128 => Factorial.naive_recursive(n) end, "naive_recursive"),
-                (lambda(n: I128): I128 => Factorial.tail_recursive(n) end, "tail_recursive")//,
+                ({(n: I128): I128 => Factorial.iterative(n)}, "iterative"),
+                ({(n: I128): I128 => Factorial.naive_recursive(n)}, "naive_recursive"),
+                ({(n: I128): I128 => Factorial.tail_recursive(n)}, "tail_recursive")//,
         ]
 
         fun positive_data(): Array[(I128, I128)] => [

@@ -29,8 +29,6 @@ BigInt tailRecursive(immutable BigInt n) {
   return iterate(n, one);
 }
 
-// immutable(BigInts) are apparently not integral so iota fails :-(
-// At least BigInts are integral from 2.067 onwards though so we can "hack it".
 BigInt reductive(immutable ulong n) { return reductive(BigInt(n)); }
 BigInt reductive(immutable BigInt n) {
   return reduce!"a * b"(one, iota(BigInt(one), n + one));

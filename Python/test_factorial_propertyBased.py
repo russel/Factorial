@@ -1,15 +1,15 @@
 #! /usr/bin/env python3
 
+"""
+Property-based tests, using Hypothesis and pytest, for the various factorial implementations.
+"""
+
 from pytest import mark, raises
 
 from hypothesis import assume, given
 from hypothesis.strategies import integers, floats, text
 
 from factorial import iterative, recursive, tail_recursive, using_reduce
-
-'''
-Property-based tests, using Hypothesis and pytest, for the various factorial implementations.
-'''
 
 __author__ = 'Russel Winder'
 __date__ = '2016-11-23'

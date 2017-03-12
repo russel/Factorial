@@ -1,12 +1,12 @@
 #! /usr/bin/env python3
 
+"""
+Example-based tests, using pytest, for the various factorial implementations.
+"""
+
 from pytest import mark, raises
 
 from factorial import iterative, recursive, tail_recursive, using_reduce
-
-'''
-Example-based tests, using pytest, for the various factorial implementations.
-'''
 
 __author__ = 'Russel Winder'
 __date__ = '2016-06-16'

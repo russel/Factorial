@@ -1,4 +1,4 @@
-'''
+"""
 A collection of implementations of factorial, which is defined by the recurrence relation:
 
     f_0 = 1
@@ -7,7 +7,7 @@ A collection of implementations of factorial, which is defined by the recurrence
 The tail recursive implementation is only of limited usefulness since Python does not support tail recursion
 optimization – so each tail recursive call uses a new stack frame just as the recursive implementation does
 and the stack size is strictly limited.
-'''
+"""
 
 from functools import reduce
 from operator import mul
@@ -20,10 +20,10 @@ __licence__ = 'GNU Public Licence (GPL) v3'
 
 
 def _validate(x: int) -> None:
-    '''
+    """
     Check that the value x really is an integer, raising TypeError if it is not.
     Check that the integer is non-negative, raising ValueError if it is not.
-    '''
+    """
     if not isinstance(x, int):
         raise TypeError('Argument must be an integer.')
     if x < 0:
@@ -31,7 +31,9 @@ def _validate(x: int) -> None:
 
 
 def iterative(x: int) -> int:
-    '''Iterative implementation using a simple loop.'''
+    """
+    Iterative implementation using a simple loop.
+    """
     _validate(x)
     total = 1
     for i in range(2, x + 1):
@@ -40,16 +42,18 @@ def iterative(x: int) -> int:
 
 
 def recursive(x: int) -> int:
-    '''Naïve recursive implementation.  Cannot calculate beyond the recursion depth.'''
+    """
+    Naïve recursive implementation.  Cannot calculate beyond the recursion depth.
+    """
     _validate(x)
     return 1 if x < 2 else x * recursive(x - 1)
 
 
 def tail_recursive(x: int) -> int:
-    '''
+    """
     A tail recursive implementation.  Python doesn't do tail call optimization
     so this suffers the same recursion depth problem as any recursive function.
-    '''
+    """
     _validate(x)
 
     def iterate(i: int, result: int=1) -> int:
@@ -59,6 +63,8 @@ def tail_recursive(x: int) -> int:
 
 
 def using_reduce(x: int) -> int:
-    '''Implementation using the reduce function.'''
+    """
+    Implementation using the reduce function.
+    """
     _validate(x)
     return reduce(mul, range(2, x + 1), 1)

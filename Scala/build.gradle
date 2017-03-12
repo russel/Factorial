@@ -17,8 +17,4 @@ task scalaTest(dependsOn: ['testClasses'], type: JavaExec) {
   classpath = sourceSets.test.runtimeClasspath
 }
 
-task wrapper(type:Wrapper) {
-  gradleVersion = '3.1'
-}
-
 defaultTasks 'test'

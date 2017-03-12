@@ -16,8 +16,4 @@ dependencies {
   compile files(System.properties['user.home'] + '/lib/JDK/frege.jar')
 }
 
-task wrapper(type:Wrapper) {
-  gradleVersion = '3.1'
-}
-
 defaultTasks 'test'

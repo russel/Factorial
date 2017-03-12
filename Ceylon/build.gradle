@@ -16,8 +16,4 @@ ceylon {
     // end hack
  }
 
-task wrapper(type: Wrapper) {
-  gradleVersion = '3.1'
-}
-
 defaultTasks 'test'

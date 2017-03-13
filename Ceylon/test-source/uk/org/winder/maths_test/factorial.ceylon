@@ -15,11 +15,11 @@ import uk.org.winder.maths{
   ValueException
 }
 
-Whole(Integer|Whole)[] algorithms = [
-  factorial_iterative,
-  factorial_reductive,
-  factorial_recursive,
-  factorial_tailRecursive
+[Whole(Integer|Whole), String][] algorithms = [
+  [factorial_iterative, "iterative"],
+  [factorial_reductive, "reductive"],
+  [factorial_recursive, "recursive"],
+  [factorial_tailRecursive, "tailRecursive"]
 ];
 
 Whole parseStringToWhole(String s) {
@@ -58,7 +58,7 @@ void factorial_positiveValues() {
 	// This way of testing exits on the first error, later tests are not run.
   for (algorithm in algorithms) {
 		for (item in positiveValues) {
-	  	assertEquals(algorithm(item[0]), item[1], "executing ``algorithm``(``item[0]``)");
+	  	assertEquals(algorithm[0](item[0]), item[1], "executing ``algorithm[1]``(``item[0]``)");
 		}
   }
 }
@@ -68,7 +68,7 @@ void factorial_negativeValues() {
 	// This way of testing exits on the first error, later tests are not run.
   for (algorithm in algorithms) {
 		for (val in negativeValues) {
-	  	assertThatException(() => algorithm(val)).hasType(`ValueException`);
+	  	assertThatException(() => algorithm[0](val)).hasType(`ValueException`);
 		}
   }
 }
@@ -85,13 +85,13 @@ shared Specification factorial_specks() {
 		feature{
 			description = "Positive arguments give correct result";
 			when(Whole(Integer|Whole) a, Integer|Whole i, Whole r) => [a(i), r];
-			examples = [for (a in algorithms) for (x in positiveValues) [a, *x]];
+			examples = [for (a in algorithms) for (x in positiveValues) [a[0], *x]];
 			(Whole v, Whole r) => expect(v, equalTo(r))
 		},
 		errorCheck{
 			description = "Negative arguments throw exception";
 			when(Whole(Integer|Whole) a, Integer|Whole i) => a(i);
-			examples = [for (a in algorithms) for (x in negativeValues) [a, x]];
+			examples = [for (a in algorithms) for (x in negativeValues) [a[0], x]];
 			expectToThrow(`ValueException`)
 		},
 		propertyCheck{

@@ -1,0 +1,10 @@
+[package]
+name = "factorial"
+version = "0.0.0"
+authors = ["Russel Winder <russel@winder.org.uk>"]
+
+[dependencies]
+num = "*"
+
+[dev-dependencies]
+quickcheck = "*"

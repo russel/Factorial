@@ -38,6 +38,13 @@ unittest {
 
   import std.conv: to;
 
+	immutable algorithms = [
+													tuple((ulong n) => iterative(n), "iterative"),
+													tuple((ulong n) => recursive(n), "recursive"),
+													tuple((ulong n) => tailRecursive(n), "tailRecursive"),
+													tuple((ulong n) => reductive(n), "reductive"),
+													];
+
   immutable data = [
                     tuple(0, one),
                     tuple(1, one),
@@ -63,18 +70,11 @@ unittest {
     return functionName ~ "(" ~ to!string(value) ~ ") = " ~ to!string(actual) ~ " should be " ~ to!string(expected);
   }
 
-  foreach (immutable item; data) {
-    immutable iterative_result = iterative(item[0]);
-    assert(iterative_result == item[1], message("Iterative", item[0], iterative_result, item[1]));
-
-    immutable recursive_result = recursive(item[0]);
-    assert(recursive_result == item[1], message("recursive", item[0], iterative_result, item[1]));
-
-    immutable tailRecursive_result = tailRecursive(item[0]);
-    assert(tailRecursive_result == item[1], message("tailRecursive", item[0], iterative_result, item[1]));
-
-    immutable reductive_result = reductive(item[0]);
-    assert(reductive_result == item[1], message("reductive", item[0], iterative_result, item[1]));
+	foreach (immutable a; algorithms) {
+		foreach (immutable item; data) {
+			immutable result = a[0](item[0]);
+			assert(result == item[1], message(a[1], item[0], result, item[1]));
+		}
   }
 
   /*

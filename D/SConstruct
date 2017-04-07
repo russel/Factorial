@@ -1,6 +1,21 @@
-#Command('test', 'factorial.d', 'rdmd -unittest --main $SOURCE')
+import os
 
-factorial_test = Command('factorial_test', 'factorial.d', 'ldc2 -unittest --main -of=$TARGET $SOURCE')
+#  A temporary hack to get stuff associated with Dub packaging involved in a build.
+
+unit_threaded_version = '0.7.11'
+
+dub_directory = os.environ['HOME'] + '/.dub'
+unit_threaded_directory = '{0}/packages/{1}-{2}/{1}'.format(dub_directory, 'unit-threaded', unit_threaded_version)
+unit_threaded_source = unit_threaded_directory + '/source'
+gen_ut_main = unit_threaded_directory + '/gen_ut_main'
+
+environment = Environment(
+    ENV=os.environ,
+)
+
+main = environment.Command('ut_main.d', 'factorial.d', '{} -f ut_main.d'.format(gen_ut_main))
+factorial_test = environment.Command('factorial_test', ['factorial.d', main], '$DC -unittest -I{} -L-L{} -L-lunit-threaded -of=$TARGET $SOURCES'.format(unit_threaded_source, unit_threaded_directory))
 SideEffect('factorial_test.o', factorial_test)
+Command('test', factorial_test, './$SOURCE')
 
-Default(Command('test', factorial_test, './$SOURCE'))
+Default('test')

@@ -1,8 +1,18 @@
-name "factoriald"
+name "factorial"
 description  "Various implementations of the factorial function written in D."
 authors  "Russel Winder <russel@winder.org.uk>"
 copyright  "Copyright © 2015, 2017  Russel Winder"
 licence  "GPL-3.0"
-targetType "library"
-importPaths "."
-sourceFiles "factorial.d"
+configuration "library" {
+              targetType "library"
+              sourceFiles "factorial.d"
+}
+
+configuration "unittest" {
+              targetType "executable"
+              targetName "factorial-test"
+              preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f ut_main.d"
+              mainSourceFile "ut_main.d"
+              sourceFiles "factorial.d"
+              dependency "unit-threaded" version="~>0.7.11"
+}

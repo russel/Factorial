@@ -1,29 +1,19 @@
 import os
 import subprocess
 
-import SConsDub
-
 environment = Environment(
-    tools=['ldc', 'link'],
+    tools=['dub', 'ldc', 'link'],
 )
-
-library = SConsDub.Library('unit-threaded', '0.7.13', 'ldc')
-
-
-def generate_ut_main(target, source, env):
-        gen_ut_main = os.path.join(library.library_directory, 'gen_ut_main')
-        subprocess.call([gen_ut_main, '-f', target[0].name])
-
-
-main = environment.Command('ut_main.d', 'factorial.d', generate_ut_main)
-
-library.update_environment(environment)
+environment.AddDubLibrary('unit-threaded', '0.7.13')
+environment.UnitThreadedMakeMain('ut_main.d')
 
 factorial_test = environment.Command(
     'factorial_test',
-    ['factorial.d', main],
+    ['factorial.d', 'ut_main.d'],
     '$DC $_DINCFLAGS $_DVERFLAGS $_DDEBUGFLAGS $_DFLAGS -unittest -of$TARGET $DLINKFLAGS $__DRPATH $SOURCES $_DLIBDIRFLAGS $_DLIBFLAGS',
 )
 SideEffect('factorial_test.o', factorial_test)
 
 Default(Command('test', factorial_test, './$SOURCE'))
+
+Clean('.', 'ut_main.d')

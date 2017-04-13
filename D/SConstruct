@@ -1,21 +1,29 @@
 import os
+import subprocess
 
-#  A temporary hack to get stuff associated with Dub packaging involved in a build.
-
-unit_threaded_version = '0.7.11'
-
-dub_directory = os.environ['HOME'] + '/.dub'
-unit_threaded_directory = '{0}/packages/{1}-{2}/{1}'.format(dub_directory, 'unit-threaded', unit_threaded_version)
-unit_threaded_source = unit_threaded_directory + '/source'
-gen_ut_main = unit_threaded_directory + '/gen_ut_main'
+import SConsDub
 
 environment = Environment(
-    ENV=os.environ,
+    tools=['ldc', 'link'],
 )
 
-main = environment.Command('ut_main.d', 'factorial.d', '{} -f ut_main.d'.format(gen_ut_main))
-factorial_test = environment.Command('factorial_test', ['factorial.d', main], '$DC -unittest -I{} -L-L{} -L-lunit-threaded -of=$TARGET $SOURCES'.format(unit_threaded_source, unit_threaded_directory))
-SideEffect('factorial_test.o', factorial_test)
-Command('test', factorial_test, './$SOURCE')
+library = SConsDub.Library('unit-threaded', '0.7.13', 'ldc')
 
-Default('test')
+
+def generate_ut_main(target, source, env):
+        gen_ut_main = os.path.join(library.library_directory, 'gen_ut_main')
+        subprocess.call([gen_ut_main, '-f', target[0].name])
+
+
+main = environment.Command('ut_main.d', 'factorial.d', generate_ut_main)
+
+library.update_environment(environment)
+
+factorial_test = environment.Command(
+    'factorial_test',
+    ['factorial.d', main],
+    '$DC $_DINCFLAGS $_DVERFLAGS $_DDEBUGFLAGS $_DFLAGS -unittest -of$TARGET $DLINKFLAGS $__DRPATH $SOURCES $_DLIBDIRFLAGS $_DLIBFLAGS',
+)
+SideEffect('factorial_test.o', factorial_test)
+
+Default(Command('test', factorial_test, './$SOURCE'))

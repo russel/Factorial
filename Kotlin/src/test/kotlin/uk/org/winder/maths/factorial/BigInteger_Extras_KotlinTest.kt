@@ -1,9 +1,10 @@
 package uk.org.winder.maths.factorial
 
+import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.specs.StringSpec
 
-class BigInteger_Extras_KotlinTest : StringSpec() {
-  init {
+class BigInteger_Extras_KotlinTest : StringSpec({
 
     "value is in a range it is supposed to be" {
       (5.bigint in 0.bigint rangeTo 10.bigint) shouldBe true
@@ -29,5 +30,4 @@ class BigInteger_Extras_KotlinTest : StringSpec() {
       (5.bigint downTo 0.bigint step 2).toList() shouldEqual listOf(5, 3, 1).map { it.bigint }
     }
 
-  }
-}
+})

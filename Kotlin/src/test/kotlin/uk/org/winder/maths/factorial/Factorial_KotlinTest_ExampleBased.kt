@@ -4,12 +4,14 @@ import java.math.BigInteger
 
 import io.kotlintest.specs.StringSpec
 import io.kotlintest.KTestJUnitRunner
+import io.kotlintest.forAll
+import io.kotlintest.matchers.shouldEqual
+import io.kotlintest.matchers.shouldThrow
 
 import org.junit.runner.RunWith
 
 @RunWith(KTestJUnitRunner::class)
-class Factorial_KotlinTest_ExampleBased : StringSpec() {
-  init {
+class Factorial_KotlinTest_ExampleBased : StringSpec({
 
     // Cannot use ::iterative, ::recursive, ::tail_recursive, ::reductive here as each is an overloaded
     // function and there is (as at 2015-12-22) no way of disambiguating.
@@ -71,5 +73,4 @@ class Factorial_KotlinTest_ExampleBased : StringSpec() {
 
     "tail recursive of a huge number succeeds" { tail_recursive(26000) }
 
-  }
-}
+})

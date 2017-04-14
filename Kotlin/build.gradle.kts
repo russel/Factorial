@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
   compile(kotlinModule("stdlib"))
-  testCompile("io.kotlintest:kotlintest:1.+")
+  testCompile("io.kotlintest:kotlintest:2.+")
 }
 
 defaultTasks("test")

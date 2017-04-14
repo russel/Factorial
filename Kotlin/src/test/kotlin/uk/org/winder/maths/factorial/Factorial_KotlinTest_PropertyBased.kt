@@ -2,12 +2,13 @@ package uk.org.winder.maths.factorial
 
 import io.kotlintest.specs.StringSpec
 import io.kotlintest.KTestJUnitRunner
+import io.kotlintest.matchers.shouldThrow
+import io.kotlintest.properties.forAll
 
 import org.junit.runner.RunWith
 
 @RunWith(KTestJUnitRunner::class)
-class Factorial_KotlinTest_PropertyBased : StringSpec() {
-  init {
+class Factorial_KotlinTest_PropertyBased : StringSpec({
 
     val algorithms = listOf(
         "iterative" to {x:Int -> iterative(x)},
@@ -22,7 +23,7 @@ class Factorial_KotlinTest_PropertyBased : StringSpec() {
 
       (name + ": recurrence relation is true for all non-negative integer values") {
         forAll{i: Int ->
-          if (0 < i && i < 500) { f(i) == (i.bigint * f(i - 1)) }
+          if (i in 0..500) { f(i) == (i.bigint * f(i - 1)) }
           else { true }
         }
       }
@@ -36,5 +37,4 @@ class Factorial_KotlinTest_PropertyBased : StringSpec() {
 
     }
 
-  }
-}
+})

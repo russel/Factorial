@@ -9,7 +9,7 @@ import io.kotlintest.properties.headers
 import io.kotlintest.properties.row
 import io.kotlintest.matchers.shouldThrow
 
-class Factorial_KotlinTest_ExampleBased : StringSpec() {
+class Factorial_KotlinTest_ExampleBased: StringSpec() {
     init {
 
         // Cannot use ::iterative, ::recursive, ::tail_recursive, ::reductive here as each is

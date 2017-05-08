@@ -10,11 +10,11 @@ import io.kotlintest.properties.row
 
 val random = java.util.Random()
 
-val smallishWholeNumbers = object : Gen<Int> {
+val smallishWholeNumbers = object: Gen<Int> {
     override fun generate() = random.nextInt(700)
 }
 
-class Factorial_KotlinTest_PropertyBased : StringSpec() {
+class Factorial_KotlinTest_PropertyBased: StringSpec() {
     init {
 
         val algorithms = table(

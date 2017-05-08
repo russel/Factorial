@@ -2,7 +2,7 @@ package uk.org.winder.maths.factorial
 
 import io.kotlintest.specs.StringSpec
 
-class BigInteger_Extras_KotlinTest : StringSpec() {
+class BigInteger_Extras_KotlinTest: StringSpec() {
     init {
 
         "a value is in a range it is supposed to be in" {

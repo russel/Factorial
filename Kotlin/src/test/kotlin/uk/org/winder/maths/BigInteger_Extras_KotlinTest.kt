@@ -1,4 +1,4 @@
-package uk.org.winder.maths.factorial
+package uk.org.winder.maths
 
 import io.kotlintest.specs.StringSpec
 

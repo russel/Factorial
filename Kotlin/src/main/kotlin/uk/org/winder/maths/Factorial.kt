@@ -1,4 +1,4 @@
-package uk.org.winder.maths.factorial
+package uk.org.winder.maths
 
 import java.lang.IllegalArgumentException
 import java.math.BigInteger
@@ -22,7 +22,8 @@ fun iterative(x: Long): BigInteger = iterative(x.bigint)
 
 fun reductive(x: BigInteger): BigInteger {
     validate(x)
-    if (x < two) { return one }
+    if (x < two) { return one
+    }
     return (one rangeTo x).reduce { t, i -> t * i }
 }
 fun reductive(x: Int): BigInteger = reductive(x.bigint)
@@ -37,7 +38,8 @@ fun foldive(x: Long): BigInteger = foldive(x.bigint)
 
 fun naïve_recursive(x: BigInteger): BigInteger {
     validate(x)
-    if (x < two) { return one }
+    if (x < two) { return one
+    }
     return x * naïve_recursive(x - one)
 }
 fun naïve_recursive(x: Int): BigInteger = naïve_recursive(x.bigint)

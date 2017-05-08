@@ -3,34 +3,46 @@ package uk.org.winder.maths.factorial
 import io.kotlintest.specs.StringSpec
 import io.kotlintest.KTestJUnitRunner
 import io.kotlintest.matchers.shouldThrow
+import io.kotlintest.properties.Gen
 import io.kotlintest.properties.forAll
+import io.kotlintest.properties.table
+import io.kotlintest.properties.headers
+import io.kotlintest.properties.row
 
 import org.junit.runner.RunWith
+
+val random = java.util.Random()
+
+val smallishWholeNumbers = object: Gen<Int> {
+    override fun generate() = random.nextInt(700)
+}
 
 @RunWith(KTestJUnitRunner::class)
 class Factorial_KotlinTest_PropertyBased : StringSpec({
 
-    val algorithms = listOf(
-        "iterative" to {x:Int -> iterative(x)},
-        "reductive" to {x:Int -> reductive(x)},
-        "naïve_recursive" to {x:Int -> naïve_recursive(x)},
-        "tail_recursive" to {x:Int -> tail_recursive(x)}
+    val algorithms = table(
+        headers("name", "f"),
+        row("iterative", {x:Int -> iterative(x)}),
+        row("reductive", {x:Int -> reductive(x)}),
+        row("naïve_recursive", {x:Int -> naïve_recursive(x)}),
+        row("tail_recursive", {x:Int -> tail_recursive(x)})
     )
 
-    algorithms.forEach{a ->
-      val name = a.first
-      val f = a.second
+    forAll(algorithms){name, f ->
 
-      (name + ": recurrence relation is true for all non-negative integer values") {
-        forAll{i: Int ->
-          if (i in 0..500) { f(i) == (i.bigint * f(i - 1)) }
-          else { true }
+      "$name: base case holds."  {
+          f(0) == 1.bigint
+      }
+
+      "$name: recurrence relation is true for non-negative integer values" {
+        forAll(smallishWholeNumbers){i ->
+          f(i + 1) == (i + 1).bigint * f(i)
         }
       }
 
-      (name + ": negative argument cause an exception") {
-        forAll{i:Int ->
-          if (i < 0) { shouldThrow<IllegalArgumentException> { f(i) } }
+      "$name: negative argument cause an exception" {
+        forAll(Gen.negativeIntegers()){i:Int ->
+          shouldThrow<IllegalArgumentException> { f(i) }
           true
         }
       }

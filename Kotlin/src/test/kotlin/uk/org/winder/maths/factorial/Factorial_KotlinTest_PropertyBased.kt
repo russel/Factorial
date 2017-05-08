@@ -1,7 +1,6 @@
 package uk.org.winder.maths.factorial
 
 import io.kotlintest.specs.StringSpec
-import io.kotlintest.KTestJUnitRunner
 import io.kotlintest.matchers.shouldThrow
 import io.kotlintest.properties.Gen
 import io.kotlintest.properties.forAll
@@ -9,15 +8,12 @@ import io.kotlintest.properties.table
 import io.kotlintest.properties.headers
 import io.kotlintest.properties.row
 
-import org.junit.runner.RunWith
-
 val random = java.util.Random()
 
 val smallishWholeNumbers = object: Gen<Int> {
     override fun generate() = random.nextInt(700)
 }
 
-@RunWith(KTestJUnitRunner::class)
 class Factorial_KotlinTest_PropertyBased : StringSpec({
 
     val algorithms = table(

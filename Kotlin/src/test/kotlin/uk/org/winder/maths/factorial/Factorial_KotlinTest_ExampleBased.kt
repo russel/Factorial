@@ -3,17 +3,12 @@ package uk.org.winder.maths.factorial
 import java.math.BigInteger
 
 import io.kotlintest.specs.StringSpec
-import io.kotlintest.KTestJUnitRunner
 import io.kotlintest.properties.forAll
 import io.kotlintest.properties.table
 import io.kotlintest.properties.headers
 import io.kotlintest.properties.row
-import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.matchers.shouldThrow
 
-import org.junit.runner.RunWith
-
-@RunWith(KTestJUnitRunner::class)
 class Factorial_KotlinTest_ExampleBased : StringSpec({
 
     // Cannot use ::iterative, ::recursive, ::tail_recursive, ::reductive here as each is
@@ -65,7 +60,7 @@ class Factorial_KotlinTest_ExampleBased : StringSpec({
     forAll(algorithms) {name, f ->
 
       forAll(positiveData) {n, r ->
-        "$name($n) == $r" { f(n) shouldEqual r }
+        "$name($n) == $r" { f(n) == r }
       }
 
       forAll(negativeData) {n ->

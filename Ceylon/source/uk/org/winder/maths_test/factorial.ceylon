@@ -9,6 +9,7 @@ import com.athaydes.specks.matcher{equalTo}
 import uk.org.winder.maths{
     factorial_iterative,
     factorial_reductive,
+    factorial_foldive,
     factorial_recursive,
     factorial_tailRecursive,
     ValueException
@@ -17,6 +18,7 @@ import uk.org.winder.maths{
 [Whole(Integer|Whole), String][] algorithms = [
     [factorial_iterative, "iterative"],
     [factorial_reductive, "reductive"],
+    [factorial_foldive, "foldive"],
     [factorial_recursive, "recursive"],
     [factorial_tailRecursive, "tailRecursive"]
 ];

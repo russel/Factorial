@@ -13,6 +13,7 @@ import java.math.BigInteger;
 
 import static uk.org.winder.maths.Factorial.iterative;
 import static uk.org.winder.maths.Factorial.reductive;
+import static uk.org.winder.maths.Factorial.reductive_alt;
 import static uk.org.winder.maths.Factorial.naïveRecursive;
 import static uk.org.winder.maths.Factorial.tailRecursive;
 
@@ -34,6 +35,24 @@ public final class Test_Factorial_JUnit4_QuickCheck_Java {
     iterative(i);
   }
 
+  @Property public void reductive_positive(@InRange(min="1", max="500") final Long i) {
+    assertEquals(reductive(i), BigInteger.valueOf(i).multiply(reductive(i - 1)));
+  }
+
+  @Property public void reductive_negative(@InRange(min="-500", max="-1") final Long i) {
+    thrown.expect(RuntimeException.class);
+    reductive(i);
+  }
+
+  @Property public void reductive_alt_positive(@InRange(min="1", max="500") final Long i) {
+	assertEquals(reductive_alt(i), BigInteger.valueOf(i).multiply(reductive_alt(i - 1)));
+  }
+
+  @Property public void reductive_alt_negative(@InRange(min="-500", max="-1") final Long i) {
+    thrown.expect(RuntimeException.class);
+    reductive_alt(i);
+  }
+
   @Property public void naïveRecursive_positive(@InRange(min="1", max="500") final Long i) {
     assertEquals(naïveRecursive(i), BigInteger.valueOf(i).multiply(naïveRecursive(i - 1)));
   }
@@ -50,15 +69,6 @@ public final class Test_Factorial_JUnit4_QuickCheck_Java {
   @Property public void tailRecursive_negative(@InRange(min="-500", max="-1") final Long i) {
     thrown.expect(RuntimeException.class);
     tailRecursive(i);
-  }
-
-  @Property public void reductive_positive(@InRange(min="1", max="500") final Long i) {
-    assertEquals(reductive(i), BigInteger.valueOf(i).multiply(reductive(i - 1)));
-  }
-
-  @Property public void reductive_negative(@InRange(min="-500", max="-1") final Long i) {
-    thrown.expect(RuntimeException.class);
-    reductive(i);
   }
 
 }

@@ -47,7 +47,7 @@ shared Whole factorial_foldive(Integer|Whole x) {
 by("Russel Winder")
 shared Whole factorial_recursive(Integer|Whole x) {
     value n = validate(x);
-    return if (n < two) then one else n *factorial_recursive(n - one);
+    return if (n < two) then one else n * factorial_recursive(n - one);
 }
 
 "Tail recursive implementation."
@@ -58,4 +58,3 @@ shared Whole factorial_tailRecursive(Integer|Whole x) {
     }
     return iterate(validate(x));
 }
-

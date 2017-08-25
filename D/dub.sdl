@@ -14,5 +14,5 @@ configuration "unittest" {
               preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f ut_main.d"
               mainSourceFile "ut_main.d"
               sourceFiles "factorial.d"
-              dependency "unit-threaded" version="~>0.7.11"
+              dependency "unit-threaded" version="~>0.7"
 }

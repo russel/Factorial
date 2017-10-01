@@ -1,25 +1,15 @@
-buildscript {
-  repositories {
-    gradleScriptKotlin()
-  }
-  dependencies {
-    classpath(kotlinModule("gradle-plugin"))
-  }
-}
-
-apply {
-  plugin("kotlin")
+plugins {
+	kotlin("jvm")
 }
 
 repositories {
-  gradleScriptKotlin()
-  jcenter()
-  mavenCentral()
+	jcenter()
+	mavenCentral()
 }
 
 dependencies {
-  compile(kotlinModule("stdlib"))
-  testCompile("io.kotlintest:kotlintest:2.+")
+	compile(kotlin("stdlib"))
+	testCompile("io.kotlintest:kotlintest:2.+")
 }
 
 defaultTasks("test")

@@ -4,7 +4,7 @@ plugins {
 
 ceylon {
     module = 'uk.org.winder.maths'
-    testModule = 'uk.org.winder.maths_test'
+    testModule = 'uk.org.winder.mathstest'
 
     // Use Ceylon defaults not Java defaults.
     flatClasspath = false

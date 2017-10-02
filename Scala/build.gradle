@@ -1,20 +1,20 @@
 apply plugin: 'scala'
 
 repositories {
-  jcenter()
-  mavenCentral()
+	jcenter()
+	mavenCentral()
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.12.+'
-    testCompile 'org.scalatest:scalatest_2.12:3.0.+'  // 3.2.0 breaks this.
-    testCompile 'org.scalacheck:scalacheck_2.12:+'
+	compile 'org.scala-lang:scala-library:2.12.+'
+	testCompile 'org.scalatest:scalatest_2.12:3.0.+'  // 3.2.0 breaks this.
+	testCompile 'org.scalacheck:scalacheck_2.12:+'
 }
 
 task scalaTest(dependsOn: ['testClasses'], type: JavaExec) {
-  main = 'org.scalatest.tools.Runner'
-  args = ['-R', 'build/classes/test', '-o']
-  classpath = sourceSets.test.runtimeClasspath
+	main = 'org.scalatest.tools.Runner'
+	args = ['-R', 'build/classes/test', '-o']
+	classpath = sourceSets.test.runtimeClasspath
 }
 
 defaultTasks 'test'

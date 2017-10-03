@@ -19,11 +19,11 @@ class Factorial_KotlinTest_PropertyBased: StringSpec() {
 
 		val algorithms = table(
 				headers("name", "f"),
-				row("iterative", { x: Int -> iterative(x) }),
-				row("reductive", { x: Int -> reductive(x) }),
-				row("foldive", { x: Int -> foldive(x) }),
-				row("naïve_recursive", { x: Int -> naïve_recursive(x) }),
-				row("tail_recursive", { x: Int -> tail_recursive(x) })
+				row("iterative", {x: Int -> iterative(x)}),
+				row("reductive", {x: Int -> reductive(x)}),
+				row("foldive", {x: Int -> foldive(x)}),
+				row("naïve_recursive", {x: Int -> naïve_recursive(x)}),
+				row("tail_recursive", {x: Int -> tail_recursive(x)})
 		)
 
 		forAll(algorithms) { name, f ->
@@ -33,14 +33,14 @@ class Factorial_KotlinTest_PropertyBased: StringSpec() {
 			}
 
 			"$name: recurrence relation is true for non-negative integer values" {
-				forAll(smallishWholeNumbers) { i ->
+				forAll(smallishWholeNumbers) {i ->
 					f(i + 1) == (i + 1).bigint * f(i)
 				}
 			}
 
 			"$name: negative argument cause an exception" {
-				forAll(Gen.negativeIntegers()) { i: Int ->
-					shouldThrow<IllegalArgumentException> { f(i) }
+				forAll(Gen.negativeIntegers()) {i: Int ->
+					shouldThrow<IllegalArgumentException>{f(i)}
 					true
 				}
 			}

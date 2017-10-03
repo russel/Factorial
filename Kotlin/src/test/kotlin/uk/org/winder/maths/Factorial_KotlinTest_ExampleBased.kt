@@ -18,11 +18,11 @@ class Factorial_KotlinTest_ExampleBased: StringSpec() {
 
 		val algorithms = table(
 				headers("name", "function"),
-				row("iterative", { x: Int -> iterative(x) }),
-				row("reductive", { x: Int -> reductive(x) }),
-				row("foldive", { x: Int -> foldive(x) }),
-				row("naïve_recursive", { x: Int -> naïve_recursive(x) }),
-				row("tail_recursive", { x: Int -> tail_recursive(x) })
+				row("iterative", {x: Int -> iterative(x)}),
+				row("reductive", {x: Int -> reductive(x)}),
+				row("foldive", {x: Int -> foldive(x)}),
+				row("naïve_recursive", {x: Int -> naïve_recursive(x)}),
+				row("tail_recursive", {x: Int -> tail_recursive(x)})
 		)
 
 		val positiveData = table(
@@ -59,15 +59,15 @@ class Factorial_KotlinTest_ExampleBased: StringSpec() {
 				row(-100)
 		)
 
-		forAll(algorithms) { name, f ->
+		forAll(algorithms){name, f ->
 
-			forAll(positiveData) { n, r ->
+			forAll(positiveData){n, r ->
 				"$name($n) == $r" { f(n) == r }
 			}
 
-			forAll(negativeData) { n ->
+			forAll(negativeData){n ->
 				"$name($n) throws IllegalArgumentException" {
-					shouldThrow<IllegalArgumentException> { f(n) }
+					shouldThrow<IllegalArgumentException>{f(n)}
 				}
 			}
 
@@ -78,7 +78,7 @@ class Factorial_KotlinTest_ExampleBased: StringSpec() {
 		"reductive of a huge number succeeds" { reductive(26000) }
 
 		"naïve_recursive of a huge number fails with a stack overflow" {
-			shouldThrow<StackOverflowError> { naïve_recursive(26000) }
+			shouldThrow<StackOverflowError>{naïve_recursive(26000)}
 		}
 
 		"tail recursive of a huge number succeeds" { tail_recursive(26000) }

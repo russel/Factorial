@@ -1,4 +1,6 @@
-apply plugin: 'scala'
+plugins {
+	id 'scala'
+}
 
 repositories {
 	jcenter()
@@ -13,8 +15,8 @@ dependencies {
 
 task scalaTest(dependsOn: ['testClasses'], type: JavaExec) {
 	main = 'org.scalatest.tools.Runner'
-	args = ['-R', 'build/classes/test', '-o']
+	args = ['-R', 'build/classes/scala/test', '-o']
 	classpath = sourceSets.test.runtimeClasspath
 }
 
-defaultTasks 'test'
+defaultTasks 'scalaTest'

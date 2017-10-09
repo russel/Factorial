@@ -26,7 +26,7 @@ class Factorial_KotlinTest_PropertyBased: StringSpec() {
 				row("tail_recursive", {x: Int -> tail_recursive(x)})
 		)
 
-		forAll(algorithms) { name, f ->
+		forAll(algorithms) {name, f ->
 
 			"$name: base case holds."  {
 				f(0) == 1.bigint
@@ -39,7 +39,7 @@ class Factorial_KotlinTest_PropertyBased: StringSpec() {
 			}
 
 			"$name: negative argument cause an exception" {
-				forAll(Gen.negativeIntegers()) {i: Int ->
+				forAll(Gen.negativeIntegers()) {i ->
 					shouldThrow<IllegalArgumentException>{f(i)}
 					true
 				}

@@ -11,4 +11,6 @@ ceylon {
 	importJars = true
 }
 
-defaultTasks 'test'
+//testCeylon.outputs.upToDateWhen { false }
+
+defaultTasks 'testCeylon'

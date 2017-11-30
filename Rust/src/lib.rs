@@ -51,20 +51,18 @@ pub fn naive_recursive_usize(n: usize) -> BigUint {
     naive_recursive_biguint(&(n.to_biguint().unwrap()))
 }
 
-/*
 pub fn tail_recursive_biguint(n: &BigUint) -> BigUint {
-    fn iterate<'a>(i: &BigUint, t: &'a BigUint) -> &'a BigUint {
+    fn iterate(i: &BigUint, t: &BigUint) -> BigUint {
         let big_one: BigUint = One::one();
-        if *i == Zero::zero() || *i == big_one { t }
-        else { &iterate(&(i - big_one), &(t * i)) }
+        if *i == Zero::zero() || *i == big_one { t.clone() }
+        else { iterate(&(i - big_one), &(t * i)) }
     }
-    *iterate(n, &(1.to_biguint().unwrap()))
+    iterate(n, &(1.to_biguint().unwrap()))
 }
 
 pub fn tail_recursive_usize(n: usize) -> BigUint {
     tail_recursive_biguint(&(n.to_biguint().unwrap()))
 }
- */
 
 #[cfg(test)]
 mod tests {
@@ -73,7 +71,7 @@ mod tests {
         iterative_usize,
         fold_usize,
         naive_recursive_usize,
-        //tail_recursive_usize,
+        tail_recursive_usize,
     };
 
     use num::BigUint;
@@ -84,7 +82,7 @@ mod tests {
             (iterative_usize, "iterative"),
             (fold_usize, "fold"),
             (naive_recursive_usize, "naïve_recursive"),
-            //(tail_recursive_usize, "tail_recursive"),
+            (tail_recursive_usize, "tail_recursive"),
         )
     }
 
@@ -144,6 +142,13 @@ mod tests {
         }
     }
 
+    quickcheck!{
+        fn quickcheck_tail_recursive_usize(n: usize) -> bool {
+            // only values < 100 are tested.
+            tail_recursive_usize(n + 1) == (n + 1).to_biguint().unwrap() * tail_recursive_usize(n)
+        }
+    }
+
     proptest!{
         #[test]
         fn proptest_iterative_usize(n in 0usize..500) {
@@ -165,6 +170,14 @@ mod tests {
         fn proptest_naive_recursive_usize(n in 0usize..500) {
             // Only test for small n so the tests run in reasonable time.
             prop_assert_eq!(naive_recursive_usize(n + 1), (n + 1).to_biguint().unwrap() * naive_recursive_usize(n))
+        }
+    }
+
+    proptest!{
+        #[test]
+        fn proptest_tail_recursive_usize(n in 0usize..500) {
+            // Only test for small n so the tests run in reasonable time.
+            prop_assert_eq!(tail_recursive_usize(n + 1), (n + 1).to_biguint().unwrap() * tail_recursive_usize(n))
         }
     }
 

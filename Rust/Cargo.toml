@@ -8,3 +8,4 @@ num = "*"
 
 [dev-dependencies]
 quickcheck = "*"
+proptest = "*"

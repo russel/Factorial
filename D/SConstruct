@@ -1,19 +1,17 @@
 import os
 import subprocess
 
+sources = ['factorial.d']
+
 environment = Environment(
     tools=['dub', 'ldc', 'link'],
 )
-environment.AddDubLibrary('unit-threaded', '0.7.28')
-environment.UnitThreadedMakeMain('ut_main.d')
+unit_threaded = environment.AddDubLibrary('unit-threaded', '0.7.32')
+ut_main = environment.UnitThreadedMakeMain('ut_main.d', sources)
 
-factorial_test = environment.Command(
-    'factorial_test',
-    ['factorial.d', 'ut_main.d'],
-    '$DC $_DINCFLAGS $_DVERFLAGS $_DDEBUGFLAGS $_DFLAGS -unittest -of$TARGET $DLINKFLAGS $__DRPATH $SOURCES $_DLIBDIRFLAGS $_DLIBFLAGS',
-)
+factorial_test = environment.ProgramAllAtOnce('factorial_test', sources + ut_main)
 SideEffect('factorial_test.o', factorial_test)
 
 Default(Command('test', factorial_test, './$SOURCE'))
 
-Clean('.', 'ut_main.d')
+Clean('.', ut_main)

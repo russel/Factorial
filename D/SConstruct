@@ -3,13 +3,14 @@ import subprocess
 
 sources = ['factorial.d']
 
-environment = Environment(
+testEnvironment = Environment(
     tools=['dub', 'ldc', 'link'],
+    DFLAGS=['-unittest'],
 )
-unit_threaded = environment.AddDubLibrary('unit-threaded', '0.7.32')
-ut_main = environment.UnitThreadedMakeMain('ut_main.d', sources)
+unit_threaded = testEnvironment.AddDubLibrary('unit-threaded', '0.7.32')
+ut_main = testEnvironment.UnitThreadedMakeMain('ut_main.d', sources)
 
-factorial_test = environment.ProgramAllAtOnce('factorial_test', sources + ut_main)
+factorial_test = testEnvironment.ProgramAllAtOnce('factorial_test', sources + ut_main)
 SideEffect('factorial_test.o', factorial_test)
 
 Default(Command('test', factorial_test, './$SOURCE'))

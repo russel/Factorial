@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	//id 'groovy'
+	id 'groovy'
 }
 
 sourceCompatibility = 10
@@ -11,15 +11,13 @@ repositories {
 }
 
 dependencies {
-	/*
-	testCompile 'org.codehaus.groovy:groovy-all:2.+'
+	testCompile 'org.codehaus.groovy:groovy:2.4+'
 	testCompile ('org.spockframework:spock-core:1.1-groovy-2.4+') {
-		exclude module : 'groovy-all'
+		exclude module : 'groovy'
 	}
 	testCompile ('com.nagternal:spock-genesis:+') {
 		exclude module: 'groovy'
 	}
-	 */
 	testCompile 'junit:junit:4.+'
 	testCompile 'com.pholser:junit-quickcheck-core:+'
 	testCompile 'com.pholser:junit-quickcheck-generators:+'

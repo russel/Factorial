@@ -14,9 +14,9 @@ public final class Factorial {
 
 	public static BigInteger iterative(final BigInteger n) {
 		validate(n);
-		BigInteger total = BigInteger.ONE;
+		var total = BigInteger.ONE;
 		if (n.compareTo(BigInteger.ONE) > 0) {
-			BigInteger i = BigInteger.ONE;
+			var i = BigInteger.ONE;
 			while (i.compareTo(n) <= 0) {
 				total = total.multiply(i);
 				i = i.add(BigInteger.ONE);

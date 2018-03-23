@@ -46,9 +46,9 @@ public final class Test_Factorial_TestNG_Java {
 
 	@DataProvider
 	private Object[][] algorithmsAndPositiveData() {
-		final ArrayList<Object[]> values = new ArrayList<>();
-		for (Object a : algorithms) {
-			for (Object[] v : positiveData) {
+		final var values = new ArrayList<Object[]>();
+		for (var a: algorithms) {
+			for (var v: positiveData) {
 				if (v.length != 2) { throw new RuntimeException("positiveData array borked."); }
 				values.add(new Object[]{a, v[0], v[1]});
 			}
@@ -58,9 +58,9 @@ public final class Test_Factorial_TestNG_Java {
 
 	@DataProvider
 	private Object[][] algorithmsAndNegativeData() {
-		final ArrayList<Object[]> values = new ArrayList<>();
-		for (Object a : algorithms) {
-			for (Object item : negativeData) {
+		final var values = new ArrayList<Object[]>();
+		for (var a: algorithms) {
+			for (var item: negativeData) {
 				values.add(new Object[]{a, item});
 			}
 		}

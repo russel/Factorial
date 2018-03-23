@@ -1,33 +1,38 @@
-apply plugin: 'groovy'
+plugins {
+	id 'java'
+	//id 'groovy'
+}
 
-sourceCompatibility = 8
+sourceCompatibility = 10
 
 repositories {
-  jcenter()
-  mavenCentral()
+	jcenter()
+	mavenCentral()
 }
 
 dependencies {
-  testCompile 'org.codehaus.groovy:groovy-all:2.+'
-  testCompile ('org.spockframework:spock-core:1.1-groovy-2.4+') {
-    exclude module : 'groovy-all'
-  }
-  testCompile ('com.nagternal:spock-genesis:+') {
-    exclude module: 'groovy'
-  }
-  testCompile 'junit:junit:4.+'
-  testCompile 'com.pholser:junit-quickcheck-core:+'
-  testCompile 'com.pholser:junit-quickcheck-generators:+'
-  testCompile 'org.testng:testng:6.+'
-  // TestNG marks this as a provided dependency.
-  testCompile 'com.google.inject:guice:2.+'
+	/*
+	testCompile 'org.codehaus.groovy:groovy-all:2.+'
+	testCompile ('org.spockframework:spock-core:1.1-groovy-2.4+') {
+		exclude module : 'groovy-all'
+	}
+	testCompile ('com.nagternal:spock-genesis:+') {
+		exclude module: 'groovy'
+	}
+	 */
+	testCompile 'junit:junit:4.+'
+	testCompile 'com.pholser:junit-quickcheck-core:+'
+	testCompile 'com.pholser:junit-quickcheck-generators:+'
+	testCompile 'org.testng:testng:6.+'
+	// TestNG marks this as a provided dependency.
+	testCompile 'com.google.inject:guice:2.+'
 }
 
 task test_TestNG(type: Test) { useTestNG() }
 test.dependsOn test_TestNG
 
 clean.doLast {
-  delete 'test-output'
+	delete 'test-output'
 }
 
 defaultTasks 'test'

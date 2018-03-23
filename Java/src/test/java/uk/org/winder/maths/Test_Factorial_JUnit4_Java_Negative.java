@@ -24,12 +24,12 @@ public final class Test_Factorial_JUnit4_Java_Negative {
 
 	@Parameters(name = "{1}({2})")
 	public static Iterable<Object[]> data() {
-		final ArrayList<Object[]> data = new ArrayList<>();
-		for (Object[] a : algorithms) {
+		final var data = new ArrayList<Object[]>();
+		for (var a: algorithms) {
 			if (a.length != 2) {
 				throw new RuntimeException("algorithms array borked.");
 			}
-			for (Object v : values) {
+			for (var v: values) {
 				data.add(new Object[]{a[0], a[1], v});
 			}
 		}

@@ -2,12 +2,12 @@ package uk.org.winder.maths
 
 import java.math.BigInteger
 
+import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
-import io.kotlintest.properties.forAll
-import io.kotlintest.properties.table
-import io.kotlintest.properties.headers
-import io.kotlintest.properties.row
-import io.kotlintest.matchers.shouldThrow
+import io.kotlintest.tables.forAll
+import io.kotlintest.tables.table
+import io.kotlintest.tables.headers
+import io.kotlintest.tables.row
 
 class Factorial_KotlinTest_ExampleBased: StringSpec() {
 	init {

@@ -1,17 +1,22 @@
 package uk.org.winder.maths
 
+import kotlin.coroutines.experimental.buildIterator
+import kotlin.coroutines.experimental.buildSequence
+
+import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
-import io.kotlintest.matchers.shouldThrow
 import io.kotlintest.properties.Gen
 import io.kotlintest.properties.forAll
-import io.kotlintest.properties.table
-import io.kotlintest.properties.headers
-import io.kotlintest.properties.row
+import io.kotlintest.tables.forAll as tableForAll
+import io.kotlintest.tables.table
+import io.kotlintest.tables.headers
+import io.kotlintest.tables.row
 
 val random = java.util.Random()
 
 val smallishWholeNumbers = object: Gen<Int> {
-	override fun generate() = random.nextInt(700)
+	override fun constants() = Iterable<Int> { buildIterator { yield(0) } }
+	override fun random() = generateSequence { random.nextInt(700) }
 }
 
 class Factorial_KotlinTest_PropertyBased: StringSpec() {
@@ -26,7 +31,7 @@ class Factorial_KotlinTest_PropertyBased: StringSpec() {
 				row("tail_recursive", {x: Int -> tail_recursive(x)})
 		)
 
-		forAll(algorithms) {name, f ->
+		tableForAll(algorithms) {name, f ->
 
 			"$name: base case holds."  {
 				f(0) == 1.bigint

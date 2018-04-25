@@ -7,9 +7,15 @@ repositories {
 	mavenCentral()
 }
 
+tasks {
+	withType<Test>{
+		useJUnitPlatform()
+	}
+}
+
 dependencies {
 	compile(kotlin("stdlib"))
-	testCompile("io.kotlintest:kotlintest:2.+")
+	testCompile("io.kotlintest:kotlintest-runner-junit5:3.+")
 }
 
 defaultTasks("test")

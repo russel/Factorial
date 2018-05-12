@@ -6,8 +6,8 @@ import kotlin.coroutines.experimental.buildSequence
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import io.kotlintest.properties.Gen
-import io.kotlintest.properties.forAll
-import io.kotlintest.tables.forAll as tableForAll
+import io.kotlintest.properties.verifyAll
+import io.kotlintest.tables.forAll
 import io.kotlintest.tables.table
 import io.kotlintest.tables.headers
 import io.kotlintest.tables.row
@@ -31,20 +31,20 @@ class Factorial_KotlinTest_PropertyBased: StringSpec() {
 				row("tail_recursive", {x: Int -> tail_recursive(x)})
 		)
 
-		tableForAll(algorithms) {name, f ->
+		forAll(algorithms) {name, f ->
 
 			"$name: base case holds."  {
 				f(0) == 1.bigint
 			}
 
 			"$name: recurrence relation is true for non-negative integer values" {
-				forAll(smallishWholeNumbers) {i ->
+				verifyAll(smallishWholeNumbers) {i ->
 					f(i + 1) == (i + 1).bigint * f(i)
 				}
 			}
 
 			"$name: negative argument cause an exception" {
-				forAll(Gen.negativeIntegers()) {i ->
+				verifyAll(Gen.negativeIntegers()) {i ->
 					shouldThrow<IllegalArgumentException>{f(i)}
 					true
 				}

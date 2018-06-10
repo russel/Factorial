@@ -3,37 +3,33 @@ use "ponytest"
 primitive GlobalData
 
         fun algorithms(): Array[({(I128): I128} val, String)] => [
-                // A type hack necessary until Issue 808 gets fixed.
-                // cf. https://github.com/ponylang/ponyc/issues/808
-                as ({(I128): I128} val, String):
-                // end of hack.
-                ({(n: I128): I128 => Factorial.iterative(n)}, "iterative"),
-                ({(n: I128): I128 => Factorial.naive_recursive(n)}, "naive_recursive"),
-                ({(n: I128): I128 => Factorial.tail_recursive(n)}, "tail_recursive")//,
+                ({(n: I128): I128 => Factorial.iterative(n)}, "iterative")
+                ({(n: I128): I128 => Factorial.naive_recursive(n)}, "naive_recursive")
+                ({(n: I128): I128 => Factorial.tail_recursive(n)}, "tail_recursive")
         ]
 
         fun positive_data(): Array[(I128, I128)] => [
-                (0, 1),
-                (1, 1),
-                (2, 2),
-                (3, 6),
-                (4, 24),
-                (5, 120),
-                (6, 720),
-                (7, 5040),
-                (8, 40320),
-                (9, 362880),
-                (10, 3628800),
-                (11, 39916800),
-                (12, 479001600),
-                (13, 6227020800),
-                (14, 87178291200),
-                (20, 2432902008176640000),
-                (30, 265252859812191058636308480000000)//,
-                //(40, 815915283247897734345611269596115894272000000000)
+                (0, 1)
+                (1, 1)
+                (2, 2)
+                (3, 6)
+                (4, 24)
+                (5, 120)
+                (6, 720)
+                (7, 5040)
+                (8, 40320)
+                (9, 362880)
+                (10, 3628800)
+                (11, 39916800)
+                (12, 479001600)
+                (13, 6227020800)
+                (14, 87178291200)
+                (20, 2432902008176640000)
+                (30, 265252859812191058636308480000000)
+                // Value too big  (40, 815915283247897734345611269596115894272000000000)
         ]
 
-        fun negative_data(): Array[I128] => [-1, -2, -5, -10, -20, -100]
+        fun negative_data(): Array[I128] => [-1 -2 -5 -10 -20 -100]
 
 
 actor Main is TestList

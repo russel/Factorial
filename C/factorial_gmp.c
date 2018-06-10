@@ -18,7 +18,7 @@ void factorial_recursive(mpz_t result, mpz_t const n) {
     mpz_sub_ui(i, i, 1);
     factorial_recursive(i, i);
     mpz_mul(result, n, i);
-	}
+  }
 }
 
 /*
@@ -40,7 +40,7 @@ void factorial_tailRecursive(mpz_t result, mpz_t const n) {
   else {
     mpz_t x;
     mpz_init_set_ui(result, 1);
-		mpz_init_set(x, n);
+    mpz_init_set(x, n);
     factorial_tailRecursive_iterate(result, x);
   }
 }

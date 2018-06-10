@@ -42,7 +42,7 @@ namespace Factorial {
  * @param n  the putative valid value.
  */
 void validate(mpz_class const n) {
-  if (n < 0) { throw std::invalid_argument("Parameter must be a non-negative integer."); }
+	if (n < 0) { throw std::invalid_argument("Parameter must be a non-negative integer."); }
 }
 
 auto const one = mpz_class(1);
@@ -55,10 +55,10 @@ auto const two = mpz_class(2);
  * @return  factorial of argument.
  */
 mpz_class iterative(mpz_class const n) {
-  validate(n);
-  mpz_class total {1};
-  for (unsigned int i = 2; i <= n; ++i) { total *= i; }
-  return total;
+	validate(n);
+	mpz_class total {1};
+	for (unsigned int i = 2; i <= n; ++i) { total *= i; }
+	return total;
 }
 
 /**
@@ -115,8 +115,8 @@ mpz_class reductive(long const n) { return reductive(mpz_class(n)); }
  * @return  factorial of argument.
  */
 mpz_class naive_recursive(mpz_class const n) {
-  validate(n);
-  return (n < 2) ? one : n * naive_recursive(n - 1);
+	validate(n);
+	return (n < 2) ? one : n * naive_recursive(n - 1);
 }
 
 /**
@@ -135,7 +135,7 @@ mpz_class naive_recursive(long const n) { return naive_recursive(mpz_class(n)); 
  * @return  factorial of argument.
  */
 mpz_class tail_recursive_iterate(mpz_class const n, mpz_class const result) {
-  return (n < 2) ? result : tail_recursive_iterate(n - 1, result * n);
+	return (n < 2) ? result : tail_recursive_iterate(n - 1, result * n);
 }
 
 /**
@@ -146,7 +146,7 @@ mpz_class tail_recursive_iterate(mpz_class const n, mpz_class const result) {
  */
 mpz_class tail_recursive(mpz_class const n) {
 	validate(n);
-  return (n < 2) ? one : tail_recursive_iterate(n, one);
+	return (n < 2) ? one : tail_recursive_iterate(n, one);
 }
 
 /**

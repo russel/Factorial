@@ -3,7 +3,7 @@ import os
 base_environment = Environment(
     tools=['g++', 'gnulink'],
     CPPPATH=[os.path.join(os.environ['HOME'], 'include')],
-    CXXFLAGS=['-Wall', '-Wundef', '-Wcast-align', '-Wredundant-decls', '-std=c++14'],
+    CXXFLAGS=['-Wall', '-Wundef', '-Wcast-align', '-Wredundant-decls', '-std=c++17'],
     LINKFLAGS=['-L{}'.format(p) for p in (os.path.join(os.environ['HOME'], 'Built', 'lib'), os.path.join(os.environ['HOME'], 'Built', 'lib64'))],
     LIBS=['gmpxx', 'gmp'],
 )

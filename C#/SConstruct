@@ -1,0 +1,21 @@
+import subprocess
+
+nunit_libs = subprocess.run(['pkg-config', '--libs', 'nunit'], stdout=subprocess.PIPE).stdout.decode().strip().split()
+
+environment = Environment(
+    tools=['csharp'],
+    CSCFLAGS=nunit_libs,
+)
+
+big_integer_environment = environment.Clone()
+big_integer_environment.Append(CSCFLAGS=['-r:/usr/lib/mono/4.5/System.Numerics.dll'])
+
+test = environment.CLIAssembly(['Factorial_Test.cs', 'Factorial.cs'])
+big_integer_test = big_integer_environment.CLIAssembly(['Factorial_BigInteger_Test.cs', 'Factorial_BigInteger.cs'])
+
+Default([
+    Command('test', test,'nunit-console $SOURCE'),
+    Command('big_integer_test', big_integer_test,'nunit-console $SOURCE'),
+])
+
+Clean('.', ['TestResult.xml'])

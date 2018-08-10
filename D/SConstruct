@@ -1,13 +1,14 @@
 import os
 import subprocess
 
-sources = ['factorial.d']
+sources = Glob('source/*.d')
 
 testEnvironment = Environment(
     tools=['dub', 'ldc', 'link'],
     DFLAGS=['-unittest'],
+    DC='/home/users/russel/BuildArea/LDC/bin/ldc2',
 )
-unit_threaded = testEnvironment.AddDubLibrary('unit-threaded', '0.7.32')
+unit_threaded = testEnvironment.AddDubLibrary('unit-threaded', '0.7.49')
 ut_main = testEnvironment.UnitThreadedMakeMain('ut_main.d', sources)
 
 factorial_test = testEnvironment.ProgramAllAtOnce('factorial_test', sources + ut_main)

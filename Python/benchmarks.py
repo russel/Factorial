@@ -10,13 +10,13 @@ from pytest import mark
 from factorial import iterative, using_reduce
 
 __author__ = 'Russel Winder'
-__date__ = '2016-11-23'
-__version__ = '1.0'
-__copyright__ = 'Copyright © 2016  Russel Winder'
+__date__ = '2018-08-22'
+__version__ = '1.1'
+__copyright__ = 'Copyright © 2016, 2018  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
 
-size = 10000
+size: int = 10000
 
 
 def test_iterative(benchmark):

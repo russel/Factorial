@@ -13,9 +13,9 @@ from functools import reduce
 from operator import mul
 
 __author__ = 'Russel Winder'
-__date__ = '2016-06-28'
-__version__ = '1.7.1'
-__copyright__ = 'Copyright © 2007, 2011–2013, 2015, 2016  Russel Winder'
+__date__ = '2018-08-22'
+__version__ = '1.7.2'
+__copyright__ = 'Copyright © 2007, 2011–2013, 2015, 2016, 2018  Russel Winder'
 __licence__ = 'GNU Public Licence (GPL) v3'
 
 
@@ -35,7 +35,7 @@ def iterative(x: int) -> int:
     Iterative implementation using a simple loop.
     """
     _validate(x)
-    total = 1
+    total: int = 1
     for i in range(2, x + 1):
         total *= i
     return total

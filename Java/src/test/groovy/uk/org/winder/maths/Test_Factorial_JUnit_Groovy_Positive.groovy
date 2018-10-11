@@ -8,7 +8,7 @@ import org.junit.runners.Parameterized.Parameters
 import static org.junit.Assert.assertEquals
 
 @RunWith(Parameterized.class)
-final class Test_Factorial_JUnit4_Groovy_Positive {
+final class Test_Factorial_JUnit_Groovy_Positive {
     static final algorithms = [
             [Factorial.&iterative, 'iterative'],
             [Factorial.&reductive, 'reductive'],
@@ -50,7 +50,7 @@ final class Test_Factorial_JUnit4_Groovy_Positive {
     private final Integer n
     private final BigInteger r
 
-    Test_Factorial_JUnit4_Groovy_Positive(final Closure a, final String name, final Integer n, final BigInteger r) {
+    Test_Factorial_JUnit_Groovy_Positive(final Closure a, final String name, final Integer n, final BigInteger r) {
         this.a = a
         this.name = name
         this.n = n

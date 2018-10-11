@@ -58,25 +58,25 @@ class Test_Factorial_TestNG_Groovy {
     }
 
     @Test(dataProvider = "algorithmsAndPositiveData")
-    public void positiveArgumentShouldWork(Closure f, Integer n, BigInteger expected) {
+    void positiveArgumentShouldWork(Closure f, Integer n, BigInteger expected) {
         assertEquals(f(n), expected)
     }
 
     @Test(dataProvider = "algorithmsAndNegativeData", expectedExceptions = [IllegalArgumentException])
-    public void negativeArgumentShouldThrowException(Closure f, Integer n) { f(n) }
+    void negativeArgumentShouldThrowException(Closure f, Integer n) { f(n) }
 
     @Test(dataProvider = "algorithmsAndDoubleData", expectedExceptions = [MissingMethodException])
-    public void floatArgumentShouldThrowException(Closure f, Double n) { f(n) }
+    void floatArgumentShouldThrowException(Closure f, Double n) { f(n) }
 
     @Test
-    public void iterativeEnormousSucceeds() { Factorial.iterative(26000) }
+    void iterativeEnormousSucceeds() { Factorial.iterative(26000) }
 
     @Test
-    public void reductiveEnormousSucceeds() { Factorial.reductive(26000) }
+    void reductiveEnormousSucceeds() { Factorial.reductive(26000) }
 
     @Test(expectedExceptions = [StackOverflowError])
-    public void recursiveEnormousFails() { Factorial.naïveRecursive(26000) }
+    void recursiveEnormousFails() { Factorial.naïveRecursive(26000) }
 
     @Test(expectedExceptions = [StackOverflowError])
-    public void tailRecursiveEnormousFails() { Factorial.tailRecursive(26000) }
+    void tailRecursiveEnormousFails() { Factorial.tailRecursive(26000) }
 }

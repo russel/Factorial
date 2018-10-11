@@ -10,7 +10,7 @@ import java.util.function.LongFunction;
 import java.math.BigInteger;
 
 @RunWith(Parameterized.class)
-public final class Test_Factorial_JUnit4_Java_Negative {
+public final class Test_Factorial_JUnit_Java_Negative {
 
 	private static final Object[][] algorithms = new Object[][]{
 			{(LongFunction<BigInteger>) Factorial::iterative, "iterative"},
@@ -40,7 +40,7 @@ public final class Test_Factorial_JUnit4_Java_Negative {
 	private final String name;
 	private final Integer n;
 
-	public Test_Factorial_JUnit4_Java_Negative(final LongFunction<BigInteger> a, final String name, final Integer n) {
+	public Test_Factorial_JUnit_Java_Negative(final LongFunction<BigInteger> a, final String name, final Integer n) {
 		this.a = a;
 		this.name = name;
 		this.n = n;

@@ -6,7 +6,7 @@ import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 
 @RunWith(Parameterized.class)
-final class Test_Factorial_JUnit4_Groovy_Negative {
+final class Test_Factorial_JUnit_Groovy_Negative {
     static final algorithms = [
             [Factorial.&iterative, 'iterative'],
             [Factorial.&reductive, 'reductive'],
@@ -26,7 +26,7 @@ final class Test_Factorial_JUnit4_Groovy_Negative {
     private final String name
     private final Integer n
 
-    Test_Factorial_JUnit4_Groovy_Negative(final Closure a, final String name, final Integer n) {
+    Test_Factorial_JUnit_Groovy_Negative(final Closure a, final String name, final Integer n) {
         this.a = a
         this.name = name
         this.n = n

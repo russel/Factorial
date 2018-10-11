@@ -3,7 +3,7 @@ plugins {
 	id 'groovy'
 }
 
-sourceCompatibility = 10
+sourceCompatibility = 11
 
 repositories {
 	jcenter()
@@ -18,7 +18,7 @@ dependencies {
 	testCompile ('com.nagternal:spock-genesis:+') {
 		exclude module: 'groovy'
 	}
-	testCompile 'junit:junit:4.+'
+	testCompile 'org.junit:junit-bom:5.+'
 	testCompile 'com.pholser:junit-quickcheck-core:+'
 	testCompile 'com.pholser:junit-quickcheck-generators:+'
 	testCompile 'org.testng:testng:6.+'

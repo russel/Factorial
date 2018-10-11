@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.function.LongFunction;
 
 @RunWith(Parameterized.class)
-public final class Test_Factorial_JUnit4_Java_Positive {
+public final class Test_Factorial_JUnit_Java_Positive {
 
 	private static final Object[][] algorithms = new Object[][]{
 			{(LongFunction<BigInteger>) Factorial::iterative, "iterative"},
@@ -62,7 +62,7 @@ public final class Test_Factorial_JUnit4_Java_Positive {
 	private final Integer n;
 	private final BigInteger r;
 
-	public Test_Factorial_JUnit4_Java_Positive(final LongFunction<BigInteger> a, final String name, final Integer n, final BigInteger r) {
+	public Test_Factorial_JUnit_Java_Positive(final LongFunction<BigInteger> a, final String name, final Integer n, final BigInteger r) {
 		this.a = a;
 		this.name = name;
 		this.n = n;

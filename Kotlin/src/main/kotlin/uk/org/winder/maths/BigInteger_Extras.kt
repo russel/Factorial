@@ -43,5 +43,6 @@ class BigIntegerRange(override val start: BigInteger, val end: BigInteger, val i
 	override val endInclusive: BigInteger = BigInteger.ZERO
 }
 
-infix fun BigInteger.rangeTo(that: BigInteger) = BigIntegerRange(this, that, BigInteger.ONE)
+// Use .. operator rather than rangeTo infix function
+operator fun BigInteger.rangeTo(that: BigInteger) = BigIntegerRange(this, that, BigInteger.ONE)
 infix fun BigInteger.downTo(that: BigInteger) = BigIntegerRange(this, that, -1.bigint)

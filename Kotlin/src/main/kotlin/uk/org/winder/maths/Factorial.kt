@@ -14,7 +14,7 @@ fun validate(x: BigInteger): Unit {
 fun iterative(x: BigInteger): BigInteger {
 	validate(x)
 	var total = one
-	for (i in two rangeTo x) { total *= i }
+	for (i in two .. x) { total *= i }
 	return total
 }
 fun iterative(x: Int): BigInteger = iterative(x.bigint)
@@ -23,14 +23,14 @@ fun iterative(x: Long): BigInteger = iterative(x.bigint)
 fun reductive(x: BigInteger): BigInteger {
 	validate(x)
 	if (x < two) { return one }
-	return (one rangeTo x).reduce{t, i -> t * i}
+	return (one .. x).reduce{t, i -> t * i}
 }
 fun reductive(x: Int): BigInteger = reductive(x.bigint)
 fun reductive(x: Long): BigInteger = reductive(x.bigint)
 
 fun foldive(x: BigInteger): BigInteger {
 	validate(x)
-	return (two rangeTo x).fold(one){t, i -> t * i}
+	return (two .. x).fold(one){t, i -> t * i}
 }
 fun foldive(x: Int): BigInteger = foldive(x.bigint)
 fun foldive(x: Long): BigInteger = foldive(x.bigint)

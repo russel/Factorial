@@ -1,4 +1,4 @@
-package uk.org.winder.maths
+package uk.org.winder.maths.factorial
 
 import kotlin.coroutines.experimental.buildIterator
 import kotlin.coroutines.experimental.buildSequence

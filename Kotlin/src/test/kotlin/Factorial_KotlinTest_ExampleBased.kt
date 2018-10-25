@@ -1,4 +1,4 @@
-package uk.org.winder.maths
+package uk.org.winder.maths.factorial
 
 import java.math.BigInteger
 

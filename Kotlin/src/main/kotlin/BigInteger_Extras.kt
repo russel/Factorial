@@ -1,4 +1,4 @@
-package uk.org.winder.maths
+package uk.org.winder.maths.factorial
 
 // The original code provided by Mike Hearn in response to a question on the Kotlin forum.
 // cf. https://devnet.jetbrains.com/thread/460227?tstart=0.

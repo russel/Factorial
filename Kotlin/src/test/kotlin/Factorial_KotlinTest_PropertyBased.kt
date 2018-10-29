@@ -1,8 +1,5 @@
 package uk.org.winder.maths.factorial
 
-import kotlin.coroutines.experimental.buildIterator
-import kotlin.coroutines.experimental.buildSequence
-
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 import io.kotlintest.properties.Gen
@@ -15,7 +12,7 @@ import io.kotlintest.tables.row
 val random = java.util.Random()
 
 val smallishWholeNumbers = object: Gen<Int> {
-	override fun constants() = Iterable<Int> { buildIterator { yield(0) } }
+	override fun constants() = Iterable<Int> { iterator { yield(0) } }
 	override fun random() = generateSequence { random.nextInt(700) }
 }
 

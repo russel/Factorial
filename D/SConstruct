@@ -1,19 +1,28 @@
 import os
+import pathlib
 import subprocess
+
+built = pathlib.Path(os.environ['HOME']) / 'Built'
+include_path = built / 'include' / 'd'
+library_path = built / 'lib'
 
 sources = Glob('source/*.d')
 
 testEnvironment = Environment(
-    tools=['dub', 'ldc', 'link'],
+    tools=['ldc', 'link'],
     DFLAGS=['-unittest'],
-    DC='/home/users/russel/BuildArea/LDC/bin/ldc2',
+    DPATH=[include_path.as_posix()],
+    DLINKFLAGS=['-link-defaultlib-shared'],
+    ENV=os.environ,
+    LIBPATH=[library_path.as_posix()],
+    LIBS=['unit-threaded'],
 )
-unit_threaded = testEnvironment.AddDubLibrary('unit-threaded', '0.7.49')
-ut_main = testEnvironment.UnitThreadedMakeMain('ut_main.d', sources)
+
+ut_main = testEnvironment.Command('ut_main.d', sources, 'gen-ut-main -f $TARGET source')
 
 factorial_test = testEnvironment.ProgramAllAtOnce('factorial_test', sources + ut_main)
 SideEffect('factorial_test.o', factorial_test)
 
-Default(Command('test', factorial_test, './$SOURCE'))
+Default(Command('test', factorial_test, f'LD_LIBRARY_PATH={library_path}./$SOURCE'))
 
 Clean('.', ut_main)

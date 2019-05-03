@@ -1,7 +1,7 @@
 name "factorial"
 description  "Various implementations of the factorial function written in D."
 authors  "Russel Winder <russel@winder.org.uk>"
-copyright  "Copyright © 2015, 2017, 2018  Russel Winder"
+copyright  "Copyright © 2015, 2017–2019  Russel Winder"
 licence  "GPL-3.0"
 
 configuration "library" {
@@ -13,5 +13,5 @@ configuration "unittest" {
     targetName "factorial-test"
     preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f ut_main.d"
     mainSourceFile "ut_main.d"
-    dependency "unit-threaded" version=">=0.7.49"
+    dependency "unit-threaded" version="*"
 }

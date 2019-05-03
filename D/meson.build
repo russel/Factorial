@@ -1,6 +1,6 @@
 project('D Factorial', 'd')
 
-run_command('sh', '-c', 'cd $MESON_SOURCE_ROOT && LD_LIBRARY_PATH=$HOME/BuildArea/LDC/lib:$HOME/Built/lib gen-ut-main -f $MESON_BUILD_ROOT/ut_main.d source')
+run_command('sh', '-c', 'cd $MESON_SOURCE_ROOT && LD_LIBRARY_PATH=$HOME/Built/lib gen-ut-main -f $MESON_BUILD_ROOT/ut_main.d source')
 
 factorial_test = executable('factorial_test',
                             ['source/factorial.d', meson.current_build_dir() + '/ut_main.d'],

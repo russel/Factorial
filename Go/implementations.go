@@ -1,14 +1,18 @@
 // Package factorial provides a number of implementation of factorial, the mathematical function defined by
 // the recurrence relation:
 //
-//  f(0) = 1
-//  f(n) = n . f(n - 1)
+//  f_0 = 1
+//  f_n = n . f_{n - 1}
 //
 // The variants show different algorithms. For each algorithm there are two implementations, one for a uint,
 // one for a big.Int. The return value in all cases is a big.Int.
 package factorial
 
 import "math/big"
+
+var bigZero = big.NewInt(0)
+var bigOne = big.NewInt(1)
+var bigTwo = big.NewInt(2)
 
 // Iterative_uint is an imperative, loop-based implementation with the parameter being an uint value.
 func Iterative_uint(n uint) (total *big.Int) {
@@ -63,4 +67,16 @@ func TailRecursive_bigInt(n *big.Int) (value *big.Int) {
 		return tailRecursive_bigInt_iterate(new(big.Int).Set(n), value)
 	}
 	return
+}
+
+var algorithms_uint = []func(uint) *big.Int{
+	Iterative_uint,
+	Recursive_uint,
+	TailRecursive_uint,
+}
+
+var algorithms_bigInt = []func(*big.Int) *big.Int{
+	Iterative_bigInt,
+	Recursive_bigInt,
+	TailRecursive_bigInt,
 }

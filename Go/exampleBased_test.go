@@ -27,46 +27,26 @@ var test_data = map[uint]string{
 	40: "815915283247897734345611269596115894272000000000",
 }
 
-func testCorrectUintValues(t *testing.T, function func(uint) *big.Int) {
-	for parameter, expectedString := range test_data {
-		expected, success := new(big.Int).SetString(expectedString, 0)
-		if !success {
-			t.Errorf("Failed to create the expected %s value.\n", expectedString)
+func TestUintParameters(t *testing.T) {
+	for _, algorithm := range algorithms_uint {
+		for parameter, expectedString := range test_data {
+			expected, success := new(big.Int).SetString(expectedString, 0)
+			if !success {
+				t.Errorf("Failed to create the expected %s value.\n", expectedString)
+			}
+			assert.Equal(t, expected, algorithm(parameter))
 		}
-		assert.Equal(t, expected, function(parameter))
 	}
 }
 
-func Test_iterative_uint(t *testing.T) {
-	testCorrectUintValues(t, Iterative_uint)
-}
-
-func Test_recursive_uint(t *testing.T) {
-	testCorrectUintValues(t, Recursive_uint)
-}
-
-func Test_tailRecursive_uint(t *testing.T) {
-	testCorrectUintValues(t, TailRecursive_uint)
-}
-
-func testCorrectBigIntValues(t *testing.T, function func(*big.Int) *big.Int) {
-	for parameter, expectedString := range test_data {
-		expected, success := new(big.Int).SetString(expectedString, 0)
-		if !success {
-			t.Errorf("Failed to create the expected %s value.\n", expectedString)
+func TestBigIntValues(t *testing.T) {
+	for _, algorithm := range algorithms_bigInt {
+		for parameter, expectedString := range test_data {
+			expected, success := new(big.Int).SetString(expectedString, 0)
+			if !success {
+				t.Errorf("Failed to create the expected %s value.\n", expectedString)
+			}
+			assert.Equal(t, expected, algorithm(big.NewInt(int64(parameter))))
 		}
-		assert.Equal(t, expected, function(big.NewInt(int64(parameter))))
 	}
-}
-
-func Test_iterative_bigInt(t *testing.T) {
-	testCorrectBigIntValues(t, Iterative_bigInt)
-}
-
-func Test_recursive_bigInt(t *testing.T) {
-	testCorrectBigIntValues(t, Recursive_bigInt)
-}
-
-func Test_tailRecursive_bigInt(t *testing.T) {
-	testCorrectBigIntValues(t, TailRecursive_bigInt)
 }

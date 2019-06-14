@@ -1,13 +1,3 @@
-extern crate num;
-
-#[cfg(test)]
-#[macro_use]
-extern crate quickcheck;
-
-#[cfg(test)]
-#[macro_use]
-extern crate proptest;
-
 use num::{BigUint, One, Zero};
 use num::bigint::ToBigUint;
 
@@ -76,6 +66,8 @@ mod tests {
 
     use num::BigUint;
     use num::bigint::ToBigUint;
+    use quickcheck::quickcheck;
+    use proptest::proptest;
 
     fn functions() -> Vec<(fn(usize)->BigUint, &'static str)> {
         vec!(

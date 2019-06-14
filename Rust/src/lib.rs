@@ -67,7 +67,7 @@ mod tests {
     use num::BigUint;
     use num::bigint::ToBigUint;
     use quickcheck::quickcheck;
-    use proptest::proptest;
+    use proptest::{prop_assert_eq, proptest};
 
     fn functions() -> Vec<(fn(usize)->BigUint, &'static str)> {
         vec!(

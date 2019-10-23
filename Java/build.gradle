@@ -11,8 +11,8 @@ repositories {
 }
 
 dependencies {
-	testCompile 'org.codehaus.groovy:groovy:2.4+'
-	testCompile ('org.spockframework:spock-core:1.1-groovy-2.4+') {
+	testCompile 'org.codehaus.groovy:groovy:2.5+'
+	testCompile ('org.spockframework:spock-core:1.3-groovy-2.5+') {
 		exclude module : 'groovy'
 	}
 	testCompile ('com.nagternal:spock-genesis:+') {

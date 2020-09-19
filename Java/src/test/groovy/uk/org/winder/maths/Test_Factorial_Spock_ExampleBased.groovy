@@ -9,7 +9,7 @@ class Test_Factorial_Spock_ExampleBased extends Specification {
             [Factorial.&iterative, 'iterative'],
             [Factorial.&reductive, 'reductive'],
             [Factorial.&reductive, 'reductive_alt'],
-            [Factorial.&naïveRecursive, 'naïveRecursive'],
+            [Factorial.&naiveRecursive, 'naïveRecursive'],
             [Factorial.&tailRecursive, 'tailRecursive'],
     ]
 
@@ -43,41 +43,41 @@ class Test_Factorial_Spock_ExampleBased extends Specification {
 
     @Unroll
     def '#name(#n) [positive argument] should give result #expected'() {
-        expect:expected == f.call(n)
-        where:[f, name, n, expected] << algorithms.collectMany { a -> positiveData.collect { [*a, *it] } }
+        expect: expected == f.call(n)
+        where: [f, name, n, expected] << algorithms.collectMany { a -> positiveData.collect { [*a, *it] } }
     }
 
     @Unroll
     def '#name(#n) [negative argument] should throw an IllegalArgumentException'() {
-        when:f.call(n)
-        then:thrown(IllegalArgumentException)
-        where:[f, name, n] << algorithms.collectMany { a -> negativeData.collect { [*a, it] } }
+        when: f.call(n)
+        then: thrown(IllegalArgumentException)
+        where: [f, name, n] << algorithms.collectMany { a -> negativeData.collect { [*a, it] } }
     }
 
     @Unroll
     def '#name(#n) [float argument] should throw a MissingMethodException'() {
-        when:f.call(n)
-        then:thrown(MissingMethodException)
-        where:[f, name, n] << algorithms.collectMany { a -> floatData.collect { [*a, it] } }
+        when: f.call(n)
+        then: thrown(MissingMethodException)
+        where: [f, name, n] << algorithms.collectMany { a -> floatData.collect { [*a, it] } }
     }
 
     def 'iterative of a huge number succeeds'() {
-        when:Factorial.iterative(26000)
-        then:notThrown(StackOverflowError)
+        when: Factorial.iterative(26000)
+        then: notThrown(StackOverflowError)
     }
 
     def 'reductive of a huge number succeeds'() {
-        when:Factorial.reductive(26000)
-        then:notThrown(StackOverflowError)
+        when: Factorial.reductive(26000)
+        then: notThrown(StackOverflowError)
     }
 
     def 'recursive of a huge number fails with a stack overflow'() {
-        when:Factorial.naïveRecursive(26000)
-        then:thrown(StackOverflowError)
+        when: Factorial.naiveRecursive(26000)
+        then: thrown(StackOverflowError)
     }
 
     def 'tailRecursive of a huge number fails with a stack overflow'() {
-        when:Factorial.tailRecursive(26000)
+        when: Factorial.tailRecursive(26000)
         then: thrown(StackOverflowError)
     }
 }

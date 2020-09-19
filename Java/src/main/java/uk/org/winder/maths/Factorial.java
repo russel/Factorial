@@ -47,12 +47,12 @@ public final class Factorial {
 	public static BigInteger reductive_alt(final Integer n) { return reductive(Long.valueOf(n)); }
 	public static BigInteger reductive_alt(final BigInteger n) { return reductive(n.longValue()); }
 
-	public static BigInteger naïveRecursive(final BigInteger n) {
+	public static BigInteger naiveRecursive(final BigInteger n) {
 		validate(n);
-		return n.compareTo(BigInteger.ONE) <= 0 ? BigInteger.ONE : n.multiply(naïveRecursive(n.subtract(BigInteger.ONE)));
+		return n.compareTo(BigInteger.ONE) <= 0 ? BigInteger.ONE : n.multiply(naiveRecursive(n.subtract(BigInteger.ONE)));
 	}
-	public static BigInteger naïveRecursive(final Integer n) { return naïveRecursive(BigInteger.valueOf(n)); }
-	public static BigInteger naïveRecursive(final Long n) { return naïveRecursive(BigInteger.valueOf(n)); }
+	public static BigInteger naiveRecursive(final Integer n) { return naiveRecursive(BigInteger.valueOf(n)); }
+	public static BigInteger naiveRecursive(final Long n) { return naiveRecursive(BigInteger.valueOf(n)); }
 
 	private static BigInteger iterate(final BigInteger n, final BigInteger result) {
 		return n.compareTo(BigInteger.ONE) <= 0 ? result : iterate(n.subtract(BigInteger.ONE), result.multiply(n));

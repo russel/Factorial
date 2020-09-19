@@ -9,13 +9,13 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.function.IntFunction;
 
-public final class Test_Factorial_TestNG_Java {
+public final class Test_Factorial_TestNG {
 
 	private final Object[] algorithms = new Object[]{
 			(IntFunction<BigInteger>) Factorial::iterative,
 			(IntFunction<BigInteger>) Factorial::reductive,
 			(IntFunction<BigInteger>) Factorial::reductive,
-			(IntFunction<BigInteger>) Factorial::naïveRecursive,
+			(IntFunction<BigInteger>) Factorial::naiveRecursive,
 			(IntFunction<BigInteger>) Factorial::tailRecursive
 	};
 
@@ -82,7 +82,7 @@ public final class Test_Factorial_TestNG_Java {
 	public void reductiveEnormousSucceeds() { Factorial.reductive(26000); }
 
 	@Test(expectedExceptions = {StackOverflowError.class})
-	public void recursiveEnormousFails() { Factorial.naïveRecursive(26000); }
+	public void recursiveEnormousFails() { Factorial.naiveRecursive(26000); }
 
 	@Test(expectedExceptions = {StackOverflowError.class})
 	public void tailRecursiveEnormousFails() { Factorial.tailRecursive(26000); }

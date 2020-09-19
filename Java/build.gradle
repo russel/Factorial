@@ -3,7 +3,7 @@ plugins {
 	id 'groovy'
 }
 
-sourceCompatibility = 11
+sourceCompatibility = 14  // 15 doesn't work in Gradle 6.6.1
 
 repositories {
 	jcenter()
@@ -11,28 +11,25 @@ repositories {
 }
 
 dependencies {
+	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.+'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.+'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.+'
-	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.+'
-	testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.+'
-	testImplementation 'org.spockframework:spock-core:1.3-groovy-2.5+'
+	testImplementation 'org.spockframework:spock-core:2.0-M3-groovy-3.0'
 	testImplementation('com.nagternal:spock-genesis:+'){
 		exclude module: 'groovy'
 	}
-	testImplementation 'org.junit:junit-bom:5.+'
+	testImplementation 'org.slf4j:slf4j-simple:2.0.0-alpha1'  // Needed by com.nagternal:spock-genesis
 	testImplementation 'com.pholser:junit-quickcheck-core:+'
 	testImplementation 'com.pholser:junit-quickcheck-generators:+'
-	testImplementation 'org.testng:testng:6.+'
-	// TestNG marks this as a provided dependency.
-	testRuntimeOnly'com.google.inject:guice:2.+'
-
+	testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.+'  // Needed by com.pholser:junit-quickcheck-core
+	testImplementation 'org.testng:testng:7.+'
 }
 
 test {
 	useJUnitPlatform()
-	testLogging {
-		events "passed", "skipped", "failed"
-	}
+	// testLogging {
+	//	 events "passed", "skipped", "failed"
+	// }
 }
 
 task test_TestNG(type: Test) { useTestNG() }

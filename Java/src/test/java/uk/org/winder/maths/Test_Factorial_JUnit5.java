@@ -21,7 +21,7 @@ public class Test_Factorial_JUnit5 {
 			Factorial::iterative,
 			Factorial::reductive,
 			Factorial::reductive_alt,
-			Factorial::naïveRecursive,
+			Factorial::naiveRecursive,
 			Factorial::tailRecursive
 	);
 

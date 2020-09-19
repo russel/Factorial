@@ -11,7 +11,7 @@ class Test_Factorial_Spock_PropertyBased extends Specification {
             [Factorial.&iterative, 'iterative'],
             [Factorial.&reductive, 'reductive'],
             [Factorial.&reductive_alt, 'reductive_alt'],
-            [Factorial.&naiveRecursive, 'naïveRecursive'],
+            [Factorial.&naiveRecursive, 'naiveRecursive'],
             [Factorial.&tailRecursive, 'tailRecursive'],
     ]
 

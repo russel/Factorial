@@ -14,7 +14,10 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.+'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.+'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.+'
-	testImplementation 'org.spockframework:spock-core:2.0-M3-groovy-3.0'
+	testImplementation 'org.codehaus.groovy:groovy:3.0.+'
+	testImplementation('org.spockframework:spock-core:2.0-M3-groovy-3.0') {
+		exclude module: 'groovy'
+	}
 	testImplementation('com.nagternal:spock-genesis:+') {
 		exclude module: 'groovy'
 	}

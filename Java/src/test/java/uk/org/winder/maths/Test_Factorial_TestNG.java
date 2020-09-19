@@ -14,7 +14,7 @@ public final class Test_Factorial_TestNG {
 	private final Object[] algorithms = new Object[]{
 			(IntFunction<BigInteger>) Factorial::iterative,
 			(IntFunction<BigInteger>) Factorial::reductive,
-			(IntFunction<BigInteger>) Factorial::reductive,
+			(IntFunction<BigInteger>) Factorial::reductive_alt,
 			(IntFunction<BigInteger>) Factorial::naiveRecursive,
 			(IntFunction<BigInteger>) Factorial::tailRecursive
 	};

@@ -8,7 +8,7 @@ class Test_Factorial_Spock_ExampleBased extends Specification {
     private static final algorithms = [
             [Factorial.&iterative, 'iterative'],
             [Factorial.&reductive, 'reductive'],
-            [Factorial.&reductive, 'reductive_alt'],
+            [Factorial.&reductive_alt, 'reductive_alt'],
             [Factorial.&naiveRecursive, 'naïveRecursive'],
             [Factorial.&tailRecursive, 'tailRecursive'],
     ]

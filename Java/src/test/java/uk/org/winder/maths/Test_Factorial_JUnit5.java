@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.function.LongFunction;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -60,13 +61,29 @@ public class Test_Factorial_JUnit5 {
 
 	@ParameterizedTest
 	@MethodSource("negativeData")
-	void test_negative_values(final LongFunction<BigInteger> function, final int argument) {
-		assertThrows(IllegalArgumentException.class, () -> { function.apply(argument); });
+	void negativeValues(final LongFunction<BigInteger> function, final int argument) {
+		assertThrows(IllegalArgumentException.class, () -> function.apply(argument) );
 	}
 
 	@ParameterizedTest
 	@MethodSource("positiveData")
-	void test_positive_values(final LongFunction<BigInteger> function, Map.Entry<Integer, BigInteger> data) {
+	void positiveValues(final LongFunction<BigInteger> function, Map.Entry<Integer, BigInteger> data) {
 		assertEquals(data.getValue(), function.apply(data.getKey()));
+	}
+
+	@Test
+	void iterativeEnormousSucceeds() { Factorial.iterative(26000); }
+
+	@Test
+	void reductiveEnormousSucceeds() { Factorial.reductive(26000); }
+
+	@Test
+	void recursiveEnormousFails() {
+		assertThrows(StackOverflowError.class, () -> Factorial.naiveRecursive(26000));
+	}
+
+	@Test
+	void tailRecursiveEnormousFails() {
+		assertThrows(StackOverflowError.class, () -> Factorial.tailRecursive(26000));
 	}
 }

@@ -14,6 +14,7 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.+'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.+'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.+'
+
 	testImplementation 'org.codehaus.groovy:groovy:3.0.+'
 	testImplementation('org.spockframework:spock-core:2.0-M3-groovy-3.0') {
 		exclude module: 'groovy'
@@ -21,20 +22,17 @@ dependencies {
 	testImplementation('com.nagternal:spock-genesis:+') {
 		exclude module: 'groovy'
 	}
-	testImplementation 'org.slf4j:slf4j-simple:2.0.0-alpha1'  // Needed by com.nagternal:spock-genesis ???
+
 	testImplementation 'com.pholser:junit-quickcheck-core:+'
 	testImplementation 'com.pholser:junit-quickcheck-generators:+'
-	testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.+'  // Needed by com.pholser:junit-quickcheck-core
+
 	testImplementation 'org.testng:testng:7.+'
 }
 
-test {
-	useJUnitPlatform()
-	// testLogging {
-	//	 events "passed", "skipped", "failed"
-	// }
-}
+// Although the documentation at https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html
+// says we can put useTestNG() in the test paragraph, it doesn't work.
 
+test { useJUnitPlatform() }
 task test_TestNG(type: Test) { useTestNG() }
 test.dependsOn test_TestNG
 

@@ -16,9 +16,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class Test_Factorial_JUnit5 {
+class Factorial_JUnit5 {
 
-	private static List<LongFunction<BigInteger>> functions = Arrays.asList(
+	private static final List<LongFunction<BigInteger>> functions = Arrays.asList(
 			Factorial::iterative,
 			Factorial::reductive,
 			Factorial::reductive_alt,
@@ -26,9 +26,9 @@ public class Test_Factorial_JUnit5 {
 			Factorial::tailRecursive
 	);
 
-	private static List<Integer> negativeValues = Arrays.asList(-1, -2, -5, -10, -20, -100);
+	private static final List<Integer> negativeValues = Arrays.asList(-1, -2, -5, -10, -20, -100);
 
-	private static List<Map.Entry<Integer, BigInteger>> positiveValues = Arrays.asList(
+	private static final List<Map.Entry<Integer, BigInteger>> positiveValues = Arrays.asList(
 			Map.entry(0, BigInteger.valueOf(1)),
 			Map.entry(1, BigInteger.valueOf(1)),
 			Map.entry(2, BigInteger.valueOf(2)),

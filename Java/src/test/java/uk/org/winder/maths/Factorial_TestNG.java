@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.function.IntFunction;
 
-public final class Test_Factorial_TestNG {
+public final class Factorial_TestNG {
 
 	private final Object[] algorithms = new Object[]{
 			(IntFunction<BigInteger>) Factorial::iterative,

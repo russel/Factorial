@@ -17,7 +17,7 @@ import static uk.org.winder.maths.Factorial.naiveRecursive;
 import static uk.org.winder.maths.Factorial.tailRecursive;
 
 @RunWith(JUnitQuickcheck.class)
-public final class Test_Factorial_JUnitQuickCheck {
+public final class Factorial_JUnitQuickCheck {
 
   // Keep the Integer argument range relatively small so that the tests run in reasonable time.
   // [1, 500] is seen as reasonable.

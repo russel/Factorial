@@ -5,7 +5,7 @@ import spock.lang.Unroll
 
 import spock.genesis.Gen
 
-class Test_Factorial_Spock_PropertyBased extends Specification {
+class Factorial_Spock_PropertyBased extends Specification {
 
     private static final algorithms = [
             [Factorial.&iterative, 'iterative'],

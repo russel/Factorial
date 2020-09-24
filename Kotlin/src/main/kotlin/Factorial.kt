@@ -3,8 +3,8 @@ package uk.org.winder.maths.factorial
 import java.lang.IllegalArgumentException
 import java.math.BigInteger
 
-val zero = BigInteger.ZERO
-val one = BigInteger.ONE
+val zero: BigInteger = BigInteger.ZERO
+val one: BigInteger = BigInteger.ONE
 val two = 2.bigint
 
 fun validate(x: BigInteger): Unit {
@@ -35,13 +35,13 @@ fun foldive(x: BigInteger): BigInteger {
 fun foldive(x: Int): BigInteger = foldive(x.bigint)
 fun foldive(x: Long): BigInteger = foldive(x.bigint)
 
-fun naïve_recursive(x: BigInteger): BigInteger {
+fun naive_recursive(x: BigInteger): BigInteger {
 	validate(x)
 	if (x < two) { return one }
-	return x * naïve_recursive(x - one)
+	return x * naive_recursive(x - one)
 }
-fun naïve_recursive(x: Int): BigInteger = naïve_recursive(x.bigint)
-fun naïve_recursive(x: Long): BigInteger = naïve_recursive(x.bigint)
+fun naive_recursive(x: Int): BigInteger = naive_recursive(x.bigint)
+fun naive_recursive(x: Long): BigInteger = naive_recursive(x.bigint)
 
 fun tail_recursive(x: BigInteger): BigInteger {
 	validate(x)

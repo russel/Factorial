@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-	kotlin("jvm") version("1.3.72")
+	kotlin("jvm") version("1.4.10")
 }
 
 repositories {
@@ -8,8 +10,13 @@ repositories {
 }
 
 dependencies {
-	compile(kotlin("stdlib"))
-	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.+")
+	implementation(kotlin("stdlib"))
+	testImplementation("io.kotest:kotest-runner-junit5-jvm:4.+")
+	testImplementation("io.kotest:kotest-property-jvm:4.+")
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+	kotlinOptions.jvmTarget = 14.toString()
 }
 
 tasks.withType<Test> {

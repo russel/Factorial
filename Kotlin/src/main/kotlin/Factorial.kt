@@ -35,15 +35,15 @@ fun foldive(x: BigInteger): BigInteger {
 fun foldive(x: Int): BigInteger = foldive(x.bigint)
 fun foldive(x: Long): BigInteger = foldive(x.bigint)
 
-fun naive_recursive(x: BigInteger): BigInteger {
+fun naiveRecursive(x: BigInteger): BigInteger {
 	validate(x)
 	if (x < two) { return one }
-	return x * naive_recursive(x - one)
+	return x * naiveRecursive(x - one)
 }
-fun naive_recursive(x: Int): BigInteger = naive_recursive(x.bigint)
-fun naive_recursive(x: Long): BigInteger = naive_recursive(x.bigint)
+fun naiveRecursive(x: Int): BigInteger = naiveRecursive(x.bigint)
+fun naiveRecursive(x: Long): BigInteger = naiveRecursive(x.bigint)
 
-fun tail_recursive(x: BigInteger): BigInteger {
+fun tailRecursive(x: BigInteger): BigInteger {
 	validate(x)
 	tailrec fun iterate(n: BigInteger, t: BigInteger = one): BigInteger {
 		if (n < two) { return t }
@@ -51,5 +51,5 @@ fun tail_recursive(x: BigInteger): BigInteger {
 	}
 	return iterate(x)
 }
-fun tail_recursive(x: Int): BigInteger = tail_recursive(x.bigint)
-fun tail_recursive(x: Long): BigInteger = tail_recursive(x.bigint)
+fun tailRecursive(x: Int): BigInteger = tailRecursive(x.bigint)
+fun tailRecursive(x: Long): BigInteger = tailRecursive(x.bigint)

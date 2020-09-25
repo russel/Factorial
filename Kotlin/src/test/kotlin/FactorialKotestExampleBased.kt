@@ -28,7 +28,7 @@ class FactorialKotestExampleBased: FreeSpec({
 
 	"positive arguments result in expected result" - {
 		forAll(functions) { name, f ->
-			"$name" - {
+			name - {
 				forAll(
 						row(0, one),
 						row(1, one),
@@ -61,7 +61,7 @@ class FactorialKotestExampleBased: FreeSpec({
 
 	"negative arguments result in IllegalArgumentException" - {
 		forAll(functions) { name, f ->
-			"$name" - {
+			name - {
 				checkAll(Arb.negativeInts()) { n ->
 					shouldThrow<IllegalArgumentException> {
 						f(n)

@@ -28,13 +28,15 @@ class FactorialKotestPropertyBased: FreeSpec({
 
 	"base case" - {
 		forAll(functions) { name, f ->
-			"$name(0) == 1" { f(0) == 1.bigint }
+			"$name(0) == 1" {
+				f(0) == 1.bigint
+			}
 		}
 	}
 
 	"factorial recurrence relation is true for non-negative integer arguments" - {
 		forAll(functions) { name, f ->
-			"$name" - {
+			name - {
 				forAll(Arb.int(1, 2000)) { i ->
 					f(i + 1) == (i + 1).bigint * f(i)
 				}
@@ -44,7 +46,7 @@ class FactorialKotestPropertyBased: FreeSpec({
 
 	"negative arguments result in IllegalArgumentException" - {
 		forAll(functions) { name, f ->
-			"$name" - {
+			name - {
 				checkAll(Arb.negativeInts()) { n ->
 					shouldThrow<IllegalArgumentException> {
 						f(n)

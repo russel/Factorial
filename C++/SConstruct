@@ -1,24 +1,28 @@
 import os
+import pathlib
+
+build_directory = pathlib.Path(os.environ['HOME']) / 'Built'
 
 base_environment = Environment(
     tools=['g++', 'gnulink'],
-    CPPPATH=[os.path.join(os.environ['HOME'], 'include')],
-    CXXFLAGS=['-Wall', '-Wundef', '-Wcast-align', '-Wredundant-decls', '-std=c++17'],
-    LINKFLAGS=['-L{}'.format(p) for p in (os.path.join(os.environ['HOME'], 'Built', 'lib'), os.path.join(os.environ['HOME'], 'Built', 'lib64'))],
+    CPPPATH=[build_directory / 'include'],
+    CXXFLAGS=['-Wall', '-Wundef', '-Wcast-align', '-Wredundant-decls', '-std=c++20'],
+    LINKFLAGS=[f"-L{build_directory / 'lib'}"],
     LIBS=['gmpxx', 'gmp'],
 )
 rapidcheck_environment = base_environment.Clone()
 rapidcheck_environment.Append(LIBS=['rapidcheck'])
 
 code_under_test = base_environment.Object( 'factorial.cpp')
-catch_program = base_environment.Program('factorial_test_catch', ['factorial_test_catch.cpp', code_under_test])
-rapidcheck_program = rapidcheck_environment.Program('factorial_test_rapidcheck', ['factorial_test_rapidcheck.cpp', code_under_test])
-iterator_rapidcheck_program = rapidcheck_environment.Program('mpz_class_iterator_test_rapidcheck', 'mpz_class_iterator_test_rapidcheck.cpp')
+factorial_test_catch = base_environment.Program('factorial_test_catch', ['factorial_test_catch.cpp', code_under_test])
+factorial_test_rapidcheck = rapidcheck_environment.Program('factorial_test_rapidcheck', ['factorial_test_rapidcheck.cpp', code_under_test])
+
+mpz_class_iterator_test_rapidcheck = rapidcheck_environment.Program('mpz_class_iterator_test_rapidcheck', 'mpz_class_iterator_test_rapidcheck.cpp')
 
 Default([
-    Command('catch', catch_program, './$SOURCE'),
-    Command('rapidcheck', rapidcheck_program, './$SOURCE'),
-    Command('iterator_rapidcheck', iterator_rapidcheck_program, './$SOURCE'),
+    Command('test_catch', factorial_test_catch, './$SOURCE'),
+    Command('test_rapidcheck', factorial_test_rapidcheck, './$SOURCE'),
+    Command('iterator_test_rapidcheck', mpz_class_iterator_test_rapidcheck, './$SOURCE'),
 ])
 
 docs = Command('docs', 'Doxyfile', 'doxygen')

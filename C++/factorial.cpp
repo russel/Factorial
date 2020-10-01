@@ -4,27 +4,29 @@
  * This file contains various implementation of the factorial function using
  * various algorithms.
  *
- * @copyright © 2016 Russel Winder
+ * @copyright © 2016, 2020  Russel Winder
  * @author Russel Winder (<russel@winder.org.uk>)
  */
 
 /**
  * @mainpage
  *
- * There are here various implementation of the factorial function using
- * various algorithms. Factorial is defined by the recurrence relation:
+ * There are here a number of functions (implementing various different algorithms)
+ * that deliver \f$n!\f$, aka factorial of \f$n\f$. Factorial (\f$f\f$) is defined
+ * by the recurrence relation:
  *
- * f(0) = 1
+ * \f$f_0 = 1\f$
  *
- * f(n) = n f(n) , n > 0
+ * \f$f_n = n \, f_{n - 1}, \; n > 0\f$
  *
- * The factorial functions themselves are not really that interesting.
- * What is interesting is the tests. [Catch](https://github.com/philsquared/Catch)
+ * The functions themselves are not really that interesting, except that the various
+ * algorithms have quite a few interesting features.
+ * What is really interesting is the tests. [Catch](https://github.com/philsquared/Catch)
  * is used for doing some example-based testing whilst
  * [RapidCheck](https://github.com/emil-e/rapidcheck) is used for
  * property-based testing
  *
- * @copyright © 2016 Russel Winder
+ * @copyright © 2016, 2020  Russel Winder
  * @author Russel Winder (<russel@winder.org.uk>)
  */
 
@@ -77,9 +79,9 @@ class mpz_class_iterator: std::iterator<std::input_iterator_tag, mpz_class> {
  private:
 	mpz_class value;
  public:
-	mpz_class_iterator(mpz_class const v) : value(v) { }
+	explicit mpz_class_iterator(mpz_class const v) : value(v) { }
 	mpz_class_iterator& operator++() { value += 1; return *this; }
-	mpz_class_iterator operator++(int) { mpz_class_iterator tmp {*this}; value += 1; return tmp; }
+	mpz_class_iterator const operator++(int) { mpz_class_iterator tmp {*this}; value += 1; return tmp; }
 	bool operator==(mpz_class_iterator const & other) const { return value == other.value; }
 	bool operator!=(mpz_class_iterator const & other) const { return value != other.value; }
 	mpz_class operator*() const { return  value; }

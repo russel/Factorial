@@ -18,8 +18,8 @@
 std::vector<std::pair<mpz_class (*)(long const), std::string>> const algorithms {
 	{Factorial::iterative, "iterative"},
 	{Factorial::reductive, "reductive"},
-	{Factorial::naive_recursive, "naïve recursive"},
-	{Factorial::tail_recursive, "tail recursive"}
+	{Factorial::naive_recursive, "naive_recursive"},
+	{Factorial::tail_recursive, "tail_recursive"}
 };
 
 int main() {

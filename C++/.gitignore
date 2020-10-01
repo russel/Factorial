@@ -1,3 +1,5 @@
 *.o
 /html/
 /latex/
+/Build_*/
+/cmake-build-debug/

@@ -1,10 +1,16 @@
+import pathlib
 import os
 
-root = 'factorial'
-test_root = root + '_test'
+root = 'Factorial_Chapel'
 
-program = Command(test_root, [s + '.chpl' for s in (root, test_root)], 'chpl -o $TARGET $SOURCES', ENV=os.environ)
+test_root = root + '_Test'
 
-Command('test', program, './' + test_root)
+test = Command(
+    test_root,
+    [str(pathlib.Path('src') / (root + '.chpl')), str(pathlib.Path('test') / (test_root + '.chpl'))],
+    f'chpl -o $TARGET --main-module {test_root} $SOURCES',
+    ENV=os.environ,
+)
+Command('test', test, './$SOURCE')
 
-Clean('.', Glob('*~'))
+Clean('.', Glob('*~') + Glob('*/*~'))

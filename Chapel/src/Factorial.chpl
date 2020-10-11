@@ -14,11 +14,11 @@ use BigInteger;
 const zero = new bigint(0);
 const one = new bigint(1);
 
-proc validate(n: bigint) throws {
+private proc validate(n: bigint) throws {
   if n < zero { throw new IllegalArgumentError(); }
 }
 
-proc validate(n) throws where n.type == int || n.type == uint {
+private proc validate(n) throws where n.type == int || n.type == uint {
   if n < 0 { throw new IllegalArgumentError(); }
 }
 

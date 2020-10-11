@@ -1,8 +1,7 @@
 import pathlib
 import os
 
-root = 'Factorial_Chapel'
-
+root = 'Factorial'
 test_root = root + '_Test'
 
 test = Command(

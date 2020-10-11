@@ -1,6 +1,6 @@
 
 [brick]
-name = "Factorial_Chapel"
+name = "Factorial"
 version = "0.0.0"
 chplVersion = "1.22.1"
 authors = ["Russel Winder <russel@winder.org.uk>"]

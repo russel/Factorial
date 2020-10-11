@@ -1,7 +1,7 @@
 use BigInteger;
 use UnitTest;
 
-use Factorial_Chapel;
+use Factorial;
 
 // Since the factorial functions are overloaded we have to use a technique to disambiguate the
 // overloads at the call site. So create some procedures that can be function references

@@ -15,10 +15,10 @@ const zero = new bigint(0);
 const one = new bigint(1);
 
 proc validate(n: bigint) throws {
-  if n < 0 { throw new IllegalArgumentError(); }
+  if n < zero { throw new IllegalArgumentError(); }
 }
 
-proc validate (n: int) throws {
+proc validate(n) throws where n.type == int || n.type == uint {
   if n < 0 { throw new IllegalArgumentError(); }
 }
 
@@ -29,7 +29,7 @@ proc iterative(n: bigint): bigint throws {
   return total;
 }
 
-proc iterative(n: int): bigint throws {
+proc iterative(n): bigint throws where n.type == int || n.type == uint {
   validate(n);
   var total = new bigint(1);
   for i in 1..n do total *= i;
@@ -41,7 +41,7 @@ proc reductive_sequential(n: bigint): bigint throws {
   return * reduce for i in one..n do i;
 }
 
-proc reductive_sequential(n:int): bigint throws {
+proc reductive_sequential(n): bigint throws where n.type == int || n.type == uint {
   validate(n);
   return * reduce for i in 1..n do new bigint(i);
 }
@@ -51,7 +51,7 @@ proc reductive_parallel(n: bigint): bigint throws {
   return * reduce [i in one..n] i;
 }
 
-proc reductive_parallel(n: int): bigint throws {
+proc reductive_parallel(n): bigint throws where n.type == int || n.type == uint {
   validate(n);
   return * reduce [i in 1..n] new bigint(i);
 }
@@ -61,7 +61,7 @@ proc naive_recursive(n: bigint): bigint throws {
   return if n < 2 then one else n * naive_recursive(n - one);
 }
 
-proc naive_recursive(n: int): bigint throws return naive_recursive(new bigint(n));
+proc naive_recursive(n): bigint throws where n.type == int || n.type == uint return naive_recursive(new bigint(n));
 
 proc tail_recursive(n: bigint): bigint throws {
   validate(n);
@@ -71,18 +71,11 @@ proc tail_recursive(n: bigint): bigint throws {
   return iterate(n, one);
 }
 
-proc tail_recursive(n: int): bigint throws return tail_recursive(new bigint(n));
+proc tail_recursive(n): bigint throws where n.type == int || n.type == uint return tail_recursive(new bigint(n));
 
-proc library_fac(n: bigint): bigint throws {
+proc library_fac(n): bigint throws where n.type == bigint || n.type == int || n.type == uint {
   validate(n);
   var x = new bigint();
-  x.fac(n);
-  return x;
-}
-
-proc library_fac(n: int): bigint throws {
-  validate(n);
-  var x = new bigint();
-  x.fac(n);
+  x.fac(n);  // Casts n to C ulong.
   return x;
 }

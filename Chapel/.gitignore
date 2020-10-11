@@ -1,2 +1,3 @@
-target/
-Mason.lock
+/target/
+/Mason.lock
+/Factorial_Chapel_Test
